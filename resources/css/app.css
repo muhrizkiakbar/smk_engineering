@@ -1,0 +1,127 @@
+@import "~@fortawesome";
+@import 'flatpickr';
+@import 'maplibre-gl';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark .choices {
+  background-color: #1d232a; /* Tailwind's gray-800 */
+  color: #d1d5db; /* Tailwind's gray-300 */
+  border-color: #374151; /* Tailwind's gray-700 */
+}
+
+/* Input field inside Choices.js */
+.dark .choices__inner {
+  background-color: #1d232a;
+  color: #d1d5db;
+  border-color: #374151;
+}
+
+/* Dropdown menu */
+.dark .choices__list--dropdown {
+  background-color: #;
+  color: #d1d5db;
+  border-color: #374151;
+}
+
+/* Individual items in the dropdown */
+.dark .choices__item {
+  background-color: transparent;
+  color: #d1d5db;
+}
+
+
+.dark .choices__input .choices__input--cloned {
+    background-color: #1d232a !important;
+}
+
+.dark .choices[data-type*=select-one] .choices__input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #1d232a !important;
+    margin: 0
+}
+
+.dark .choices__input .choices__input--cloned {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #1d232a !important;
+    margin: 0
+}
+
+.dark .choices__item--selectable.is-highlighted {
+  background-color: #6f82ff !important; /* Tailwind's blue-600 */
+  color: #ffffff;
+}
+
+.dark .choices__item--selectable {
+  background-color: #1d232a !important; /* Tailwind's blue-600 */
+  color: #ffffff;
+}
+
+/* Placeholder text */
+.dark .choices__placeholder {
+  color: #9ca3af; /* Tailwind's gray-400 */
+}
+
+.flatpickr-calendar {
+    display: inline-block;
+    z-index: 9999999999999 !important;
+}
+
+.gauge {
+  width: 100%;
+  max-width: 250px;
+  font-family: "Roboto", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #004033;
+}
+
+.gauge__body {
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  background: #b4c0be;
+  position: relative;
+  border-top-left-radius: 100% 200%;
+  border-top-right-radius: 50% 200%;
+  overflow: hidden;
+}
+
+.gauge__fill {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: inherit;
+  height: 200%;
+  background: #009578;
+  transform-origin: center top;
+  transform: rotate(0turn);
+  transition: transform 0.2s ease-out;
+}
+
+.gauge__cover {
+  width: 75%;
+  height: 150%;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 25%;
+  box-sizing: border-box;
+}
+
