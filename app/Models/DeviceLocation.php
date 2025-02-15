@@ -13,7 +13,7 @@ class DeviceLocation extends Model
 {
     protected $table = 'device_locations';
     protected $attributes = [
-        'state' => 'pending',
+        'state' => 'active',
     ];
 
     protected $guarded = [];

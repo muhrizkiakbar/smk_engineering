@@ -81,6 +81,7 @@
             <!-- head -->
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Device</th>
                 <th>Type</th>
                 <th>Location</th>
@@ -96,6 +97,7 @@
               <!-- row 1 -->
               @foreach ($device_locations as $device_location)
                   <tr>
+                    <td>{{$device_location->id}}</td>
                     <td>{{$device_location->device->name}}</td>
                     <td>{{$device_location->device->type}}</td>
                     <td>{{$device_location->location->name}}</td>

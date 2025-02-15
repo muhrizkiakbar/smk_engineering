@@ -16,9 +16,6 @@ class DevicePhotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'device_location_id' => [
-                'required','string', 'max:20'
-            ],
             'photo' => 'required|file|mimetypes:image/jpeg,image/png,image/jpg|max:2048',
         ];
     }
