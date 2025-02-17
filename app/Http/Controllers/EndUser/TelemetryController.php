@@ -32,7 +32,7 @@ class TelemetryController extends Controller
         $telemetries_query = $this->telemetryService->telemetries($request_input, ['device_location' => ['device', 'location']]);
         $telemetry = $telemetries_query->orderby('created_at', 'desc')->first();
         $telemetries = $telemetries_query->get();
-        $device_photo = DevicePhoto::where('state', 'active')->orderby('created_at', 'asc')->first();
+        $device_photo = DevicePhoto::where('state', 'active')->orderby('created_at', 'desc')->first();
 
         return view('end_user.telemetries.index', ['telemetry' => $telemetry, 'telemetries' => $telemetries, 'device_photo' => $device_photo]);
     }
