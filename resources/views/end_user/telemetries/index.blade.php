@@ -15,7 +15,7 @@
                             <div class="flex flex-col">
                                 <p class="label-text ps-0 pb-4">Last Updated At {{$device_photo->updated_at}}</p>
                                 <img
-                                    src="{{asset('storage/app/public/'.$device_photo->photo)}}"
+                                    src="{{asset('storage/'.$device_photo->photo)}}"
                                 alt="image" />
                             </div>
                         @else
