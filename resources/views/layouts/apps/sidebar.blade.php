@@ -5,11 +5,7 @@
             <!-- Header -->
             <div class="flex justify-between p-2">
                 <!-- Logo -->
-                <a class="btn btn-ghost text-lg">
-                    <img alt="Logo" src="/logo.svg" class="w-4">
-                    App Name
-                </a>
-
+                    <img src="{{ asset('storage/utils/adaro_telemetry.svg') }}" alt="Uploaded Image" class="max-w-sm">
             </div>
 
             <!-- Body -->

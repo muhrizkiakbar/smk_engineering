@@ -25,6 +25,7 @@ class TelemetryRequest extends FormRequest
             'velocity' => [ 'nullable','numeric' ],
             'rainfall' => [ 'nullable','numeric' ],
             'water_height' => [ 'nullable','numeric' ],
+            'created_at' => ['nullable']
         ];
     }
 }

@@ -38,6 +38,7 @@ Route::middleware('auth:web')->group(function () {
             Route::get('/device_locations', [EndUserDeviceLocationController::class, 'index']);
             Route::get('/telemetry/{id}', [EndUserTelemetryController::class, 'index']);
             Route::post('/telemetry/{id}', [EndUserTelemetryController::class, 'create_device_photo'])->name('enduser.telemetry.create_device_photo');
+            Route::get('/telemetry/device_location/{device_location_id}', [EndUserTelemetryController::class, 'telemetry'])->name('enduser.telemetry.telemetry');
         });
     });
 });

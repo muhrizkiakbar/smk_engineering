@@ -14,7 +14,7 @@
                         @if ($device_photo != null)
                             <div class="flex flex-col">
                                 <p class="label-text ps-0 pb-4">Last Updated At {{$device_photo->updated_at}}</p>
-                                <img
+                                <img id="device_photo_img"
                                     src="{{asset('storage/'.$device_photo->photo)}}"
                                 alt="image" />
                             </div>
@@ -64,7 +64,7 @@
                     <i class="fa-solid text-3xl fa-droplet"></i>
                 </div>
                 <div class="stat-title">PH</div>
-                <div class="stat-value
+                <div id="ph_card" class="stat-value
                     @if ($telemetry->device_location->device->has_ph == true)
                         text-primary
                     @else
@@ -86,7 +86,7 @@
                     <i class="fa-brands text-3xl fa-drupal"></i>
                 </div>
                 <div class="stat-title">TDS</div>
-                <div class="stat-value
+                <div id="tds_card" class="stat-value
                     @if ($telemetry->device_location->device->has_tds == true)
                         text-primary
                     @else
@@ -108,7 +108,7 @@
                     <i class="fa-solid text-3xl fa-tornado"></i>
                 </div>
                 <div class="stat-title">TSS</div>
-                <div class="stat-value
+                <div id="tss_card" class="stat-value
                     @if ($telemetry->device_location->device->has_tss == true)
                         text-primary
                     @else
@@ -130,7 +130,7 @@
                     <i class="fa-solid text-3xl fa-house-flood-water-circle-arrow-right"></i>
                 </div>
                 <div class="stat-title">Velocity</div>
-                <div class="stat-value
+                <div id="velocity_card" class="stat-value
                     @if ($telemetry->device_location->device->has_velocity == true)
                         text-primary
                     @else
@@ -152,7 +152,7 @@
                     <i class="fa-solid text-3xl fa-cloud-showers-heavy"></i>
                 </div>
                 <div class="stat-title">Rainfall</div>
-                <div class="stat-value
+                <div id="rainfall_card" class="stat-value
                     @if ($telemetry->device_location->device->has_rainfall == true)
                         text-primary
                     @else
@@ -174,7 +174,7 @@
                     <i class="fa-solid text-3xl fa-water"></i>
                 </div>
                 <div class="stat-title">Water Height</div>
-                <div class="stat-value
+                <div id="water_height_card" class="stat-value
                     @if ($telemetry->device_location->device->has_water_height == true)
                         text-primary
                     @else
@@ -242,6 +242,14 @@
         const velocity_chart = document.getElementById('velocity').getContext('2d');
         const rainfall_chart = document.getElementById('rainfall').getContext('2d');
         const water_height_chart = document.getElementById('water_height').getContext('2d');
+        const ph_card = window.$('#ph_card');
+        const tds_card = window.$('#tds_card');
+        const tss_card = window.$('#tss_card');
+        const rainfall_card = window.$('#rainfall_card');
+        const water_height_card = window.$('#water_height_card');
+        const velocity_card = window.$('#velocity_card');
+        const device_photo_img = window.$('#device_photo_img');
+
 
         const data = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -296,6 +304,143 @@
         const myChart4 = new window.Chart(velocity_chart, config);
         const myChart5 = new window.Chart(rainfall_chart, config);
         const myChart6 = new window.Chart(water_height_chart, config);
+
+        let ph_telemetries = [];
+        let tds_telemetries = [];
+        let tss_telemetries = [];
+        let rainfall_telemetries = [];
+        let water_height_telemetries = [];
+        let velocity_telemetries = [];
+        let device_photo = null;
+        let ph = 0;
+        let tds = 0;
+        let tss = 0;
+        let rainfall = 0;
+        let velocity = 0;
+        let water_height = 0;
+        let labels = [];
+
+        function render_data(){
+            update_chart(myChart, ph_telemetries, labels);
+            update_chart(myChart2, tds_telemetries, labels);
+            update_chart(myChart3, tss_telemetries, labels);
+            update_chart(myChart4, rainfall_telemetries, labels);
+            update_chart(myChart5, velocity_telemetries, labels);
+            update_chart(myChart6, water_height_telemetries, labels);
+
+            ph_card.text(ph);
+            tds_card.text(tds);
+            tss_card.text(tss);
+            rainfall_card.text(rainfall);
+            water_height_card.text(water_height);
+            velocity_card.text(velocity);
+            device_photo_img.attr('src', device_photo);
+        }
+
+        function fetch_data(){
+            window.$.ajax({
+                url: '{{ route('enduser.telemetry.telemetry', encrypt($telemetry->device_location->id)) }}', // Ganti dengan URL API yang sesuai
+                method: "GET",
+                dataType: "json",
+                success: function(response) {
+                    ph_telemetries = response.telemetries.map(item => item.ph).reverse();
+                    tds_telemetries = response.telemetries.map(item => item.tds).reverse();
+                    tss_telemetries = response.telemetries.map(item => item.tss).reverse();
+                    velocity_telemetries = response.telemetries.map(item => item.velocity).reverse();
+                    water_height_telemetries = response.telemetries.map(item => item.water_height).reverse();
+                    rainfall_telemetries = response.telemetries.map(item => item.rainfall).reverse();
+                    labels = response.telemetries.map(item => formatDateTime(item.created_at)).sort();
+
+                    device_photo = response.device_photo;
+                    ph = response.ph;
+                    tds = response.tds;
+                    tss = response.tss;
+                    rainfall = response.rainfall;
+                    velocity = response.velocity;
+                    water_height = response.water_height;
+
+                    render_data();
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error saat mengambil data:", error);
+                }
+            });
+        }
+
+
+
+        function formatDateTime(datetime) {
+            const date = new Date(datetime);
+
+            const day = date.getDate().toString().padStart(2, '0'); // Ambil tanggal (dd)
+            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ambil bulan (mm)
+            const hours = date.getHours().toString().padStart(2, '0'); // Ambil jam (HH)
+            const minutes = date.getMinutes().toString().padStart(2, '0'); // Ambil menit (ii)
+
+            return `${hours}:${minutes}`;
+        }
+
+        function config_data(datas, label) {
+            let data = {
+                type: 'line',
+                data: {
+                    labels: label,
+                    datasets: [
+                        {
+                            label: 'Default Interpolation',
+                            data: datas,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            fill: true,
+                            tension: 0.4,
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: false,
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Hours'
+                            }
+                        },
+                        y: {
+                            display: false,
+                            title: {
+                                display: true,
+                            }
+                        }
+                    }
+                }
+            };
+
+            return data;
+        };
+
+        function update_chart(chart, datas, label) {
+            chart.data.labels = label;
+            chart.data.datasets[0].data = datas;
+            chart.update(); // Refresh chart with new data
+        }
+
+        fetch_data()
+
+
+        setInterval(() => {
+            fetch_data();
+        }, 15 * 60 * 1000); // 60 menit * 60 detik * 1000 milidetik
     })
 </script>
 @endpush

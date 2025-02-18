@@ -24,6 +24,6 @@ class Telemetries extends Repository
 
     protected function filterByLTE_Tanggal($query, $value)
     {
-        $query->where('created_at', '<=', $value);
+        $query->whereDate('created_at', '<=', $value);
     }
 }

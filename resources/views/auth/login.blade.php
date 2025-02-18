@@ -1,18 +1,17 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <div class="flex my-4">
-          <div class="card card-compact bg-base-100 w-full sm:w-full shadow-xl">
+    <div class="flex my-4 max-w-lg sm:w-3/5 justify-center items-center">
+        <div class="card card-compact bg-base-100 w-full sm:w-full shadow-xl">
             <div class="card-body xl:mx-4">
-                <h2 class="card-title">Login</h2>
+                <h1 class="text-3xl font-bold self-center">Login</h1>
                 <form method="POST" action="{{ route('login') }}" class="">
                     @csrf
 
                     <!-- Email Address -->
                     <div class="form-control">
-                        <label for="username" class="mb-3 text-sm font-bold">NIP</label>
-                        <x-text-input id="username" class="input input-bordered mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="nip" />
+                        <label for="username" class="mb-3 text-sm font-bold">Username</label>
+                        <x-text-input id="username" class="input input-bordered mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('username')" class="mt-2" />
                     </div>
 

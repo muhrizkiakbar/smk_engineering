@@ -59,11 +59,11 @@
                                 <div class="flex-row">
                                     <h2 class="text-lg font-bold text-gray-950">${device.device_name} - ${device.location_name}</h2>
                                     <p class="text-gray-700">Sensor available: </p>
-                                    ${ device.has_ph ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">PH</div>' : null }
-                                    ${ device.has_tds ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">TDS</div>' : null }
-                                    ${ device.has_tss ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">TSS</div>' : null }
-                                    ${ device.has_velocity ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">velocity</div>' : null }
-                                    ${ device.has_water_height ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Water Height</div>' : null }
+                                    ${ device.has_ph ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">PH</div>' : '' }
+                                    ${ device.has_tds ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">TDS</div>' : '' }
+                                    ${ device.has_tss ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">TSS</div>' : '' }
+                                    ${ device.has_velocity ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">velocity</div>' : '' }
+                                    ${ device.has_water_height ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Water Height</div>' : '' }
                                     ${ device.has_rainfall ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Rainfall</div>' : '' }
                                     <div class="flex pt-4">
                                         <a href="/enduser/telemetry/${device.id}" class="btn w-full btn-sm btn-outline btn-success">Dashboard</a>
