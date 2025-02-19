@@ -21,16 +21,27 @@ class DevicePhotoService extends AppService
         return $device_photo;
     }
 
-    public function create($device_location_id)
+    public function create($device_location_id, $request = null)
     {
+        if ($request != null) {
+            $request_input = $request->except(['photo']);
+            $device_photo =  DevicePhoto::create($request_input);
 
-        $device_photo_count = DevicePhoto::where('device_location_id', $device_location_id)
-            ->where('state', 'pending')->count();
+            $file = $request->file('photo');
+            $filePath = $file->store('device_photos', 'public');
 
-        if ($device_photo_count == 0) {
+            $device_photo->photo = $filePath;
+            $device_photo->state = 'active';
+            $device_photo->save();
+
+            return $device_photo;
+
+        } else {
+
             DevicePhoto::create([
                 'device_location_id' => $device_location_id,
             ]);
+
         }
 
         return;

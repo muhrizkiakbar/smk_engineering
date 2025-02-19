@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TelemetryRequest extends FormRequest
+class RealTelemetryRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

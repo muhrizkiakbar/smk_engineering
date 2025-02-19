@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TelemetryRequest extends FormRequest
+class UndeliveredTelemetryRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,9 +16,7 @@ class TelemetryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'device_location_id' => [
-                'required','string', 'max:20'
-            ],
+            'phone_number' => [ 'nullable','string' ],
             'ph' => [ 'nullable','numeric' ],
             'tds' => [ 'nullable','numeric' ],
             'tss' => [ 'nullable','numeric' ],

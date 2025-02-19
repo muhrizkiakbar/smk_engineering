@@ -32,4 +32,16 @@ class DevicePhotoController extends Controller
 
         return response()->json($device_photo);
     }
+
+    public function store(DevicePhotoRequest $request)
+    {
+        $request_input = $request->merge(
+            [
+                'state' => 'active'
+            ]
+        );
+
+        $device_photo = $this->devicePhotoService->create(null, $request_input);
+        return response()->json($device_photo);
+    }
 }

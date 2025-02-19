@@ -21,6 +21,18 @@
                                 </a>
                             </li>
                             <li class="py-1">
+                                <a href="{{route('undelivered_telemetries.index')}}">
+                                    <i class="fa-solid fa-triangle-exclamation fa-fw"></i>
+                                    Undelivered Telemetry
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a href="{{route('real_telemetries.index')}}">
+                                    <i class="fa-solid fa-circle-check fa-fw"></i>
+                                    Real Telemetry
+                                </a>
+                            </li>
+                            <li class="py-1">
                                 <a href="{{route('devices.index')}}">
                                     <i class="fa-solid fa-hard-drive fa-fw"></i>
                                     Device

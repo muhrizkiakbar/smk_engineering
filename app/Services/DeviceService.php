@@ -25,6 +25,7 @@ class DeviceService extends AppService
 
     public function create($request)
     {
+        $request->phone_number = $this->formatPhoneNumber($request->phone_number);
 
         $device = Device::create($request);
 
@@ -35,6 +36,7 @@ class DeviceService extends AppService
     {
         // Example logic for updating a photo record
         try {
+            $request['phone_number'] = $this->formatPhoneNumber($request['phone_number']);
             $device->update($request);
 
             return $device;

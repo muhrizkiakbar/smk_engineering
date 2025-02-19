@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Telemetries\Api;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TelemetryRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,7 +16,7 @@ class TelemetryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'device_location_id' => [
+            'phone_number' => [
                 'required','string', 'max:20'
             ],
             'ph' => [ 'nullable','numeric' ],
@@ -25,7 +25,6 @@ class TelemetryRequest extends FormRequest
             'velocity' => [ 'nullable','numeric' ],
             'rainfall' => [ 'nullable','numeric' ],
             'water_height' => [ 'nullable','numeric' ],
-            'created_at' => ['nullable'],
         ];
     }
 }

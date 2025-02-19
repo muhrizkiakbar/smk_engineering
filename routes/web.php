@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\TelemetryController;
+use App\Http\Controllers\RealTelemetryController;
+use App\Http\Controllers\UndeliveredTelemetryController;
 use App\Http\Controllers\EndUser\DeviceLocationController as EndUserDeviceLocationController;
 use App\Http\Controllers\EndUser\TelemetryController as EndUserTelemetryController;
 
@@ -15,11 +17,15 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
-
     Route::middleware('auth')->group(function () {
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
+
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->middleware(['auth', 'verified'])->name('dashboard');
+
+
         Route::resource('locations', LocationController::class)->except([
             'show'
         ]);
@@ -32,6 +38,14 @@ Route::middleware('auth:web')->group(function () {
         Route::post('/telemetries/generate', [TelemetryController::class, 'generate'])->name('telemetries.generate');
         Route::resource('telemetries', TelemetryController::class)->except([
             'show'
+        ]);
+
+        Route::resource('real_telemetries', RealTelemetryController::class)->except([
+            'show', 'new','create','store', 'edit', 'update', 'delete', 'destroy'
+        ]);
+
+        Route::resource('undelivered_telemetries', UndeliveredTelemetryController::class)->except([
+            'show', 'new','create','store', 'edit', 'update', 'delete', 'destroy'
         ]);
 
         Route::prefix('/enduser')->group(function () {
