@@ -38,14 +38,14 @@ class TelemetryController extends Controller
         $phone_number = $this->formatPhoneNumber($request->phone_number);
 
         $device = Device::where('phone_number', $phone_number)->first();
-        $device_location = DeviceLocation::where('state', 'active')->where('device_id', $device->id)->first();
-
-        if ($device_location == null) {
+        if ($device == null) {
 
             $this->undeliveredTelemetryService->create($request);
 
             return response()->json([]);
         }
+
+        $device_location = DeviceLocation::where('state', 'active')->where('device_id', $device->id)->first();
 
         $request_input = $request->merge([
             'device_location_id' => $device_location->id
