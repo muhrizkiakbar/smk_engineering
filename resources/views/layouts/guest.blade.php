@@ -26,8 +26,10 @@
             <div class="hero-overlay bg-opacity-60"></div>
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <div class="text-center lg:text-left text-neutral-content">
-                    <h1 class="text-5xl font-bold">Login now!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 class="text-5xl font-bold">Login</h1>
+                    <p class="py-6">
+                        Aplikasi Monitoring Telemetri adalah solusi berbasis teknologi yang memungkinkan pemantauan data secara real-time dari berbagai sensor dan perangkat yang terhubung dalam suatu sistem. Aplikasi ini dirancang untuk mengumpulkan, menyimpan, menganalisis, dan menampilkan data telemetri secara visual, sehingga pengguna dapat mengambil keputusan yang lebih cepat dan tepat berdasarkan informasi yang akurat.
+                    </p>
                 </div>
                 {{ $slot }}
             </div>
