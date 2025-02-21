@@ -21,19 +21,17 @@
 
         @stack('style')
     </head>
-    <body class="min-h-screen flex flex-col bg-base-200 h-full">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-20 bg-base-200">
-            <div class="my-5 mx-4">
-                <a href="/" class="fill-current text-primary">
-                    <img src="{{ asset('storage/utils/adaro_telemetry.svg') }}" alt="Uploaded Image">
-                </a>
-            </div>
-
-            <main class="w-10/12 ms-4 me-4 justify-center justify-items-center">
+    <body>
+        <div class="hero min-h-screen" style="background-image: url('{{ asset('storage/utils/background.jpeg') }}?height=1080&width=1920');">
+            <div class="hero-overlay bg-opacity-60"></div>
+            <div class="hero-content flex-col lg:flex-row-reverse">
+                <div class="text-center lg:text-left text-neutral-content">
+                    <h1 class="text-5xl font-bold">Login now!</h1>
+                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                </div>
                 {{ $slot }}
-            </main>
+            </div>
         </div>
-
         @include('layouts.apps.footer')
     </body>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

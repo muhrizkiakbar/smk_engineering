@@ -1,10 +1,15 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <div class="flex my-4 max-w-lg sm:w-3/5 justify-center items-center">
-        <div class="card card-compact bg-base-100 w-full sm:w-full shadow-xl">
-            <div class="card-body xl:mx-4">
-                <h1 class="text-3xl font-bold self-center">Login</h1>
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 md:me-5 xl:me-5 lg:me-5">
+            <div class="flex flex-col items-center">
+                <div class="my-5 mx-4">
+                    <a href="/" class="fill-current text-primary">
+                        <img src="{{ asset('storage/utils/adaro_telemetry.svg') }}" alt="Uploaded Image">
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
                 <form method="POST" action="{{ route('login') }}" class="">
                     @csrf
 
@@ -38,13 +43,12 @@
                             </a>
                         @endif
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn w-full btn-primary">
                         Login
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
 </x-guest-layout>
 
