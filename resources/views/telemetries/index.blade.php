@@ -120,7 +120,7 @@
                             </a>
 
                             <input type="text"
-                                value="{{ old('bought_at', request('tanggal')) }}"
+                                value="{{ old('tanggal', request('tanggal')) }}"
                                 name="tanggal"
                                 class="input input-bordered input-date-dialog2 input-primary w-full"
                             >

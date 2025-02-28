@@ -395,6 +395,7 @@
                     water_height_telemetries = response.telemetries.map(item => item.water_height).reverse();
                     rainfall_telemetries = response.telemetries.map(item => item.rainfall).reverse();
                     labels = response.telemetries.map(item => formatDateTime(item.created_at)).sort();
+                    console.log(labels);
 
                     device_photo = response.device_photo;
                     ph = response.ph;

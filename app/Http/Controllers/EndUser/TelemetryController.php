@@ -65,6 +65,42 @@ class TelemetryController extends Controller
         $telemetries = $telemetries_query->limit(12)->get();
         $device_photo = DevicePhoto::where('state', 'active')->orderby('created_at', 'desc')->first();
 
+        $lostData = [
+            'device_location_id' => $device_location_id,
+            'ph' => 0,
+            'tds' => 0,
+            'tss' => 0,
+            'velocity' => 0,
+            'rainfall' => 0,
+            'water_height' => 0,
+        ];
+
+        $fixed_telemetries = [];
+        $last_created_at = null;
+        $current_index = 0;
+        foreach ($telemetries as $key => $telemetri) {
+            if ($key == 0) {
+                $last_created_at = $telemetri->created_at;
+                array_push($fixed_telemetries, $telemetri);
+            } else {
+                $last = Carbon::parse($last_created_at);
+                $current = Carbon::parse($telemetri->created_at);
+                $diffInMinutes = $current->diffInMinutes($last);
+
+                if ($diffInMinutes > 110) {
+                    $new_last_temp = $last->addMinutes(55)->subHours(1);
+                    $lostData['created_at'] = $new_last_temp;
+                    $lostData['updated_at'] = $new_last_temp;
+                    array_push($fixed_telemetries, $lostData);
+                    array_push($fixed_telemetries, $telemetri);
+                } else {
+                    array_push($fixed_telemetries, $telemetri);
+                }
+            }
+            $current_index = $current_index + 1;
+            $last_created_at = $telemetri->created_at;
+        }
+
         return response()->json([
             'ph' => $telemetry->ph,
             'tds' => $telemetry->tds,
@@ -72,8 +108,8 @@ class TelemetryController extends Controller
             'velocity' => $telemetry->velocity,
             'rainfall' => $telemetry->rainfall,
             'water_height' => $telemetry->water_height,
-            'device_photo' => asset('storage/'.$device_photo->photo),
-            'telemetries' => $telemetries,
+            'device_photo' => $device_photo != null ? asset('storage/'.$device_photo->photo) : null,
+            'telemetries' => $fixed_telemetries,
         ]);
     }
 
