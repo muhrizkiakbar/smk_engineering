@@ -28,7 +28,7 @@
                 <div class="text-center lg:text-left text-neutral-content">
                     <h1 class="text-5xl font-bold">Login</h1>
                     <p class="py-6">
-                        Aplikasi Monitoring Telemetri adalah solusi berbasis teknologi yang memungkinkan pemantauan data secara real-time dari berbagai sensor dan perangkat yang terhubung dalam suatu sistem. Aplikasi ini dirancang untuk mengumpulkan, menyimpan, menganalisis, dan menampilkan data telemetri secara visual, sehingga pengguna dapat mengambil keputusan yang lebih cepat dan tepat berdasarkan informasi yang akurat.
+                    Aplikasi Monitoring Telemetri adalah solusi teknologi untuk memantau data real-time dari sensor dan perangkat terhubung. Aplikasi ini mengumpulkan, menyimpan, menganalisis, dan menampilkan data secara visual, membantu pengguna mengambil keputusan cepat dan akurat.
                     </p>
                 </div>
                 {{ $slot }}

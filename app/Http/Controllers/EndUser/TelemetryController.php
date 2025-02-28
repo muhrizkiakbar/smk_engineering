@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\EndUser;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeviceLocation;
 use App\Models\DevicePhoto;
 use App\Services\TelemetryService;
 use Illuminate\Http\Request;
@@ -34,8 +35,19 @@ class TelemetryController extends Controller
         $telemetry = $telemetries_query->orderby('created_at', 'desc')->first();
         $telemetries = $telemetries_query->limit(12)->get();
         $device_photo = DevicePhoto::where('state', 'active')->orderby('created_at', 'desc')->first();
+        $device_locations = DeviceLocation::with(['device', 'location'])->where('state', 'active')->orderby('id', 'asc')->get();
+        $current_device_location = DeviceLocation::find($id)->load(['device', 'location']);
 
-        return view('end_user.telemetries.index', ['telemetry' => $telemetry, 'telemetries' => $telemetries, 'device_photo' => $device_photo]);
+        return view(
+            'end_user.telemetries.index',
+            [
+                'telemetry' => $telemetry,
+                'telemetries' => $telemetries,
+                'device_photo' => $device_photo,
+                'device_locations' => $device_locations,
+                'current_device_location' => $current_device_location
+            ]
+        );
     }
 
     public function telemetry(string $device_location_id)

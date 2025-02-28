@@ -26,7 +26,7 @@
         <a class="btn btn-ghost text-xl">Telemetry</a>
       </div>
       <div class="flex-none">
-        <div class="mx-4 font-semibold">
+        <div class="mx-4 font-semibold hidden md:block">
             {{ Auth::user()->name }}
         </div>
         <div class="dropdown dropdown-end">
@@ -44,6 +44,7 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
+                    @method('POST')
 
                     <button href="route('logout')"
                             onclick="event.preventDefault();

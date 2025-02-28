@@ -2,87 +2,116 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Divisions\User as DivisionsUser;
-use App\Http\Requests\DivisionUserRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Illuminate\View\View;
+use Illuminate\Validation\Rule;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct()
+    {
+        $this->userService = new UserService(Auth::user());
+    }
+
     /**
-     * Display the user's profile form.
+     * Display the registration view.
      */
-    public function search_json(Request $request)
+    public function index(Request $request)
     {
-        $term = trim($request->q);
-        if (empty($term)) {
-            return response()->json([]);
+        $users = $this->userService->users($request)->cursorPaginate(10);
+        return view('users.index', ['users' => $users]);
+    }
+
+    public function create(): View
+    {
+        return view('users.new');
+    }
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'type_user' => ['required', 'string', 'max:255'],
+            'username' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('users')->where(function ($query) use ($request) {
+                    return $query->where('username', $request['username']);
+                }),
+            ],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'state' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user = $this->userService->create($request->all());
+
+        return redirect(route('users.index', absolute: false))->with('status', "User has been created.");
+    }
+
+    public function edit(String $id)
+    {
+        $user = User::find(decrypt($id));
+        return view('users.edit', ['user' => $user]);
+    }
+
+    public function update(Request $request, String $id): RedirectResponse
+    {
+        $user = User::find(decrypt($id));
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'username' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('users')->ignore($user->id)->where(function ($query) use ($request) {
+                    return $query->where('username', $request->username);
+                }),
+            ],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id)
+            ],
+            'state' => ['required', 'string', 'max:255'],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = $this->userService->update($request->all(), $user);
+
+        return redirect(route('users.index'))->with('status', 'user-updated');
+    }
+
+    public function destroy(string $id)
+    {
+        $user = User::find(decrypt($id));
+        $user = $this->userService->delete($user);
+
+        if ($user->state == "active") {
+            $message = "User berhasil diaktifkan.";
+        } else {
+            $message = "User berhasil dinonaktifkan.";
         }
-        $tags = User::where('name','LIKE','%'.$term.'%')->limit(20)->get();
-        $formatted_tags = [];
-        foreach ($tags as $tag) {
-            $formatted_tags[] = ['id' => $tag->id, 'name' => $tag->nip." - ". $tag->name];
-        }
-        return response()->json($formatted_tags);
-    }
 
-    public function division_users($division_id)
-    {
-        $division_users = DivisionsUser::leftJoin('users', 'division_users.user_id', '=', 'users.id')
-            ->leftJoin('divisions', 'division_users.division_id', '=', 'divisions.id')
-            ->where('division_id', intval($division_id))
-            ->get();
-
-        return response()->json(
-            [
-                'data' => $division_users->map(function ($division_user) {
-                    return [
-                        'id' => $division_user->id,
-                        'user' => [
-                            'nip' => $division_user->user->nip,
-                            'name' => $division_user->user->name,
-                        ],
-                        'division' => [
-                            'name' => $division_user->division->name,
-                        ]
-                    ];
-                })
-            ]
-        );
-    }
-
-    public function create_division_user(DivisionUserRequest $request)
-    {
-        $division_user = new DivisionsUser();
-        $division_user->division_id = $request["user_id"];
-        $division_user->user_id = $request["user_id"];
-        $division_user->save();
-
-        return response()->json(
-            [
-                'data' => [
-                    'id' => $division_user->id,
-                    'user' => [
-                        'nip' => $division_user->user->nip,
-                        'name' => $division_user->user->name,
-                    ],
-                    'division' => [
-                        'name' => $division_user->division->name,
-                    ]
-                ]
-            ]
-        );
-    }
-
-    public function delete_division_user(string $id)
-    {
-        $division_user = DivisionsUser::find(intval($id));
-        $division_user->delete();
-
-        return response()->json(
-            [
-                'success' => 'Berhasil menghapus user pada divisi.'
-            ]
-        );
+        return redirect(route('users.index'))->with('status', $message);
     }
 }

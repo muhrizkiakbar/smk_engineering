@@ -4,53 +4,6 @@
 <!-- Open the modal using ID.showModal() method -->
 <div class="md:w-[90vw] mt-5 lg:w-2/3 lg:w-[80vw] w-full px-6 py-6 mx-auto justify-center">
 
-    <dialog id="my_modal_5" class="modal w-full modal-bottom sm:modal-middle">
-        <div class="modal-box w-full" style="max-width:none;">
-            <h3 class="ms-3 text-lg font-bold">Device Photo</h3>
-            @php
-                use Carbon\Carbon;
-            @endphp
-
-            @if ($device_photo != null)
-                <p class="ms-3 text-md mb-4">Last Updated At {{Carbon::parse($device_photo->updated_at)->diffForHumans()}}</p>
-            @endif
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-                <div class="flex flex-row mb-4 justify-center">
-                        @if ($device_photo != null)
-                            <div class="flex flex-col">
-                                <img id="device_photo_img"
-                                    src="{{asset('storage/'.$device_photo->photo)}}"
-                                alt="image" />
-                            </div>
-                        @else
-                            <div class="empty-data-component">
-                                <div class="empty-data-container flex justify-center items-center h-96">
-                                    <div class="empty-data-icon text-6xl text-gray-400 mb-4">
-                                        <i class="fas fa-box-open"></i>
-                                    </div>
-                                    <div class="empty-data-message text-center">
-                                        <h2 class="text-lg font-bold mb-2">No Photo Found</h2>
-                                        <p class="text-sm text-gray-500">It looks like there's no photo to display.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                </div>
-                <div class="justify-items-center">
-                    <form action="{{ route('enduser.telemetry.create_device_photo', $current_device_location->id) }}" method="POST" class="w-full justify-items-center">
-                        @csrf
-                        @method('POST')
-                        <button type="submit" class="btn join-item flex items-center max-w-lg btn-primary">
-                            <span>
-                                Take Picture <i class="fas fa-camera-retro"></i>
-                            </span>
-                        </button>
-                    </form>
-                </div>
-        </div>
-    </dialog>
     <dialog id="device_location_modal" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
             <h3 class="ms-3 mb-4 text-lg font-bold">Device Locations</h3>
@@ -84,10 +37,7 @@
     </dialog>
     <div class="flex flex-col sm:flex-row pb-4 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
         <div class="sm:flex-auto">
-            <h6 class="font-bold text-lg">{{$current_device_location->device->name.' - '.$current_device_location->location->name}}</h6>
-            @if ($device_photo != null)
-                <p class="text-md">Last Updated At {{Carbon::parse($telemetry->updated_at)->diffForHumans()}}</p>
-            @endif
+            <h6 class="font-bold text-lg">{{$telemetry->device_location->device->name.' - '.$telemetry->device_location->location->name}}</h6>
         </div>
         <div class="flex flex-col sm:flex-row">
             <button class="btn btn-sm btn-primary sm:m-0 my-2 me-0 sm:me-2" onclick="my_modal_5.showModal()"><i class="fas fa-camera-retro"></i>Photo Location</button>
@@ -100,7 +50,7 @@
         <div class="stats shadow py-2">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_ph == true)
+                    @if ($telemetry->device_location->device->has_ph == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -110,19 +60,19 @@
                 </div>
                 <div class="stat-title">PH</div>
                 <div id="ph_card" class="stat-value
-                    @if ($current_device_location->device->has_ph == true)
+                    @if ($telemetry->device_location->device->has_ph == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
                 ">{{$telemetry->ph ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu PH dari 6-9</div>
+                <div class="stat-desc">21% more than last month</div>
             </div>
         </div>
         <div class="stats shadow py-2">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_tds == true)
+                    @if ($telemetry->device_location->device->has_tds == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -132,19 +82,19 @@
                 </div>
                 <div class="stat-title">TDS</div>
                 <div id="tds_card" class="stat-value
-                    @if ($current_device_location->device->has_tds == true)
+                    @if ($telemetry->device_location->device->has_tds == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
                 ">{{$telemetry->tds ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu TDS maksimal 300ppm</div>
+                <div class="stat-desc">21% more than last month</div>
             </div>
         </div>
         <div class="stats shadow py-2">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_tss == true)
+                    @if ($telemetry->device_location->device->has_tss == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -154,19 +104,19 @@
                 </div>
                 <div class="stat-title">TSS</div>
                 <div id="tss_card" class="stat-value
-                    @if ($current_device_location->device->has_tss == true)
+                    @if ($telemetry->device_location->device->has_tss == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
                 ">{{$telemetry->tss ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu TSS maksimal 150 mg/L</div>
+                <div class="stat-desc">Range quality standards between</div>
             </div>
         </div>
         <div class="stats shadow py-2">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_velocity == true)
+                    @if ($telemetry->device_location->device->has_velocity == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -176,19 +126,19 @@
                 </div>
                 <div class="stat-title">Velocity</div>
                 <div id="velocity_card" class="stat-value
-                    @if ($current_device_location->device->has_velocity == true)
+                    @if ($telemetry->device_location->device->has_velocity == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
                 ">{{$telemetry->velocity ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu Velocity maksimal ??</div>
+                <div class="stat-desc">Range quality standards between</div>
             </div>
         </div>
         <div class="stats shadow py-2">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_rainfall == true)
+                    @if ($telemetry->device_location->device->has_rainfall == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -198,19 +148,19 @@
                 </div>
                 <div class="stat-title">Rainfall</div>
                 <div id="rainfall_card" class="stat-value
-                    @if ($current_device_location->device->has_rainfall == true)
+                    @if ($telemetry->device_location->device->has_rainfall == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
                 ">{{$telemetry->rainfall ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu Rainfall maksimal ??</div>
+                <div class="stat-desc">Range quality standards between</div>
             </div>
         </div>
         <div class="stats shadow py-2">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_water_height == true)
+                    @if ($telemetry->device_location->device->has_water_height == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -220,13 +170,13 @@
                 </div>
                 <div class="stat-title">Water Height</div>
                 <div id="water_height_card" class="stat-value
-                    @if ($current_device_location->device->has_water_height == true)
+                    @if ($telemetry->device_location->device->has_water_height == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
                 ">{{$telemetry->water_height ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu Water Height maksimal ??</div>
+                <div class="stat-desc">Range quality standards between</div>
             </div>
         </div>
     </div>
@@ -384,7 +334,7 @@
 
         function fetch_data(){
             window.$.ajax({
-                url: '{{ route('enduser.telemetry.telemetry', encrypt($current_device_location->id)) }}', // Ganti dengan URL API yang sesuai
+                url: '{{ route('enduser.telemetry.telemetry', encrypt($telemetry->device_location->id)) }}', // Ganti dengan URL API yang sesuai
                 method: "GET",
                 dataType: "json",
                 success: function(response) {

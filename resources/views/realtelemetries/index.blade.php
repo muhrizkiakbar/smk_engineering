@@ -19,7 +19,7 @@
         <form method="dialog">
           <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
-        <form role="form" method="GET" action="{{ route('realtelemetries.index') }}">
+        <form role="form" method="GET" action="{{ route('real_telemetries.index') }}">
             <div class="flex flex-row mb-4 ">
                 <div class="px-3 w-full">
                     <label for="from" class="label">Device Location</label>

@@ -20,8 +20,8 @@ class Users extends Repository
     protected function filterByQ($query, $value)
     {
         $query->where('name', 'like', '%'.$value.'%')
-            ->orWhere('posisi', 'like', '%'.$value.'%')
-            ->orWhere('instansi', 'like', '%'.$value.'%');
+            ->orWhere('username', 'like', '%'.$value.'%')
+            ->orWhere('email', 'like', '%'.$value.'%');
     }
 
     protected function filterByEmail($query, $value)

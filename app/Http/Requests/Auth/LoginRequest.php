@@ -41,9 +41,26 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $credentials = $this->only('username', 'password');
+        $remember = $this->boolean('remember');
 
+        if (! Auth::attempt($credentials, $remember)) {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages([
+                'username' => trans('auth.failed'),
+            ]);
+        }
+
+        // Check if the authenticated user has 'active' state
+        if (Auth::user()->state !== 'active') {
+            // Log the user out since they don't have active state
+            Auth::logout();
+
+            // Clear session and regenerate CSRF token
+            $this->session()->invalidate();
+            $this->session()->regenerateToken();
+
+            RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'username' => trans('auth.failed'),
             ]);

@@ -6,6 +6,7 @@ use App\Http\Controllers\DeviceLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TelemetryController;
 use App\Http\Controllers\RealTelemetryController;
 use App\Http\Controllers\UndeliveredTelemetryController;
@@ -35,6 +36,10 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('device_locations', DeviceLocationController::class)->except([
             'show'
         ]);
+        Route::resource('users', UserController::class)->except([
+            'show'
+        ]);
+
         Route::post('/telemetries/generate', [TelemetryController::class, 'generate'])->name('telemetries.generate');
         Route::resource('telemetries', TelemetryController::class)->except([
             'show'
@@ -49,8 +54,8 @@ Route::middleware('auth:web')->group(function () {
         ]);
 
         Route::prefix('/enduser')->group(function () {
-            Route::get('/device_locations', [EndUserDeviceLocationController::class, 'index']);
-            Route::get('/telemetry/{id}', [EndUserTelemetryController::class, 'index']);
+            Route::get('/device_locations', [EndUserDeviceLocationController::class, 'index'])->name('enduser.device_locations.index');
+            Route::get('/telemetry/{id}', [EndUserTelemetryController::class, 'index'])->name('enduser.telemetry.index');
             Route::post('/telemetry/{id}', [EndUserTelemetryController::class, 'create_device_photo'])->name('enduser.telemetry.create_device_photo');
             Route::get('/telemetry/device_location/{device_location_id}', [EndUserTelemetryController::class, 'telemetry'])->name('enduser.telemetry.telemetry');
         });

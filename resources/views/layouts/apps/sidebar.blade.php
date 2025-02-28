@@ -1,7 +1,7 @@
 <div class="drawer-side z-[99999]">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
     <div class="flex">
-        <aside class="h-auto sm:h-screen menu top-0 flex flex-col bg-base-200 overflow-y-auto">
+        <aside class="h-screen menu top-0 flex flex-col bg-base-200 overflow-y-auto">
             <!-- Header -->
             <div class="flex justify-between p-2">
                 <!-- Logo -->
@@ -10,53 +10,96 @@
 
             <!-- Body -->
             <div class="flex flex-col border-y border-base-300 px-6 pt-4 grow">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-bold">Admin</h2>
+                </div>
 
-                    <!-- Links -->
-                    <div class="flex flex-col divide-y divide-base-300">
-                        <ul class="menu px-0 py-4">
-                            <li class="py-1">
-                                <a>
-                                    <i class="fa-solid fa-house fa-fw"></i>
-                                    Home
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a href="{{route('undelivered_telemetries.index')}}">
-                                    <i class="fa-solid fa-triangle-exclamation fa-fw"></i>
-                                    Undelivered Telemetry
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a href="{{route('real_telemetries.index')}}">
-                                    <i class="fa-solid fa-circle-check fa-fw"></i>
-                                    Real Telemetry
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a href="{{route('devices.index')}}">
-                                    <i class="fa-solid fa-hard-drive fa-fw"></i>
-                                    Device
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a href="{{route('locations.index')}}">
-                                    <i class="fa-solid fa-location fa-fw"></i>
-                                    Location
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a href="{{route('device_locations.index')}}">
-                                    <i class="fa-solid fa-map-location-dot fa-fw"></i>
-                                    Device Location
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a href="{{route('telemetries.index')}}">
-                                    <i class="fa-solid fa-tachograph-digital fa-fw"></i>
-                                    Telemetry
-                                </a>
-                            </li>
-                        </ul>
+                <!-- Links -->
+                <div class="flex flex-col divide-y divide-base-300">
+                    <ul class="menu px-0 py-4">
+                        <li class="py-1">
+                            <a href="{{route('dashboard')}}"
+                                class="{{ Route::currentRouteName() === 'dashboard' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-house fa-fw"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('users.index')}}"
+                                class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-user fa-fw"></i>
+                                User
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('devices.index')}}"
+                                class="{{ Route::currentRouteName() === 'devices.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-hard-drive fa-fw"></i>
+                                Device
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('locations.index')}}"
+                                class="{{ Route::currentRouteName() === 'locations.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-location fa-fw"></i>
+                                Location
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('device_locations.index')}}"
+                                class="{{ Route::currentRouteName() === 'device_locations.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-map-location-dot fa-fw"></i>
+                                Device Location
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('telemetries.index')}}"
+                                class="{{ Route::currentRouteName() === 'telemetries.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-tachograph-digital fa-fw"></i>
+                                Telemetry
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('undelivered_telemetries.index')}}"
+                                class="{{ Route::currentRouteName() === 'undelivered_telemetries.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-triangle-exclamation fa-fw"></i>
+                                Undelivered Telemetry
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="{{route('real_telemetries.index')}}"
+                                class="{{ Route::currentRouteName() === 'real_telemetries.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-circle-check fa-fw"></i>
+                                Original Telemetry
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="flex flex-col divide-y divide-base-300">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold">Client</h2>
+                    </div>
+                    <ul class="menu px-0 py-4">
+                        <li class="py-1">
+                            <a href="{{route('enduser.device_locations.index')}}"
+                                class="{{ Route::currentRouteName() === 'enduser.device_locations.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-map-location-dot fa-fw"></i>
+                                Device Location
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

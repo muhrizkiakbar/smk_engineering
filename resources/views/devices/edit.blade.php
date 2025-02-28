@@ -5,7 +5,7 @@
     <!-- table 1 -->
     <div class="card bg-base-100 shadow-xl">
       <div class="p-6 flex pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-        <h6 class="font-bold text-lg flex-auto">Ubah Harga Hotel</h6>
+        <h6 class="font-bold text-lg flex-auto">Ubah Device</h6>
       </div>
       <div class="flex-auto p-5">
         <form role="form" method="POST" class="p-4" action="{{ route('devices.update', encrypt($device->id)) }}">

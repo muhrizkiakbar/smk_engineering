@@ -25,7 +25,7 @@ class DeviceService extends AppService
 
     public function create($request)
     {
-        $request->phone_number = $this->formatPhoneNumber($request->phone_number);
+        $request['phone_number'] = $this->formatPhoneNumber($request['phone_number']);
 
         $device = Device::create($request);
 
