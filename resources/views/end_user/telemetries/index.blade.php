@@ -85,8 +85,8 @@
     <div class="flex flex-col sm:flex-row pb-4 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
         <div class="sm:flex-auto">
             <h6 class="font-bold text-lg">{{$current_device_location->device->name.' - '.$current_device_location->location->name}}</h6>
-            @if ($device_photo != null)
-                <p class="text-md">Last Updated At {{Carbon::parse($telemetry->updated_at)->diffForHumans()}}</p>
+            @if ($telemetry != null)
+                <p class="text-md">Last Updated At {{Carbon::parse($telemetry->created_at)->diffForHumans()}}</p>
             @endif
         </div>
         <div class="flex flex-col sm:flex-row">
@@ -182,7 +182,7 @@
                         text-neutral-content
                     @endif
                 ">{{$telemetry->velocity ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu Velocity maksimal ??</div>
+                <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
         <div class="stats shadow py-2">
@@ -204,7 +204,7 @@
                         text-neutral-content
                     @endif
                 ">{{$telemetry->rainfall ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu Rainfall maksimal ??</div>
+                <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
         <div class="stats shadow py-2">
@@ -226,7 +226,7 @@
                         text-neutral-content
                     @endif
                 ">{{$telemetry->water_height ?? 0}}</div>
-                <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu Water Height maksimal ??</div>
+                <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
     </div>

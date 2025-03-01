@@ -113,6 +113,7 @@ class TelemetryController extends Controller
         ]);
     }
 
+    //API
     public function create_device_photo(string $device_location_id)
     {
         $device = $this->devicePhotoService->create($device_location_id);

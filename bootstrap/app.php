@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->appendToGroup('auth:api', JwtMiddleware::class);
+        $middleware->alias([
+           'admin' => \App\Http\Middleware\AdminMiddleware::class,
+           'admin_client' => \App\Http\Middleware\AdminClientMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -10,6 +10,7 @@
 
             <!-- Body -->
             <div class="flex flex-col border-y border-base-300 px-6 pt-4 grow">
+            @if (Auth::user()->type_user == 'admin')
                 <div class="flex justify-between items-center">
                     <h2 class="font-bold">Admin</h2>
                 </div>
@@ -83,12 +84,16 @@
                         </li>
                     </ul>
                 </div>
+            @endif
 
+            @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == 'client')
                 <div class="divider"></div>
 
                 <div class="flex flex-col divide-y divide-base-300">
                     <div class="flex justify-between items-center">
-                        <h2 class="font-bold">Client</h2>
+                        <h2 class="font-bold">Client
+                            {{ Auth::user()->type_user }}
+                        </h2>
                     </div>
                     <ul class="menu px-0 py-4">
                         <li class="py-1">
@@ -101,6 +106,7 @@
                         </li>
                     </ul>
                 </div>
+            @endif
             </div>
 
             <div class="flex justify-center items-center p-2">
