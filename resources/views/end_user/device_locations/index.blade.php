@@ -85,7 +85,7 @@
             label.style.fontSize = '12px';
             label.style.borderRadius = '4px';
             label.style.textAlign = 'center';
-            label.style.transform = 'translate(-50%, -200px)';
+            label.style.transform = 'translate(-80%, -200px)';
 
             // Tambahkan elemen label sebagai custom marker
             new window.maplibregl.Marker({ element: label })
