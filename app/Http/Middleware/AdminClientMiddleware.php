@@ -19,7 +19,7 @@ class AdminClientMiddleware
         $user = Auth::user();
 
         // Check if the user is logged in and has the correct role
-        if (!$user || $user->type_user !== 'client') {
+        if (!$user || ($user->type_user !== 'client' || $user->type_user !== 'admin')) {
             abort(403, 'You must be an admin to access this resource.');
         }
         return $next($request);
