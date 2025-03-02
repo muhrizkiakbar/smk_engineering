@@ -50,10 +50,10 @@
 
         // Tambahkan marker untuk setiap device
         devices.forEach(function(device) {
-            var marker = new window.maplibregl.Marker()
+            var marker = new window.maplibregl.Marker({ offset: 25 })
                 .setLngLat([device.longitude, device.latitude])
                 .setPopup(
-                    new maplibregl.Popup({ offset: 45 }) // Adjust offset if needed
+                    new maplibregl.Popup({ offset: 25 }) // Adjust offset if needed
                         .setHTML(`
                             <div class="flex">
                                 <div class="flex-row">
