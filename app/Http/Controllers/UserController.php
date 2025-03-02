@@ -35,7 +35,8 @@ class UserController extends Controller
 
     public function create(): View
     {
-        return view('users.new');
+        $departments = Department::where('state', 'active')->get();
+        return view('users.new', ['departments' => $departments]);
     }
 
     /**
