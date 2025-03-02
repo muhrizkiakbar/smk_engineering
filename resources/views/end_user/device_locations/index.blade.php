@@ -78,16 +78,16 @@
             const label = document.createElement('div');
             label.className = 'marker-label';
             label.innerHTML = `${device.device_name}`;
-            label.style.position = 'absolute';
+            label.style.position = 'relative';
             label.style.background = 'rgba(255, 255, 255, 0.8)';
             label.style.padding = '2px 5px';
             label.style.fontSize = '12px';
             label.style.borderRadius = '4px';
             label.style.textAlign = 'center';
-            label.style.transform = 'translate(-50%, -200px)';
+            label.style.transform = 'translate(-50%, -50px)';
 
             // Tambahkan elemen label sebagai custom marker
-            new window.maplibregl.Marker({ element: label })
+            new window.maplibregl.Marker({ element: label, offset: [0, -200] })
                 .setLngLat([device.longitude, device.latitude])
                 .addTo(map);
         });
