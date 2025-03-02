@@ -31,6 +31,7 @@ class UserService extends AppService
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'department_id' => $request['department_id'],
             'state' => $request['state'],
         ]);
 
@@ -48,6 +49,7 @@ class UserService extends AppService
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'state' => $request['state'],
+                'department_id' => (int) $request['department_id'],
             ];
 
             // Only update password if provided

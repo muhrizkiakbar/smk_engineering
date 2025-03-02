@@ -43,7 +43,12 @@ class DeviceLocationController extends Controller
                     'locations.name as location_name',
                     'locations.city',
                     'locations.district'
-                )->where('device_locations.state', 'active')->get();
+                )->where('device_locations.state', 'active');
+        if (Auth::user()->department->visibility_telemetry == 'public') {
+            $device_locations = $device_locations->get();
+        } elseif (Auth::user()->department->visibility_telemetry == 'private') {
+            $device_locations = $device_locations->where('department_id', Auth::user()->department->id)->get();
+        }
 
         return view('end_user.device_locations.index', ['device_locations' => $device_locations]);
     }

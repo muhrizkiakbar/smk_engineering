@@ -24,6 +24,18 @@
                 </select>
             </div>
             <div class="mb-4 px-3">
+                <label for="from" class="label">Department</label>
+                <select class="select select-bordered w-full" name="department_id">
+                    @foreach($departments as $department)
+                        <option value="{{$department->id}}"
+                            @selected(
+                            old('department_id') == $department->id
+                            )
+                        >{{$department->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4 px-3">
                 <label for="from" class="label">Location</label>
                 <select class="select select-bordered w-full" name="location_id">
                     @foreach($locations as $location)

@@ -5,6 +5,7 @@ use App\Http\Controllers\DeviceLocationController;
 //use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TelemetryController;
@@ -32,6 +33,9 @@ Route::middleware('auth:web')->group(function () {
                 'show'
             ]);
             Route::resource('devices', DeviceController::class)->except([
+                'show'
+            ]);
+            Route::resource('departments', DepartmentController::class)->except([
                 'show'
             ]);
             Route::resource('device_locations', DeviceLocationController::class)->except([

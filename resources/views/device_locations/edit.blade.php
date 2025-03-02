@@ -5,7 +5,7 @@
     <!-- table 1 -->
     <div class="card bg-base-100 shadow-xl">
       <div class="p-6 flex pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-        <h6 class="font-bold text-lg flex-auto">Ubah Harga Hotel</h6>
+        <h6 class="font-bold text-lg flex-auto">Ubah Device Location</h6>
       </div>
       <div class="flex-auto p-5">
         <form role="form" method="POST" class="p-4" action="{{ route('device_locations.update', encrypt($device_location->id)) }}">
@@ -18,6 +18,16 @@
                         <option value="{{$device->id}}"
                             @selected(old('device_id', request('device_id', $device->id)) == $device_location->device_id)
                         >{{$device->name.' ',$device->type}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4 px-3">
+                <label for="from" class="label">Department</label>
+                <select class="select select-bordered w-full" name="department_id">
+                    @foreach($departments as $department)
+                        <option value="{{$department->id}}"
+                            @selected(old('department_id', request('department_id', $department->id)) == $device_location->department_id)
+                        >{{$department->name}}</option>
                     @endforeach
                 </select>
             </div>

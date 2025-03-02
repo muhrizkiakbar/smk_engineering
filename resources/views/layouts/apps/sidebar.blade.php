@@ -27,6 +27,14 @@
                             </a>
                         </li>
                         <li class="py-1">
+                            <a href="{{route('departments.index')}}"
+                                class="{{ Route::currentRouteName() === 'departments.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-building fa-fw"></i>
+                                Departments
+                            </a>
+                        </li>
+                        <li class="py-1">
                             <a href="{{route('users.index')}}"
                                 class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }}"
                             >

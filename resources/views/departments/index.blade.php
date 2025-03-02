@@ -19,45 +19,11 @@
         <form method="dialog">
           <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
-        <form role="form" method="GET" action="{{ route('users.index') }}">
+        <form role="form" method="GET" action="{{ route('departments.index') }}">
             <div class="flex flex-row mb-4 ">
                 <div class="px-3 w-full">
-                    <label for="from" class="label">Nama/Username/Email</label>
-                    <input type="text" name="q" value="{{ old('q', request('q')) }}" placeholder="Name/Username/Email" class="w-full text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                </div>
-            </div>
-            <div class="flex flex-row mb-4 ">
-                <div class="px-3 w-full">
-                    <label for="from" class="label">State</label>
-                    <select class="select select-bordered w-full" name="state">
-                        <option value=""
-                            @selected(
-                                request('state') == ""
-                            )
-                        >Pilih State</option>
-                        @foreach(["active", "archived"] as $state)
-                            <option value="{{$state}}"
-                                @selected(request('state') == $state)
-                            >{{$state}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="flex flex-row mb-4 ">
-                <div class="px-3 w-full">
-                    <label for="from" class="label">Type User</label>
-                    <select class="select select-bordered w-full" name="type_user">
-                        <option value=""
-                            @selected(
-                                request('type_user') == ""
-                            )
-                        >Choose Type User</option>
-                        @foreach(["admin", "client"] as $type_user)
-                            <option value="{{$type_user}}"
-                                @selected(request('type_user') == $type_user)
-                            >{{$type_user}}</option>
-                        @endforeach
-                    </select>
+                    <label for="from" class="label">Nama</label>
+                    <input type="text" name="q" value="{{ old('q', request('q')) }}" placeholder="Name/ City/ District" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                 </div>
             </div>
             <div class="flex justify-between px-3">
@@ -72,9 +38,9 @@
     <!-- table 1 -->
     <div class="card bg-base-100 shadow-xl">
       <div class="p-6 flex pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-        <h6 class="font-bold text-lg flex-auto">User</h6>
+        <h6 class="font-bold text-lg flex-auto">Departments</h6>
         <div class="join">
-            <a class="btn btn-sm join-item btn-primary" href="{{route('users.create')}}"><i class="fas fa-plus"></i>Tambah</a>
+            <a class="btn btn-sm join-item btn-primary" href="{{route('departments.create')}}"><i class="fas fa-plus"></i>Tambah</a>
             <button class="btn btn-sm join-item" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
         </div>
       </div>
@@ -83,50 +49,54 @@
             <!-- head -->
             <thead>
               <tr>
-                <th>Username</th>
-                <th>Email</th>
                 <th>Name</th>
-                <th>Department</th>
-                <th>Type User</th>
+                <th>Visibility Telemetry</th>
                 <th>State</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <!-- row 1 -->
-              @foreach ($users as $user)
+              @foreach ($departments as $department)
                   <tr>
-                    <td>{{$user->username}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->department->name ?? null}}</td>
-                    <td>{{$user->type_user}}</td>
+                    <td>{{$department->name}}</td>
                     <td>
                         <span class="badge uppercase text-xs font-bold
-                            @if($user->state == 'active')
+                            @if($department->visibility_telemetry == 'public')
                                 bg-green-600 text-white
                             @else
                                 bg-base-300 text-base-400
                             @endif
                             ">
-                            {{$user->state}}
+                            {{$department->visibility_telemetry}}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge uppercase text-xs font-bold
+                            @if($department->state == 'active')
+                                bg-green-600 text-white
+                            @else
+                                bg-base-300 text-base-400
+                            @endif
+                            ">
+                            {{$department->state}}
                         </span>
                     </td>
                     <td class="justify-content-center items-center p-0">
                         <div class="join item-stretch flex sm:ps-3 xs:ps-3">
-                            <a href="{{ route('users.edit', encrypt($user->id)) }}" class="btn join-item btn-xs btn-info h-full flex text-white items-center w-20">Ubah <i class="fas fa-edit"></i></a>
-                            <form action="{{ route('users.destroy', encrypt($user->id)) }}" method="POST" class="h-full">
+                            <a href="{{ route('departments.edit', encrypt($department->id)) }}" class="btn join-item btn-xs btn-info h-full flex text-white items-center w-20">Ubah <i class="fas fa-edit"></i></a>
+                            <form action="{{ route('departments.destroy', encrypt($department->id)) }}" method="POST" class="h-full">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn join-item h-full flex items-center w-20
-                                        @if ($user->state == 'active')
+                                        @if ($department->state == 'active')
                                             btn-error text-white
                                         @else
                                             btn-success text-white
                                         @endif
                                     btn-xs">
                                     <span class="ps-1">
-                                        @if ($user->state == 'active')
+                                        @if ($department->state == 'active')
                                             Archive <i class="fas fa-trash"></i>
                                         @else
                                             Active <i class="fas fa-check-circle"></i>
@@ -141,7 +111,7 @@
             </tbody>
           </table>
       </div>
-      {{ $users->links() }}
+      {{ $departments->links() }}
     </div>
   </div>
 

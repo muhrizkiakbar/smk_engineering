@@ -19,6 +19,7 @@ class DeviceLocationRequest extends FormRequest
             'device_id' => [
                 'required','string', 'max:20'
             ],
+            'department_id' => [ 'required','string', 'max:20' ],
             'location_id' => [ 'required','string', 'max:20' ],
             'longitude' => [ 'required','string', 'max:255' ],
             'latitude' => [ 'required','string', 'max:255' ],

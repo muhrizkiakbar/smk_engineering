@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
 use App\Http\Requests\DeviceLocationRequest;
+use App\Models\Department;
 use App\Models\Device;
 use App\Models\DeviceLocation;
 use App\Models\Location;
@@ -23,15 +24,18 @@ class DeviceLocationController extends Controller
     //
     public function index(Request $request)
     {
-        $device_locations = $this->deviceLocationService->device_locations($request)->cursorPaginate(10);
+        $device_locations = $this->deviceLocationService->device_locations($request, ['device', 'location', 'department'])->cursorPaginate(10);
 
         $devices = Device::where('state', 'active')
+            ->get();
+
+        $departments = Department::where('state', 'active')
             ->get();
 
         $locations = Location::where('state', 'active')
             ->get();
 
-        return view('device_locations.index', ['devices' => $devices, 'locations' => $locations, 'device_locations' => $device_locations]);
+        return view('device_locations.index', ['devices' => $devices, 'locations' => $locations, 'device_locations' => $device_locations, 'departments' => $departments]);
     }
 
     public function create()
@@ -44,6 +48,9 @@ class DeviceLocationController extends Controller
         $existing_device_ids = $device_location_ids->pluck('device_id')->unique()->toArray();
         $existing_location_ids = $device_location_ids->pluck('location_id')->unique()->toArray();
 
+        $departments = Department::where('state', 'active')
+            ->get();
+
         $devices = Device::where('state', 'active')
             ->whereNotIn('id', $existing_device_ids)
             ->get();
@@ -52,7 +59,7 @@ class DeviceLocationController extends Controller
             ->whereNotIn('id', $existing_location_ids)
             ->get();
 
-        return view('device_locations.new', ['devices' => $devices, 'locations' => $locations]);
+        return view('device_locations.new', ['devices' => $devices, 'locations' => $locations, 'departments' => $departments]);
     }
 
     public function store(DeviceLocationRequest $request)
@@ -73,6 +80,9 @@ class DeviceLocationController extends Controller
         $existing_device_ids = $device_location_ids->pluck('device_id')->unique()->toArray();
         $existing_location_ids = $device_location_ids->pluck('location_id')->unique()->toArray();
 
+        $departments = Department::where('state', 'active')
+            ->get();
+
         $devices = Device::where('state', 'active')
             ->whereNotIn('id', $existing_device_ids)
             ->get();
@@ -81,7 +91,7 @@ class DeviceLocationController extends Controller
             ->whereNotIn('id', $existing_location_ids)
             ->get();
 
-        return view('device_locations.edit', ['device_location' => $device_location, 'devices' => $devices, 'locations' => $locations]);
+        return view('device_locations.edit', ['device_location' => $device_location, 'devices' => $devices, 'locations' => $locations, 'departments' => $departments]);
     }
 
     public function update(Request $request, string $id)
@@ -91,8 +101,10 @@ class DeviceLocationController extends Controller
         $request->validate([
             'location_id' => ['required', 'string', 'max:14', Rule::unique('device_locations', 'location_id')->ignore($device_location->id)],
             'device_id' => ['required', 'string', 'max:14', Rule::unique('device_locations', 'device_id')->ignore($device_location->id)],
+            'department_id' => [ 'required','string' ],
             'longitude' => [ 'required','string' ],
             'latitude' => [ 'required','string' ],
+            'department_id' => [ 'required','string' ],
             'state' => [ 'nullable', 'string', 'max:255' ],
         ]);
 

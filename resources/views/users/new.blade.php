@@ -92,6 +92,23 @@
             <div class="mb-4 px-3">
                 <label class="form-control w-full">
                   <div class="label">
+                    <span class="label-text">Department</span>
+                  </div>
+                    <select class="select select-bordered w-full" name="department_id">
+                        @foreach($departments as $department)
+                            <option value="{{$department->id}}"
+                                @selected(old('department', request('department')))
+                            >{{$department->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('department')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                  <div class="label">
                     <span class="label-text">Type User</span>
                   </div>
                     <select class="select select-bordered w-full" name="type_user">

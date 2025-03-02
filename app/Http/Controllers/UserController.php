@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->userService->users($request)->cursorPaginate(10);
-        return view('users.index', ['users' => $users]);
+        $users = $this->userService->users($request, ['department'])->cursorPaginate(10);
+        $departments = Department::where('state', 'active')->get();
+        return view('users.index', ['users' => $users, 'departments' => $departments]);
     }
 
     public function create(): View
@@ -45,6 +47,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'department_id' => ['required', 'string', 'max:255'],
             'type_user' => ['required', 'string', 'max:255'],
             'username' => [
                 'required',
@@ -67,7 +70,8 @@ class UserController extends Controller
     public function edit(String $id)
     {
         $user = User::find(decrypt($id));
-        return view('users.edit', ['user' => $user]);
+        $departments = Department::where('state', 'active')->get();
+        return view('users.edit', ['user' => $user, 'departments' => $departments]);
     }
 
     public function update(Request $request, String $id): RedirectResponse
@@ -76,6 +80,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'department_id' => ['required', 'string', 'max:255'],
             'username' => [
                 'required',
                 'string',

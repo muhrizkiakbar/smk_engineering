@@ -17,6 +17,12 @@ class DeviceLocations extends Repository
         $query->where('device_id', $value);
     }
 
+    protected function filterByDepartment_Id($query, $value)
+    {
+        $query->where('department_id', $value);
+    }
+
+
     protected function filterByLocation_Id($query, $value)
     {
         $query->where('location_id', $value);
