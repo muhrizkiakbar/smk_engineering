@@ -49,6 +49,7 @@ class UserService extends AppService
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'state' => $request['state'],
+                'type_user' => $request['type_user'],
                 'department_id' => (int) $request['department_id'],
             ];
 
