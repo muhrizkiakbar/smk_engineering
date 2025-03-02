@@ -100,7 +100,6 @@
                 <div class="flex flex-col divide-y divide-base-300">
                     <div class="flex justify-between items-center">
                         <h2 class="font-bold">Client
-                            {{ Auth::user()->type_user }}
                         </h2>
                     </div>
                     <ul class="menu px-0 py-4">
