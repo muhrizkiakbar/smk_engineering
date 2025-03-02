@@ -77,7 +77,7 @@
             // Tambahkan label menggunakan elemen HTML
             const label = document.createElement('div');
             label.className = 'marker-label';
-            label.innerHTML = `<p style="margin-top:25px;">${device.device_name}</p>`;
+            label.innerHTML = `<p style="margin-top:12px;">${device.device_name}</p>`;
             label.style.position = 'absolute';
             label.style.background = 'transparent';
             label.style.padding = '4px 6px';
