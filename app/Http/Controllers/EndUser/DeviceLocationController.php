@@ -43,7 +43,7 @@ class DeviceLocationController extends Controller
                     'locations.name as location_name',
                     'locations.city',
                     'locations.district'
-                )->get();
+                )->where('device_locations.state', 'active')->get();
 
         return view('end_user.device_locations.index', ['device_locations' => $device_locations]);
     }
