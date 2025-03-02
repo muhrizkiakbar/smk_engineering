@@ -105,7 +105,7 @@
             </tbody>
           </table>
       </div>
-      {{ $devices->links() }}
+      {{ $locations->links() }}
     </div>
   </div>
 
