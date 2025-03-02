@@ -73,6 +73,23 @@
                         `)
                 )
                 .addTo(map);
+
+            // Tambahkan label menggunakan elemen HTML
+            const label = document.createElement('div');
+            label.className = 'marker-label';
+            label.innerHTML = `${device.device_name}`;
+            label.style.position = 'absolute';
+            label.style.background = 'rgba(255, 255, 255, 0.8)';
+            label.style.padding = '2px 5px';
+            label.style.fontSize = '12px';
+            label.style.borderRadius = '4px';
+            label.style.textAlign = 'center';
+            label.style.transform = 'translate(-50%, -30px)';
+
+            // Tambahkan elemen label sebagai custom marker
+            new window.maplibregl.Marker({ element: label })
+                .setLngLat([device.longitude, device.latitude])
+                .addTo(map);
         });
 
     })
