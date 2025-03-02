@@ -101,7 +101,7 @@
                     <td>{{$device_location->id}}</td>
                     <td>{{$device_location->device->name}}</td>
                     <td>{{$device_location->device->type}}</td>
-                    <td>{{$device_location->department->name}}</td>
+                    <td>{{$device_location->department?->name}}</td>
                     <td>{{$device_location->location->name}}</td>
                     <td>{{$device_location->location->city}}</td>
                     <td>{{$device_location->location->district}}</td>
