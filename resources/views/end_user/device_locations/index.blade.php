@@ -86,7 +86,7 @@
             label.style.textAlign = 'center';
             label.style.fontWeight = 'bold';
             label.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-            label.style.transform = 'translate(-50%, -10px)';
+            label.style.transform = 'translate(-50%, -5000px)';
 
             // Tambahkan elemen label sebagai custom marker
             new window.maplibregl.Marker({ element: label })
