@@ -32,4 +32,9 @@ class DeviceLocation extends Model
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
 }
