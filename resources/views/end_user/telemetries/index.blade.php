@@ -440,7 +440,7 @@
 
         setInterval(() => {
             fetch_data();
-        }, 15 * 60 * 1000); // 60 menit * 60 detik * 1000 milidetik
+        }, 5 * 60 * 1000); // 60 menit * 60 detik * 1000 milidetik
     })
 </script>
 @endpush

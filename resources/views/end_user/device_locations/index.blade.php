@@ -77,7 +77,7 @@
             // Tambahkan label menggunakan elemen HTML
             const label = document.createElement('div');
             label.className = 'marker-label';
-            label.innerHTML = `<br> ${device.device_name}`;
+            label.innerHTML = `<p style="margin-top:25px;">${device.device_name}</p>`;
             label.style.position = 'absolute';
             label.style.background = 'transparent';
             label.style.padding = '4px 6px';
@@ -87,7 +87,7 @@
             label.style.fontWeight = 'bold';
             label.style.color = 'white';
             label.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-            label.style.transform = 'translate(-50%, -5000px)';
+            label.style.transform = 'translate(-50%, -50px)';
 
             // Tambahkan elemen label sebagai custom marker
             new window.maplibregl.Marker({ element: label })
