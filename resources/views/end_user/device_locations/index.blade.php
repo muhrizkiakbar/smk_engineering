@@ -79,7 +79,8 @@
             label.className = 'marker-label';
             label.innerHTML = `${device.device_name}`;
             label.style.position = 'absolute';
-            label.style.background = 'rgba(255, 255, 255, 0.8)';
+            label.style.color = 'blue';
+            label.style.background = 'transparent';
             label.style.padding = '2px 5px';
             label.style.fontSize = '12px';
             label.style.borderRadius = '4px';
