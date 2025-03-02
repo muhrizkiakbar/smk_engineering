@@ -78,14 +78,15 @@
             const label = document.createElement('div');
             label.className = 'marker-label';
             label.innerHTML = `${device.device_name}`;
-            label.style.position = 'relative';
-            label.style.color = 'blue';
-            label.style.background = 'transparent';
-            label.style.padding = '2px 5px';
+            label.style.position = 'absolute';
+            label.style.background = 'rgba(255, 255, 255, 0.8)';
+            label.style.padding = '4px 6px';
             label.style.fontSize = '12px';
             label.style.borderRadius = '4px';
             label.style.textAlign = 'center';
-            label.style.transform = 'translate(-50%, -30px)';
+            label.style.fontWeight = 'bold';
+            label.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+            label.style.transform = 'translate(-50%, -50px)';
 
             // Tambahkan elemen label sebagai custom marker
             new window.maplibregl.Marker({ element: label })
