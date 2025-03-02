@@ -30,11 +30,11 @@
             {{ Auth::user()->name }}
         </div>
         <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="avatar avatar-placeholder">
-                <div class="bg-neutral text-neutral-content w-16 rounded-full">
-                    <span class="text-xl">AI</span>
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img src="{{ asset('storage/utils/avatar.png') }}" alt="Uploaded Image" class="max-w-sm">
                 </div>
-          </div>
+            </div>
           <ul
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
