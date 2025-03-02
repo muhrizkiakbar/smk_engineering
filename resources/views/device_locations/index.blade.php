@@ -145,6 +145,7 @@
             </tbody>
           </table>
       </div>
+      {{ $device_locations->links() }}
     </div>
   </div>
 

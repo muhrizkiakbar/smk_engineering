@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::user()->type_user == 'admin') {
             return redirect('dashboard');
         }
-        return redirect('enduser.device_locations.index');
+        return redirect('/enduser/device_locations');
     }
 
     /**

@@ -41,7 +41,8 @@ Route::middleware('auth:web')->group(function () {
                 'show'
             ]);
 
-            Route::post('/telemetries/generate', [TelemetryController::class, 'generate'])->name('telemetries.generate');
+            Route::post('/telemetries/generate', [telemetrycontroller::class, 'generate'])->name('telemetries.generate');
+            Route::post('/telemetries/import', [TelemetryController::class, 'import'])->name('telemetries.import');
             Route::resource('telemetries', TelemetryController::class)->except([
                 'show'
             ]);
@@ -55,7 +56,7 @@ Route::middleware('auth:web')->group(function () {
             ]);
         });
 
-        Route::middleware('admin')->group(function () {
+        Route::middleware('admin_client')->group(function () {
             Route::prefix('/enduser')->group(function () {
                 Route::get('/device_locations', [EndUserDeviceLocationController::class, 'index'])->name('enduser.device_locations.index');
                 Route::get('/telemetry/{id}', [EndUserTelemetryController::class, 'index'])->name('enduser.telemetry.index');

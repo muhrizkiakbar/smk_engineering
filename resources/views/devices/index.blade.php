@@ -156,6 +156,7 @@
             </tbody>
           </table>
       </div>
+      {{ $devices->links() }}
     </div>
   </div>
 

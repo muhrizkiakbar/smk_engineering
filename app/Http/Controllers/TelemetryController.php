@@ -6,11 +6,16 @@ use App\Services\DevicePhotoService;
 use App\Services\DeviceLocationService;
 use App\Http\Requests\TelemetryRequest;
 use App\Http\Requests\Telemetries\GenerateRequest;
+use App\Imports\TelemetryImport;
 use App\Models\Telemetry;
 use App\Models\DeviceLocation;
 use App\Services\TelemetryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TelemetryController extends Controller
 {
@@ -70,19 +75,49 @@ class TelemetryController extends Controller
     public function generate(GenerateRequest $request)
     {
         $this->telemetryService->generate($request);
-        return back()->with('status', 'Telemetry berhasil digenerate');
+        return redirect('telemetries')->with('status', 'Telemetry berhasil digenerate');
     }
 
     public function destroy(string $id)
     {
         $telemetry = Telemetry::find(decrypt($id));
         $telemetry = $this->telemetryService->delete($telemetry);
-        return back()->with('status', 'Telemetry berhasil Dihapus.');
+        return redirect('telemetries')->with('status', 'Telemetry berhasil dihapus');
     }
 
     public function create_device_photo(string $device_location_id)
     {
         $device = $this->devicePhotoService->create($device_location_id);
         return back()->with('status', 'Request for photo of device was created');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xls,xlsx,csv|max:2048',
+        ]);
+
+        try {
+            $file = $request->file('file');
+
+            if (!$file->isValid()) {
+                return redirect('telemetries')
+                    ->with('error', 'File tidak valid atau rusak.');
+            }
+
+            Excel::import(new TelemetryImport(), $file);
+
+            return redirect('telemetries')
+            ->with('status', 'Telemetry berhasil diimport');
+        } catch (ValidationException $e) {
+            return redirect()->route('telemetries.index')
+                ->withErrors($e->validator)
+                ->withInput();
+        } catch (\Throwable $e) {
+            Log::error('Import telemetry error: ' . $e->getMessage());
+
+            return redirect('telemetries')
+                ->with('error', 'Terjadi kesalahan saat mengimpor data.');
+        }
     }
 }

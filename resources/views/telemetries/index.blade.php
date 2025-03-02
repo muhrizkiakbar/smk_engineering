@@ -139,15 +139,75 @@
         </form>
     </div>
   </dialog>
+
+  <dialog id="modal_import" class="modal modal-flatpickr modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="ms-3 mb-4 text-lg font-bold">Import Telemetry</h3>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <form role="form" method="POST" action="{{ route('telemetries.import') }}" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
+            <div class="form-control w-full">
+                <div class="flex flex-col items-center justify-center bg-base-100 border-2 border-dashed border-primary/50 rounded-lg p-6 mb-4 relative">
+                    <input type="file" id="fileInput" name="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onchange="updateFileName(this)"/>
+                    <div id="uploadPlaceholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary/70 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <p class="text-sm text-center text-base-content/70">
+                            Drag and drop file here atau<br>
+                            <span class="text-primary">klik untuk memilih file</span>
+                        </p>
+                    </div>
+                    <div id="fileDetails" class="hidden flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-success mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p class="font-medium text-center" id="fileName">filename.ext</p>
+                        <p class="text-xs text-base-content/70 mt-1" id="fileSize">0 KB</p>
+                        <button type="button" class="btn btn-xs btn-ghost mt-2" onclick="resetFileInput()">
+                            Remove
+                        </button>
+                    </div>
+                    @error('file')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+            <div class="flex justify-between px-3">
+                <button type="submit" class="btn btn-success w-full" id="uploadButton">
+                   Import
+                </button>
+            </div>
+        </form>
+    </div>
+  </dialog>
+
   <div class="md:w-[90vw] mt-5 lg:w-2/3 lg:w-[80vw] w-full px-6 py-6 mx-auto">
     <!-- table 1 -->
     <div class="card bg-base-100 shadow-xl">
       <div class="p-6 flex flex-wrap pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
         <h6 class="font-bold text-lg flex-auto">Telemetries</h6>
         <div class="join pt-4">
-            <a class="btn btn-sm join-item btn-primary" href="{{route('telemetries.create')}}"><i class="fas fa-plus"></i>Tambah</a>
-            <button class="btn btn-sm btn-success join-item" onclick="modal_generate.showModal()"><i class="fas fa-recycle"></i>Generate</button>
-            <button class="btn btn-sm join-item" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
+            <a class="btn btn-sm btn-primary join-item" href="{{route('telemetries.create')}}"><i class="fas fa-plus"></i>Tambah</a>
+            <div class="dropdown dropdown-end">
+                <button tabindex="0" class="btn btn-sm join-item">Actions <i class="fa-solid fa-chevron-down"></i></button>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li>
+                        <button class="" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
+                    </li>
+                    <li>
+                        <button onclick="modal_generate.showModal()"><i class="fas fa-recycle"></i>Generate</button>
+                    </li>
+                    <li>
+                        <button onclick="modal_import.showModal()">
+                        <i class="fa-solid fa-download"></i>
+                        Import</button>
+                    </li>
+                </ul>
+            </div>
         </div>
       </div>
       <div class="flex-auto p-5 overflow-x-auto">
@@ -239,6 +299,60 @@
             });
         @endif
 
+        function updateFileName(input) {
+            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+            const fileDetails = document.getElementById('fileDetails');
+            const fileNameElement = document.getElementById('fileName');
+            const fileSizeElement = document.getElementById('fileSize');
+            const uploadButton = document.getElementById('uploadButton');
+
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+
+                // Display file name
+                fileNameElement.textContent = file.name;
+
+                // Display file size
+                const fileSize = formatFileSize(file.size);
+                fileSizeElement.textContent = fileSize;
+
+                // Show file details and hide placeholder
+                uploadPlaceholder.classList.add('hidden');
+                fileDetails.classList.remove('hidden');
+                fileDetails.classList.add('flex');
+
+                // Enable upload button
+                uploadButton.disabled = false;
+            }
+        }
+
+        function resetFileInput() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+            const fileDetails = document.getElementById('fileDetails');
+            const uploadButton = document.getElementById('uploadButton');
+
+            // Reset file input
+            fileInput.value = '';
+
+            // Show placeholder and hide file details
+            uploadPlaceholder.classList.remove('hidden');
+            fileDetails.classList.add('hidden');
+            fileDetails.classList.remove('flex');
+
+            // Disable upload button
+            uploadButton.disabled = true;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
 
     </script>
 @endpush
