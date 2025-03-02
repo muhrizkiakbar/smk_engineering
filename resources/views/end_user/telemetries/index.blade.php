@@ -244,7 +244,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl">
-            <div class="card-body ps-6">
+            <div class="card-body">
                 <h2 class="card-title">TSS</h2>
             </div>
             <canvas id="tss"></canvas>
@@ -256,16 +256,16 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl">
-            <div class="card-body pb-2">
+            <div class="card-body">
                 <h2 class="card-title">Rainfall</h2>
             </div>
             <canvas id="rainfall"></canvas>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl">
-            <div class="card-body pb-2">
+            <div class="card-body">
                 <h2 class="card-title">Water Level</h2>
             </div>
-            <canvas class="ps-0 pb-2 pe-2" id="water_level"></canvas>
+            <canvas id="water_level"></canvas>
         </div>
     </div>
 </div>
