@@ -53,7 +53,7 @@
             var marker = new window.maplibregl.Marker()
                 .setLngLat([device.longitude, device.latitude])
                 .setPopup(
-                    new maplibregl.Popup({ offset: 25 }) // Adjust offset if needed
+                    new maplibregl.Popup({ offset: 45 }) // Adjust offset if needed
                         .setHTML(`
                             <div class="flex">
                                 <div class="flex-row">
