@@ -78,7 +78,7 @@
             const label = document.createElement('div');
             label.className = 'marker-label';
             label.innerHTML = `${device.device_name}`;
-            label.style.position = 'relative';
+            label.style.position = 'absolute';
             label.style.background = 'rgba(255, 255, 255, 0.8)';
             label.style.padding = '2px 5px';
             label.style.fontSize = '12px';
