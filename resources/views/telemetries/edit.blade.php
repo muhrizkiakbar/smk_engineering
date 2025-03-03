@@ -14,6 +14,27 @@
             <div class="mb-4 px-3">
                 <label class="form-control w-full">
                     <div class="label">
+                        <span class="label-text">Date and Time</span>
+                    </div>
+                    <div class="inline-flex items-center relative">
+                        <a href="#" class="btn btn-ghost btn-sm clear_bought_at btn-circle absolute right-0 mr-2">
+                            <i class="fa-solid fa-times text-lg"></i>
+                        </a>
+
+                        <input type="text"
+                            value="{{ old('created_at', request('created_at')) }}"
+                            name="created_at"
+                            class="input input-bordered input-date input-primary w-full"
+                        >
+                    </div>
+                    @error('created_at')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
                         <span class="label-text">PH</span>
                     </div>
                     <input type="text"
