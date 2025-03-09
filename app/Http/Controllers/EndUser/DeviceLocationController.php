@@ -100,7 +100,7 @@ class DeviceLocationController extends Controller
         $telemetries_query = $this->telemetryService->telemetries($request_input, ['device_location' => ['device', 'location']]);
         $telemetry = $telemetries_query->orderby('created_at', 'desc')->first();
         $telemetries = $telemetries_query->limit(12)->get();
-        $device_photo = DevicePhoto::where('state', 'active')->orderby('created_at', 'desc')->first();
+        $device_photo = DevicePhoto::where('device_location_id', $device_location_id)->where('state', 'active')->orderby('created_at', 'desc')->first();
 
         $lostData = [
             'device_location_id' => $device_location_id,
@@ -162,7 +162,8 @@ class DeviceLocationController extends Controller
         #$device_photos = $this->devicePhotoService->device_photos($request_input)->cursorPaginate(24);
         $device_location = DeviceLocation::find($device_location_id);
         $device_photos = DevicePhoto::where('device_location_id', $device_location_id)->cursorPaginate(24);
-        $device_photo = DevicePhoto::where('device_location_id', '=', $device_location_id)->where('state', 'active')->orderby('created_at', 'desc')->first();
+        #$device_photo = DevicePhoto::where('device_location_id', '=', $device_location_id)->orderby('created_at', 'desc')->first();
+        $device_photo = DevicePhoto::where('state', 'active')->where('device_location_id', $id)->orderby('created_at', 'desc')->first();
         return view(
             'end_user.device_locations.device_photo',
             [
