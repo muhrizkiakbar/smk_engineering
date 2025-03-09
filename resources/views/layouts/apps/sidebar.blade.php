@@ -95,8 +95,6 @@
             @endif
 
             @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == 'client')
-                <div class="divider"></div>
-
                 <div class="flex flex-col divide-y divide-base-300">
                     <div class="flex justify-between items-center">
                         <h2 class="font-bold">Client

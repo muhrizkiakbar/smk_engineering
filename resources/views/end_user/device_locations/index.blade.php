@@ -66,7 +66,7 @@
                                     ${ device.has_water_height ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Water Height</div>' : '' }
                                     ${ device.has_rainfall ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Rainfall</div>' : '' }
                                     <div class="flex pt-4">
-                                        <a href="/enduser/telemetry/${device.id}" class="btn w-full btn-sm btn-outline btn-success">Dashboard</a>
+                                        <a href="/enduser/device_locations/${device.id}/telemetry" class="btn w-full btn-sm btn-outline btn-success">Dashboard</a>
                                     </div>
                                 </div>
                             </div>

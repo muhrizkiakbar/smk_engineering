@@ -6,13 +6,24 @@ use App\Models\DevicePhoto;
 use Illuminate\Support\Facades\Storage;
 use App\Services\AppService;
 use Exception;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use App\Repositories\DevicePhotos;
 
 class DevicePhotoService extends AppService
 {
+    protected $devicePhotoRepository;
+
     public function __construct()
     {
+        $this->devicePhotoRepository = new DevicePhotos();
     }
+
+    public function device_photos(Request $request)
+    {
+        $device_photos = $this->devicePhotoRepository->filter($request->all());
+        return $device_photos;
+    }
+
 
     public function device_photo($device_location_id)
     {
@@ -23,29 +34,31 @@ class DevicePhotoService extends AppService
 
     public function create($device_location_id, $request = null)
     {
-        if ($request != null) {
-            $request_input = $request->except(['photo']);
-            $device_photo =  DevicePhoto::create($request_input);
+        $request_input = $request->except(['photo']);
+        $device_photo =  DevicePhoto::create($request_input);
 
-            $file = $request->file('photo');
-            $filePath = $file->store('device_photos', 'public');
+        $file = $request->file('photo');
+        $filePath = $file->store('device_photos', 'public');
 
-            $device_photo->photo = $filePath;
-            $device_photo->state = 'active';
-            $device_photo->save();
+        $device_photo->photo = $filePath;
+        $device_photo->state = 'active';
+        $device_photo->save();
 
-            return $device_photo;
-
-        } else {
-
-            DevicePhoto::create([
-                'device_location_id' => $device_location_id,
-            ]);
-
-        }
+        return $device_photo;
 
         return;
     }
+
+    public function request_create($device_location_id, $request = null)
+    {
+        DevicePhoto::create([
+            'device_location_id' => $device_location_id,
+        ]);
+
+
+        return;
+    }
+
 
     public function update(DevicePhoto $device_photo, $request)
     {

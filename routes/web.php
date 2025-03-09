@@ -62,10 +62,18 @@ Route::middleware('auth:web')->group(function () {
 
         Route::middleware('admin_client')->group(function () {
             Route::prefix('/enduser')->group(function () {
+
                 Route::get('/device_locations', [EndUserDeviceLocationController::class, 'index'])->name('enduser.device_locations.index');
-                Route::get('/telemetry/{id}', [EndUserTelemetryController::class, 'index'])->name('enduser.telemetry.index');
-                Route::post('/telemetry/{id}', [EndUserTelemetryController::class, 'create_device_photo'])->name('enduser.telemetry.create_device_photo');
-                Route::get('/telemetry/device_location/{device_location_id}', [EndUserTelemetryController::class, 'telemetry'])->name('enduser.telemetry.telemetry');
+
+                Route::get('/device_locations/sensors', [EndUserDeviceLocationController::class, 'sensors'])->name('enduser.device_locations.sensors');
+                Route::get('/device_locations/telemetry_sensor', [EndUserDeviceLocationController::class, 'telemetry_sensor'])->name('enduser.device_locations.telemetry_sensor');
+
+                Route::get('/device_locations/{id}/telemetry', [EndUserDeviceLocationController::class, 'telemetry'])->name('enduser.device_locations.telemetry');
+                Route::get('/device_locations/{id}/telemetry_json', [EndUserDeviceLocationController::class, 'telemetry_json'])->name('enduser.device_locations.telemetry_json');
+
+                Route::get('/device_locations/{id}/device_photos', [EndUserDeviceLocationController::class, 'device_photos'])->name('enduser.device_locations.device_photos');
+                Route::post('/device_locations/{id}/device_photos', [EndUserDeviceLocationController::class, 'create_device_photo'])->name('enduser.device_locations.create_device_photo');
+
             });
         });
     });

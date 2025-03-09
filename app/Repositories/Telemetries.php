@@ -14,7 +14,11 @@ class Telemetries extends Repository
 
     protected function filterByDevice_Location_Id($query, $value)
     {
-        $query->where('device_location_id', $value);
+        if (is_array($value)) {
+            $query->whereIn('device_location_id', $value);
+        } else {
+            $query->where('device_location_id', $value);
+        }
     }
 
     protected function filterByTanggal($query, $value)
