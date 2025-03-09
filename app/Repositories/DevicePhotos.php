@@ -22,4 +22,9 @@ class DevicePhotos extends Repository
         $query->whereDate('created_at', $value);
     }
 
+    protected function filterByState($query, $value)
+    {
+        $query->whereDate('state', $value);
+    }
+
 }

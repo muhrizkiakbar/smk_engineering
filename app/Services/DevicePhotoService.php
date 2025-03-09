@@ -45,8 +45,6 @@ class DevicePhotoService extends AppService
         $device_photo->save();
 
         return $device_photo;
-
-        return;
     }
 
     public function request_create($device_location_id, $request = null)
