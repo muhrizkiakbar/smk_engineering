@@ -162,7 +162,7 @@ class DeviceLocationController extends Controller
         #$device_photos = $this->devicePhotoService->device_photos($request_input)->cursorPaginate(24);
         $device_location = DeviceLocation::find($device_location_id);
         $device_photos = DevicePhoto::where('device_location_id', $device_location_id)->cursorPaginate(24);
-        $device_photo = DevicePhoto::where('device_location_id', $device_location_id)->where('state', 'active')->orderby('created_at', 'desc')->first();
+        $device_photo = DevicePhoto::where('device_location_id', '=', $device_location_id)->where('state', 'active')->orderby('created_at', 'desc')->first();
         return view(
             'end_user.device_locations.device_photo',
             [
