@@ -9,7 +9,7 @@ services:
       - ./vault-agent/secret_id:/vault/secret_id
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
-    command: vault agent -config=/path/to/vault-agent.hcl
+    command: vault agent -config=/vault/config/vault-agent.hcl
     networks:
       - web-network
 
