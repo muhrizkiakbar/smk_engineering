@@ -19,3 +19,6 @@ template {
 vault {
   address = "https://vault.telemetry-adaro.id:8200"
 }
+
+api_addr = "https://vault.telemetry-adaro.id:8200"
+cluster_addr = "https://vault.telemetry-adaro.id:8201"
