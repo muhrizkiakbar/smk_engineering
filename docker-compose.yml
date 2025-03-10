@@ -26,17 +26,7 @@ services:
       - ./vault-agent/templates/adaro_laravel.env:/app/.env
     networks:
       - web-network
-    # Install dependencies and ensure proper permissions before starting
-    command: >
-      sh -c "
-        if [ ! -d /app/vendor ]; then
-          composer install --no-interaction --prefer-dist --optimize-autoloader
-        fi &&
-        mkdir -p /app/storage/framework/{sessions,views,cache} &&
-        chmod -R 775 /app/storage /app/bootstrap/cache &&
-        chown -R www-data:www-data /app/storage /app/bootstrap/cache &&
-        php artisan octane:frankenphp
-      "
+
 networks:
   web-network:
     external: true
