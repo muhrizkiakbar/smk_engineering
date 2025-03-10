@@ -15,7 +15,11 @@ RUN apk add --no-cache \
     unzip \
     nodejs \
     npm \
-    icu-dev
+    icu-dev \
+    autoconf \
+    g++ \
+    make \
+    pkgconf
 
 # Install PHP extensions
 RUN docker-php-ext-configure intl
