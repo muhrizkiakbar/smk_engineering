@@ -22,8 +22,8 @@ services:
     ports:
       - 8805:8000
     volumes:
-      - .:/var/www/html
-      - ./storage:/var/www/html/storage
+      - .:/app
+      - ./storage:/app/storage
       - ./vault-agent/templates/adaro_laravel.env:/app/.env
     networks:
       - web-network
