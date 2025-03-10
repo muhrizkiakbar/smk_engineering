@@ -1,5 +1,4 @@
 exit_after_auth = false
-pid_file = "./pidfile"
 
 auto_auth {
   method "approle" {
