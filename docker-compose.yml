@@ -18,6 +18,8 @@ services:
       dockerfile: Dockerfile
     container_name: adaro
     restart: unless-stopped
+    depends_on:
+      - vault-agent
     ports:
       - 8805:8000
     volumes:
