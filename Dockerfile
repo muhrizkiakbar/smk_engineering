@@ -68,7 +68,10 @@ ENV APP_KEY=base64:avl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
 RUN git config --global --add safe.directory /app
 
 # Create Laravel storage structure if it doesn't exist
-RUN mkdir -p storage/framework/{sessions,views,cache}
+RUN mkdir -p storage/framework
+RUN mkdir -p storage/framework/sessions
+RUN mkdir -p storage/framework/views
+RUN mkdir -p storage/framework/cache
 
 # Set permissions
 RUN chown -R www-data:www-data /app \
