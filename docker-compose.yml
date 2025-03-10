@@ -13,7 +13,8 @@ services:
     entrypoint:
       - vault
       - agent
-      - -config=/vault/config/vault-agent.hcl
+    command: sh -c "while ! nc -z vault-server 8200; do sleep 1; done && vault agent -config=/vault/config/vault-agent.hcl"
+
     networks:
       - web-network
 
