@@ -75,10 +75,10 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --igno
 RUN echo "worker ./public/index.php" > Caddyfile
 
 # Generate application key if not exists
-RUN php artisan key:generate --force
+#RUN php artisan key:generate --force
 
 # Expose port
-EXPOSE 80 443
+EXPOSE 8000
 
 # Start FrankenPHP
 CMD ["frankenphp", "run", "--config", "Caddyfile"]
