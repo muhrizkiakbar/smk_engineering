@@ -1,21 +1,21 @@
-FROM dunglas/frankenphp:latest
+FROM dunglas/frankenphp:1.1-php8.3-alpine
 
 # Set working directory
 WORKDIR /app
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     git \
     curl \
     libpng-dev \
-    libonig-dev \
+    oniguruma-dev \
     libxml2-dev \
     libzip-dev \
     zip \
     unzip \
     nodejs \
     npm \
-    libicu-dev
+    icu-dev
 
 # Install PHP extensions
 RUN docker-php-ext-configure intl
@@ -69,14 +69,10 @@ RUN chown -R www-data:www-data /app \
     && chmod -R +x /app
 
 # Install composer dependencies
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
-
-# Generate application key if not exists
-#RUN php artisan key:generate --force
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Expose port
 EXPOSE 8000
 
 # Start FrankenPHP
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
-
