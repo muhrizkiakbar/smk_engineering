@@ -23,12 +23,17 @@ services:
       - 8805:8000
     volumes:
       - .:/app
-      - ./storage:/app/storage
       - ./vault-agent/templates/adaro_laravel.env:/app/.env
     networks:
       - web-network
-
+    # Ensure cache directories exist and have proper permissions
+    command: >
+      sh -c "
+        mkdir -p /app/storage/framework/{sessions,views,cache} &&
+        chmod -R 775 /app/storage /app/bootstrap/cache &&
+        chown -R www-data:www-data /app/storage /app/bootstrap/cache &&
+        php artisan octane:frankenphp
+      "
 networks:
   web-network:
     external: true
-
