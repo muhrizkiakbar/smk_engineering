@@ -1,7 +1,7 @@
 FROM dunglas/frankenphp:latest
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /app
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -70,9 +70,6 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Install composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
-
-# Generate config file for FrankenPHP
-RUN echo "worker ./public/index.php" > Caddyfile
 
 # Generate application key if not exists
 #RUN php artisan key:generate --force

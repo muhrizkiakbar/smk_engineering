@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: adaro_laravel
+    container_name: adaro
     restart: unless-stopped
     ports:
       - 8001:8000
