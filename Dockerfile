@@ -81,4 +81,5 @@ RUN echo "worker ./public/index.php" > Caddyfile
 EXPOSE 8000
 
 # Start FrankenPHP
-CMD ["frankenphp", "run", "--config", "Caddyfile"]
+ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
+
