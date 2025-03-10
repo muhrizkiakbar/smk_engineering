@@ -9,10 +9,7 @@ services:
       - ./vault-agent/secret_id:/vault/secret_id
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
-    entrypoint:
-      - vault
-      - agent
-      - -config=/etc/vault-agent-config.hcl
+    command: vault agent -config=/path/to/vault-agent.hcl
     networks:
       - web-network
 
