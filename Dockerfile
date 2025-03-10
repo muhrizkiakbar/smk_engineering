@@ -1,29 +1,44 @@
-# [BASE STAGE]
-FROM dunglas/frankenphp as base_adaro
+FROM dunglas/frankenphp:latest
 
-# Install php extensions
-RUN install-php-extensions \
-    pcntl \
-    bcmath \
-    pdo_mysql \
-    redis-stable \
-    zip
-    # Add other PHP extensions here...
+# Set working directory
+WORKDIR /var/www/html
 
-# Set static APP_KEY
-ENV APP_KEY=base64:xvl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    nodejs \
+    npm
 
-COPY . /app
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Install the composer packages using www-data user
-WORKDIR /app
-COPY --from=composer:2.8.5 /usr/bin/composer /usr/bin/composer
-RUN composer install
-# [END BASE STAGE]
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# [RELEASE STAGE]
-FROM base_adaro as release_adaro
-# Prepare the frontend files & caching
-EXPOSE 8001
-ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
-# [END RELEASE STAGE]
+# Copy application files
+COPY . .
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Generate config file for FrankenPHP
+RUN echo "worker ./public/index.php" > Caddyfile
+
+# Install Laravel dependencies
+RUN composer install --optimize-autoloader --no-dev
+
+# Generate application key
+RUN php artisan key:generate
+
+# Expose port
+EXPOSE 80 443
+
+# Start FrankenPHP
+CMD ["frankenphp", "run", "--config", "Caddyfile"]

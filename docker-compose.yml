@@ -18,14 +18,19 @@ services:
       - web-network
 
   app:
-    image: release_adaro
-    container_name: adaro
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adaro_laravel
+    restart: unless-stopped
+    ports:
+      - 8001:8000
     volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
       - ./vault-agent/templates/adaro_laravel.env:/app/.env
     networks:
       - web-network
-    ports:
-      - 8805:8000
 
 networks:
   web-network:
