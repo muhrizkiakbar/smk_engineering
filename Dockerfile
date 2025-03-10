@@ -64,9 +64,9 @@ RUN git config --global --add safe.directory /var/www/html
 RUN mkdir -p storage/framework/{sessions,views,cache}
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R +x /var/www/html
+RUN chown -R www-data:www-data /app \
+    && chmod -R 755 /app/storage /app/bootstrap/cache \
+    && chmod -R +x /app
 
 # Install composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
