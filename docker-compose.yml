@@ -1,0 +1,33 @@
+services:
+  vault-agent:
+    image: hashicorp/vault:latest
+    container_name: adaro-vault-agent
+    volumes:
+      - ./vault-agent/vault-agent.hcl:/vault/config/vault-agent.hcl
+      - ./vault-agent/templates:/vault/templates
+      - ./vault-agent/role_id:/vault/role_id
+      - ./vault-agent/secret_id:/vault/secret_id
+    command: vault agent -config=/vault/config/vault-agent.hcl
+    environment:
+      - VAULT_ADDR=https://vault.telemetry-adaro.id
+    entrypoint:
+      - vault
+      - agent
+      - -config=/vault/config/vault-agent.hcl
+    networks:
+      - web-network
+
+  app:
+    image: release_adaro
+    container_name: adaro
+    volumes:
+      - ./vault-agent/templates/adaro_laravel.env:/app/.env
+    networks:
+      - web-network
+    ports:
+      - 8805:8000
+
+networks:
+  web-network:
+    driver: bridge
+

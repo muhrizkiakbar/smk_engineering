@@ -12,7 +12,7 @@ Route::middleware('auth:api')->group(function () {
 
     // List request photo
     Route::get('/device_photos/{device_location_id}', [DevicePhotoController::class, 'index']);
-    // Pengiriman berdasarkan request photo
+    // Pengiriman berdasarkan request photo id = device_photo_id
     Route::post('/device_photos/{id}', [DevicePhotoController::class, 'update']);
     // Kirim Foto
     Route::post('/device_photo/store', [DevicePhotoController::class, 'store']);

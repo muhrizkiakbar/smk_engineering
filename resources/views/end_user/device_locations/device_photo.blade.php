@@ -119,7 +119,8 @@
             <h6 class="font-bold text-lg">{{$device_location->device->name.' - '.$device_location->location->name}}</h6>
         </div>
         <div class="flex flex-col sm:flex-row">
-            <button class="btn btn-sm btn-primary" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
+            <button class="btn btn-sm btn-primary sm:m-0 my-2 me-0 sm:me-2" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
+            <a class="btn btn-sm btn-secondary" href="{{route('enduser.device_locations.telemetry',$device_location->id)}}"><i class="fas fa-gauge"></i>Dashboard</a>
         </div>
     </div>
 
