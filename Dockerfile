@@ -42,14 +42,15 @@ RUN pecl install apcu && docker-php-ext-enable apcu
 RUN pecl install redis && docker-php-ext-enable redis
 
 # Set PHP.ini configurations
-RUN { \
-    echo 'opcache.memory_consumption=128'; \
-    echo 'opcache.interned_strings_buffer=8'; \
-    echo 'opcache.max_accelerated_files=4000'; \
-    echo 'opcache.revalidate_freq=2'; \
-    echo 'opcache.fast_shutdown=1'; \
-    echo 'opcache.enable_cli=1'; \
-} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+#RUN { \
+#    echo 'opcache.memory_consumption=128'; \
+#    echo 'opcache.interned_strings_buffer=8'; \
+#    echo 'opcache.max_accelerated_files=4000'; \
+#    echo 'opcache.revalidate_freq=2'; \
+#    echo 'opcache.fast_shutdown=1'; \
+#    echo 'opcache.enable_cli=1'; \
+#} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
 
 # Verify PHP extensions are enabled
 RUN php -m
@@ -61,8 +62,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY composer*.json ./
 COPY . .
 
+ENV APP_KEY=base64:avl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
+
 # Set git to safe directory
-RUN git config --global --add safe.directory /var/www/html
+RUN git config --global --add safe.directory /app
 
 # Create Laravel storage structure if it doesn't exist
 RUN mkdir -p storage/framework/{sessions,views,cache}
