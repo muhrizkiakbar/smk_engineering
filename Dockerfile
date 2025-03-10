@@ -58,6 +58,13 @@ RUN php -m
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Create Laravel storage structure if it doesn't exist
+RUN mkdir -p /app/storage/framework
+RUN mkdir -p /app/storage/framework/sessions
+RUN mkdir -p /app/storage/framework/views
+RUN mkdir -p /app/storage/framework/cache
+
+
 # Copy composer.json and composer.lock first to leverage Docker cache
 COPY composer*.json ./
 COPY . .
@@ -66,12 +73,6 @@ ENV APP_KEY=base64:avl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
 
 # Set git to safe directory
 RUN git config --global --add safe.directory /app
-
-# Create Laravel storage structure if it doesn't exist
-RUN mkdir -p /app/storage/framework
-RUN mkdir -p /app/storage/framework/sessions
-RUN mkdir -p /app/storage/framework/views
-RUN mkdir -p /app/storage/framework/cache
 
 # Set permissions
 RUN chown -R www-data:www-data /app \
