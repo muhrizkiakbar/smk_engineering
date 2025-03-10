@@ -79,7 +79,7 @@ RUN chown -R www-data:www-data /app \
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Expose port
-EXPOSE 8091
+EXPOSE 8000
 
 # Start FrankenPHP
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]

@@ -20,7 +20,7 @@ services:
     container_name: adaro
     restart: unless-stopped
     ports:
-      - 8091:8091
+      - 8805:8000
     volumes:
       - .:/var/www/html
       - ./storage:/var/www/html/storage
