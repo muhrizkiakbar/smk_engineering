@@ -12,7 +12,6 @@ services:
     command: vault agent -config=/vault/config/vault-agent.hcl
     networks:
       - web-network
-
   app:
     build:
       context: .
@@ -23,12 +22,16 @@ services:
       - 8805:8000
     volumes:
       - .:/app
+      - /app/vendor # This prevents the host from overriding the vendor directory
       - ./vault-agent/templates/adaro_laravel.env:/app/.env
     networks:
       - web-network
-    # Ensure cache directories exist and have proper permissions
+    # Install dependencies and ensure proper permissions before starting
     command: >
       sh -c "
+        if [ ! -d /app/vendor ]; then
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+        fi &&
         mkdir -p /app/storage/framework/{sessions,views,cache} &&
         chmod -R 775 /app/storage /app/bootstrap/cache &&
         chown -R www-data:www-data /app/storage /app/bootstrap/cache &&
