@@ -12,6 +12,12 @@ services:
     command: vault agent -config=/vault/config/vault-agent.hcl
     networks:
       - web-network
+    healthcheck:
+      test: ["CMD", "test", "-f", "/vault/templates/adaro_laravel.env"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      timeout: 2s
   app:
     build:
       context: .
