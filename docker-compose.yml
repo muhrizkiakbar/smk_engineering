@@ -25,7 +25,7 @@ services:
     volumes:
       - .:/app
       - /app/vendor # This prevents the host from overriding the vendor directory
-      - ./vault-agent/templates/adaro_level.env:/app/.env
+      #- ./vault-agent/templates/adaro_level.env:/app/.env
     networks:
       - web-network
 
