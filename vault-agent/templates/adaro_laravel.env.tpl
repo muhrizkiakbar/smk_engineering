@@ -1,4 +1,4 @@
-{{ with secret "kv/data/laravel" }}
+{{ with secret "kv/adaro_laravel/env" }}
 APP_NAME=Laravel
 APP_ENV=production
 APP_KEY={{ .Data.data.APP_KEY }}
