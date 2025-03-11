@@ -3,10 +3,12 @@ services:
     image: hashicorp/vault:latest
     container_name: adaro-vault-agent
     volumes:
-      - ./vault-agent/vault-agent.hcl:/vault/config/vault-agent.hcl
-      - ./vault-agent/templates:/vault/templates
-      - ./vault-agent/role_id:/vault/role_id
-      - ./vault-agent/secret_id:/vault/secret_id
+        - ./vault-agent/vault-agent.hcl:/vault/config/vault-agent.hcl
+        - ./vault-agent:/vault
+            #- ./vault-agent/vault-agent.hcl:/vault/config/vault-agent.hcl
+            #- ./vault-agent/templates:/vault/templates
+            #- ./vault-agent/role_id:/vault/role_id
+            #- ./vault-agent/secret_id:/vault/secret_id
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
     command: vault agent -config=/vault/config/vault-agent.hcl
@@ -25,7 +27,7 @@ services:
     volumes:
       - .:/app
       - /app/vendor # This prevents the host from overriding the vendor directory
-      - "/home/admin/docker/adaro_laravel/vault-agent/templates:/app"
+      - /vault/adaro_level.ent:/app/.env
     networks:
       - web-network
 
