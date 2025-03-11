@@ -7,7 +7,7 @@ services:
       - ./vault-agent/templates:/vault/templates
       - ./vault-agent/role-id:/vault/role_id
       - ./vault-agent/secret-id:/vault/secret_id
-      - ./token:/etc/vault/token
+      - ./token:/vault/token
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
     command: vault agent -config=/vault/config/vault-agent.hcl
