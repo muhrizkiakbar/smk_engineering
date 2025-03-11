@@ -10,8 +10,8 @@ services:
       - ./token:/vault/token
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
-    command: >
-        sh -c "export VAULT_TOKEN=$(cat /vault/token) && exec vault agent -config=/vault/config/vault-agent.hcl"
+    command: sh -c "export VAULT_TOKEN=$(cat /vault/token) && vault agent -config=/vault/config/vault-agent.hcl"
+
     networks:
       - web-network
     healthcheck:
