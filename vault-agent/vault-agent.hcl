@@ -11,8 +11,8 @@ auto_auth {
 }
 
 template {
-  source      = "/vault/templates/"
-  destination = "adaro_laravel.env/.env"
+  source      = "./vault/templates/adaro_laravel.env"
+  destination = "./.env"
   perms       = 0644
 }
 
