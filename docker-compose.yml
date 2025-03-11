@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: adaro
+    container_name: adaro-laravel
     restart: unless-stopped
     depends_on:
       - vault-agent
