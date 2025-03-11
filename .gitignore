@@ -9,6 +9,7 @@
 /storage/framework/views/*
 /storage/framework/cache/*
 /vendor
+/vault-agent/*
 .env
 .env.backup
 .env.production
