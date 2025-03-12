@@ -38,9 +38,24 @@ class DevicePhotoService extends AppService
         $device_photo =  DevicePhoto::create($request_input);
 
         $file = $request->file('photo');
-        $filePath = $file->store('device_photos', 'public');
 
-        $device_photo->photo = $filePath;
+        // Nama file original atau custom
+        $filename = $request_input['device_location_id']. '_' . $file->getClientOriginalName();
+
+        // Path di minio tempat file akan disimpan (optional)
+        $path = 'foto/'. $request_input['device_location_id'] ."/". date('Y/m/d');
+
+        // Simpan file ke Minio
+        $filePath = Storage::disk('s3')->put(
+            $path,
+            $file,
+        );
+
+
+        // Dapatkan URL publik dari file (jika bucket public)
+        $url = Storage::disk('s3')->url($filePath);
+
+        $device_photo->photo = $url;
         $device_photo->state = 'active';
         $device_photo->save();
 
@@ -62,10 +77,27 @@ class DevicePhotoService extends AppService
     {
         // Example logic for updating a photo record
         try {
-            $file = $request->file('photo');
-            $filePath = $file->store('device_photos', 'public');
 
-            $device_photo->photo = $filePath;
+            $file = $request->file('photo');
+
+            // Nama file original atau custom
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Path di minio tempat file akan disimpan (optional)
+            $path = 'foto/'. $device_location_id."/". date('Y/m/d');
+
+            // Simpan file ke Minio
+            $filePath = Storage::disk('s3')->putFileAs(
+                $path,
+                $file,
+                $filename
+            );
+
+            // Dapatkan URL publik dari file (jika bucket public)
+            $url = Storage::disk('s3')->url($filePath);
+
+
+            $device_photo->photo = $url;
             $device_photo->state = 'active';
             $device_photo->save();
 
@@ -80,6 +112,7 @@ class DevicePhotoService extends AppService
         Storage::delete($device_photo->photo);
         // Example logic for deleting a photo record
         $device_photo->delete();
+        Storage::disk('s3')->delete($device_photo->photo);
 
         return $device_photo;
     }

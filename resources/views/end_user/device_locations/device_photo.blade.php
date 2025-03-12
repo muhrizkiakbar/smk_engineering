@@ -126,36 +126,19 @@
 
 
     <div class="grid grid-cols-1 pt-4 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-4">
-        <div class="card bg-base-100 w-96 shadow-sm">
-            <figure>
-                <img
-                src="{{asset('storage/'.$device_photo->photo)}}"
-                onclick="openImageModal('{{asset('storage/'.$device_photo->photo)}}','Photo Taken At {{$device_photo->created_at}}' , '')"
-                alt="Camera" />
-            </figure>
-            <div class="flex flex-row py-2 px-2 items-center">
-                <p class="text-sm flex-auto">Photo Taken At {{$device_photo->created_at}}</p>
-                <div class="card-actions justify-end flex-col">
-                    <button class="btn btn-xs btn-primary"
-                        onclick="openImageModal('{{asset('storage/'.$device_photo->photo)}}','Photo Taken At {{$device_photo->created_at}}' , '')"
-                    >Preview</button>
-                </div>
-            </div>
-
-        </div>
         @foreach ($device_photos as $device_photo)
             <div class="card bg-base-100 w-96 shadow-sm">
                 <figure>
                     <img
-                    src="{{asset('storage/'.$device_photo->photo)}}"
-                    onclick="openImageModal('{{asset('storage/'.$device_photo->photo)}}','Photo Taken At {{$device_photo->created_at}}' , '')"
+                    src="{{$device_photo->photo}}"
+                    onclick="openImageModal('{{$device_photo->photo}}','Photo Taken At {{$device_photo->created_at}}' , '')"
                     alt="Camera" />
                 </figure>
                 <div class="flex flex-row py-2 px-2 items-center">
                     <p class="text-sm flex-auto">Photo Taken At {{$device_photo->created_at}}</p>
                     <div class="card-actions justify-end flex-col">
                         <button class="btn btn-xs btn-primary"
-                            onclick="openImageModal('{{asset('storage/'.$device_photo->photo)}}','Photo Taken At {{$device_photo->created_at}}' , '')"
+                            onclick="openImageModal('{{$device_photo->photo}}','Photo Taken At {{$device_photo->created_at}}' , '')"
                         >Preview</button>
                     </div>
                 </div>

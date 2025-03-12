@@ -22,7 +22,7 @@ services:
     container_name: adaro-laravel
     restart: unless-stopped
     ports:
-      - 8805:8000
+      - 8806:8000
     volumes:
       - .:/app
       - /app/vendor # This prevents the host from overriding the vendor directory
