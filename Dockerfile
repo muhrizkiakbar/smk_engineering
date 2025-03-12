@@ -81,6 +81,8 @@ RUN chown -R www-data:www-data /app \
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN php artisan config:clear
+RUN npm install
+RUN npm run build
 # Expose port
 EXPOSE 8000
 
