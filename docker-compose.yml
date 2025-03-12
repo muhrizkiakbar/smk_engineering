@@ -22,9 +22,6 @@ services:
       dockerfile: Dockerfile
     container_name: adaro-laravel
     restart: unless-stopped
-    depends_on:
-      vault-agent:
-        condition: service_healthy
     ports:
       - 8805:8000
     volumes:
