@@ -41,6 +41,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
+RUN npm install --global yarn
 RUN yarn cache clean
 RUN yarn install
 RUN yarn build
