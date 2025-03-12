@@ -16,12 +16,6 @@ services:
 
     networks:
       - web-network
-    healthcheck:
-      test: ["CMD", "test", "-f", "/secrects/adaro_laravel.env"]
-      interval: 5s
-      retries: 5
-      start_period: 10s
-      timeout: 2s
   app:
     build:
       context: .
