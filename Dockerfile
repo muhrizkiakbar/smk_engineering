@@ -76,23 +76,15 @@ RUN php artisan config:clear
 
 FROM node:22-alpine as frontend
 WORKDIR /app
+COPY package*.json ./
+RUN npm install
 COPY . .
-RUN apk add --no-progress --quiet --no-cache git
-RUN yarn cache clean
-RUN yarn install
-
-RUN mkdir -p /app/public/build
-#
-# Run the build with explicit output path
-RUN yarn build
-# Verify manifest exists
-RUN ls -la /app/public/build/
+RUN npm run build
 # [END FRONTEND STAGE]
 
 FROM base as release
 # Prepare the frontend files & caching
-COPY --from=frontend --chown=www-data:www-data /app/public/build /app/public/build
-
+COPY --from=frontend --chown=www-data:www-data /app/public /app/public
 
 # Expose port
 EXPOSE 8000
