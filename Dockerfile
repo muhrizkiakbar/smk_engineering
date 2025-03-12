@@ -39,6 +39,13 @@ RUN docker-php-ext-install \
 RUN pecl install apcu && docker-php-ext-enable apcu
 RUN pecl install redis && docker-php-ext-enable redis
 
+COPY . /app
+
+# Install the composer packages using www-data user
+WORKDIR /app
+COPY --from=composer:2.8.5 /usr/bin/composer /usr/bin/composer
+RUN composer install
+
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
 RUN npm install --global yarn
@@ -46,13 +53,6 @@ RUN yarn cache clean
 RUN yarn install
 RUN yarn build
 
-COPY . /app
-
-# Install the composer packages using www-data user
-WORKDIR /app
-COPY --from=composer:2.8.5 /usr/bin/composer /usr/bin/composer
-RUN composer install
-# [END BASE STAGE]
 
 FROM base as release
 # Prepare the frontend files & caching
