@@ -4,18 +4,18 @@ FROM dunglas/frankenphp
 WORKDIR /app
 
 # Install dependencies
-RUN apt install \
+RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
-    oniguruma-dev \
+    libonig-dev \
     libxml2-dev \
     libzip-dev \
     zip \
     unzip \
     nodejs \
     npm \
-    icu-dev \
+    libicu-dev \
     autoconf \
     g++ \
     make \
@@ -51,7 +51,6 @@ RUN pecl install redis && docker-php-ext-enable redis
 #    echo 'opcache.enable_cli=1'; \
 #} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-
 # Verify PHP extensions are enabled
 RUN php -m
 
@@ -63,7 +62,6 @@ RUN mkdir -p /app/storage/framework
 RUN mkdir -p /app/storage/framework/sessions
 RUN mkdir -p /app/storage/framework/views
 RUN mkdir -p /app/storage/framework/cache
-
 
 # Copy composer.json and composer.lock first to leverage Docker cache
 COPY composer*.json ./
