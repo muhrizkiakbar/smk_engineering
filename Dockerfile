@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp:1.1-php8.3-alpine
+FROM dunglas/frankenphp
 
 # Set working directory
 WORKDIR /app
