@@ -3,7 +3,7 @@ FROM dunglas/frankenphp
 # Set working directory
 WORKDIR /app
 
-# Install dependencies including Node.js and npm
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -46,13 +46,11 @@ RUN pecl install redis && docker-php-ext-enable redis
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Create Laravel storage structure if it doesn't exist
-RUN mkdir -p /app/storage/framework
-RUN mkdir -p /app/storage/framework/sessions
-RUN mkdir -p /app/storage/framework/views
-RUN mkdir -p /app/storage/framework/cache
+# Create Laravel storage structure
+RUN mkdir -p /app/storage/framework/sessions \
+    /app/storage/framework/views \
+    /app/storage/framework/cache
 
-RUN npm install
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
@@ -67,8 +65,9 @@ RUN composer install --no-scripts --no-autoloader --no-interaction
 # Copy the rest of the application
 COPY . .
 
-# Generate application key if not set
+# Set environment variables
 ENV APP_KEY=base64:avl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
+ENV NODE_ENV=production
 
 # Set git to safe directory
 RUN git config --global --add safe.directory /app
@@ -84,7 +83,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 # Clear config cache
 RUN php artisan config:clear
 
-# Build frontend assets
+# Build frontend assets with explicit dependencies
 RUN npm rebuild && \
     npm install dlv@latest --save && \
     npm run build
