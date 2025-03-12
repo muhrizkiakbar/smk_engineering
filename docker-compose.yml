@@ -27,7 +27,6 @@ services:
       - .:/app
       - /app/vendor # This prevents the host from overriding the vendor directory
       - ../secrets/adaro_laravel.env:/app/.env
-    command: php artisan config:clear
     networks:
       - web-network
 

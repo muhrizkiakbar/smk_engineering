@@ -80,6 +80,7 @@ RUN chown -R www-data:www-data /app \
 # Install composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
+RUN php artisan config:clear
 # Expose port
 EXPOSE 8000
 
