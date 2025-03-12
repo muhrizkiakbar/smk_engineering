@@ -3,9 +3,9 @@ services:
     image: hashicorp/vault:latest
     container_name: adaro-vault-agent
     volumes:
-      - /home/admin/docker/vault-agent.hcl:/etc/vault-agent.hcl
-      - /home/admin/docker/token:/etc/vault/token
-      - /home/admin/docker/secrets:/secrets
+      - ../vault-agent.hcl:/etc/vault-agent.hcl
+      - ../token:/etc/vault/token
+      - ../secrets:/secrets
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
     command: vault agent -config=/etc/vault-agent.hcl
