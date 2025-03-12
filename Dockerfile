@@ -76,6 +76,7 @@ RUN php artisan config:clear
 
 FROM node:22-alpine as frontend
 WORKDIR /app
+RUN ls -al public/
 COPY . .
 RUN npm install
 RUN npm run build
@@ -85,6 +86,7 @@ FROM base as release
 # Prepare the frontend files & caching
 COPY --from=frontend --chown=www-data:www-data /app/public /app/public
 
+RUN ls -al public/
 # Expose port
 EXPOSE 8000
 
