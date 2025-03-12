@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp
+FROM dunglas/frankenphp as base
 
 # Set working directory
 WORKDIR /app
@@ -18,10 +18,6 @@ RUN apt-get update && apt-get install -y \
     make \
     pkgconf \
     libicu-dev
-
-# Install more modern Node.js and npm
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
 
 # Install PHP extensions
 RUN docker-php-ext-configure intl
@@ -54,11 +50,6 @@ RUN mkdir -p /app/storage/framework/sessions \
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies including Vite globally
-RUN npm cache clean --force && \
-    npm ci && \
-    npm install -g vite
-
 # Copy composer files
 COPY composer*.json ./
 RUN composer install --no-scripts --no-autoloader --no-interaction
@@ -68,8 +59,6 @@ COPY . .
 
 # Set environment variables
 ENV APP_KEY=base64:avl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
-ENV NODE_ENV=production
-ENV PATH="/app/node_modules/.bin:${PATH}"
 
 # Set git to safe directory
 RUN git config --global --add safe.directory /app
@@ -85,8 +74,18 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 # Clear config cache
 RUN php artisan config:clear
 
-# Build frontend assets with npx to ensure local node_modules are used
-RUN npx vite build
+FROM node:22-alpine as frontend
+WORKDIR /app
+COPY . .
+RUN apk add --no-progress --quiet --no-cache git
+RUN yarn cache clean
+RUN yarn install
+RUN yarn build
+# [END FRONTEND STAGE]
+
+FROM base as release
+# Prepare the frontend files & caching
+COPY --from=frontend --chown=www-data:www-data /app/public /app/public
 
 # Expose port
 EXPOSE 8000
