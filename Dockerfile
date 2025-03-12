@@ -54,9 +54,10 @@ RUN mkdir -p /app/storage/framework/sessions \
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Clean npm cache and install dependencies
+# Install dependencies including Vite globally
 RUN npm cache clean --force && \
-    npm ci
+    npm ci && \
+    npm install -g vite
 
 # Copy composer files
 COPY composer*.json ./
@@ -68,6 +69,7 @@ COPY . .
 # Set environment variables
 ENV APP_KEY=base64:avl6bymXewa9o0RwhWxwhVD+6xnl902zd0/SSFaC7BU=
 ENV NODE_ENV=production
+ENV PATH="/app/node_modules/.bin:${PATH}"
 
 # Set git to safe directory
 RUN git config --global --add safe.directory /app
@@ -83,10 +85,8 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 # Clear config cache
 RUN php artisan config:clear
 
-# Build frontend assets with explicit dependencies
-RUN npm rebuild && \
-    npm install dlv@latest --save && \
-    npm run build
+# Build frontend assets with npx to ensure local node_modules are used
+RUN npx vite build
 
 # Expose port
 EXPOSE 8000
