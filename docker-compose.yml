@@ -13,7 +13,6 @@ services:
       - vault
       - agent
       - -config=/etc/vault-agent.hcl
-
     networks:
       - web-network
   app:
@@ -27,6 +26,7 @@ services:
     volumes:
       - .:/app
       - /app/vendor # This prevents the host from overriding the vendor directory
+      - ./secrets/adaro_laravel.env:/app/.env
     networks:
       - web-network
 
