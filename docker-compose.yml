@@ -12,7 +12,7 @@ services:
     entrypoint:
       - vault
       - agent
-      - -config=/etc/vault-agent-config.hcl
+      - -config=/etc/vault-agent.hcl
 
     networks:
       - web-network
