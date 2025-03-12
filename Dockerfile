@@ -4,7 +4,7 @@ FROM dunglas/frankenphp
 WORKDIR /app
 
 # Install dependencies
-RUN apt install --no-cache \
+RUN apt install \
     git \
     curl \
     libpng-dev \
