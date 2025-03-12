@@ -3,19 +3,21 @@ services:
     image: hashicorp/vault:latest
     container_name: adaro-vault-agent
     volumes:
-      - ./vault-agent/vault-agent.hcl:/vault/config/vault-agent.hcl
-      - ./vault-agent/templates:/vault/templates
-      - ./vault-agent/role-id:/vault/role_id
-      - ./vault-agent/secret-id:/vault/secret_id
-      - ./token:/vault/token
+      - /home/akbar/docker/vault-agent-config.hcl:/etc/vault-agent-config.hcl
+      - /home/akbar/docker/token:/etc/vault/token
+      - /home/akbar/docker/secrets:/secrets
     environment:
       - VAULT_ADDR=https://vault.telemetry-adaro.id
-      - VAULT_TOKEN=${VAULT_TOKEN}
     command: vault agent -config=/vault/config/vault-agent.hcl
+    entrypoint:
+      - vault
+      - agent
+      - -config=/etc/vault-agent-config.hcl
+
     networks:
       - web-network
     healthcheck:
-      test: ["CMD", "test", "-f", "/vault/templates/adaro_laravel.env"]
+      test: ["CMD", "test", "-f", "/secrects/adaro_laravel.env"]
       interval: 5s
       retries: 5
       start_period: 10s
@@ -34,10 +36,9 @@ services:
     volumes:
       - .:/app
       - /app/vendor # This prevents the host from overriding the vendor directory
-      - ./vault-agent/templates/adaro_laravel.env:/app/.env
     networks:
       - web-network
 
 networks:
   web-network:
-    driver: bridge
+    external: true
