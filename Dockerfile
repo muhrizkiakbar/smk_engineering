@@ -52,9 +52,13 @@ RUN mkdir -p /app/storage/framework/sessions
 RUN mkdir -p /app/storage/framework/views
 RUN mkdir -p /app/storage/framework/cache
 
-# Copy package.json and package-lock.json first to leverage Docker cache
-COPY package*.json ./
 RUN npm install
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Clean npm cache and install dependencies
+RUN npm cache clean --force && \
+    npm ci
 
 # Copy composer files
 COPY composer*.json ./
@@ -81,7 +85,9 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN php artisan config:clear
 
 # Build frontend assets
-RUN npm run build
+RUN npm rebuild && \
+    npm install dlv@latest --save && \
+    npm run build
 
 # Expose port
 EXPOSE 8000
