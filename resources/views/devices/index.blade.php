@@ -83,7 +83,13 @@
                 <th>TSS</th>
                 <th>Velocity</th>
                 <th>Rainfall</th>
-                <th>Water Height</th>
+                <th>Water Level</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Wind Direction</th>
+                <th>Wind Speed</th>
+                <th>Solar Radiation</th>
+                <th>Evaporation</th>
                 <th>State</th>
                 <th>Action</th>
               </tr>
@@ -115,6 +121,24 @@
                     </td>
                     <td>
                         {!! \App\Helpers\ViewHelper::render_condition($device->has_water_height) !!}
+                    </td>
+                    <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_temperature) !!}
+                    </td>
+                    <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_humidity) !!}
+                    </td>
+                    <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_wind_direction) !!}
+                    </td>
+                    <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_wind_speed) !!}
+                    </td>
+                    <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_solar_radiation) !!}
+                    </td>
+                    <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_evaporation) !!}
                     </td>
                     <td>
                         <span class="badge uppercase text-xs font-bold

@@ -39,7 +39,6 @@ class TelemetryController extends Controller
 
         $device = Device::where('phone_number', $phone_number)->first();
         if ($device == null) {
-
             $this->undeliveredTelemetryService->create($request->all());
 
             return response()->json([]);

@@ -14,11 +14,18 @@ class TelemetryImport implements ToModel, WithHeadingRow
         return new Telemetry([
             'device_location_id' => intval($row['device_location_id']),
             'created_at' => Carbon::parse($row['tanggal'] . ' ' . $row['jam']),
-            'water_height' => (float) $row['water_level'],
             'ph' => (float) $row['ph'],
             'tds' => (float) $row['tds'],
             'tss' => (float) $row['tss'],
             'velocity' => (float) $row['velocity'],
+            'water_height' => (float) $row['water_level'],
+            'rainfall' => (float) $row['rainfall'],
+            'temperature' => (float) $row['temperature'],
+            'humidity' => (float) $row['humidity'],
+            'wind_direction' => (float) $row['wind_direction'],
+            'wind_speed' => (float) $row['wind_speed'],
+            'solar_radiation' => (float) $row['solar_radiation'],
+            'evaporation' => (float) $row['evaporation'],
         ]);
     }
 }

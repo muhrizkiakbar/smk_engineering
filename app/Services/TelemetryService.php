@@ -67,6 +67,12 @@ class TelemetryService extends AppService
                 'velocity' => 0,
                 'water_height' => 0,
                 'rainfall' => 0,
+                'temperature' => 0,
+                'humidity' => 0,
+                'wind_direction' => 0,
+                'wind_speed' => 0,
+                'solar_radiation' => 0,
+                'evaporation' => 0,
             ]);
         }
     }

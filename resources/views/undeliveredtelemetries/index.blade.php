@@ -72,6 +72,12 @@
                 <th>Velocity</th>
                 <th>Water Height</th>
                 <th>Rainfall</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Wind Direction</th>
+                <th>Wind Speed</th>
+                <th>Solar Radiation</th>
+                <th>Evaporation</th>
               </tr>
             </thead>
             <tbody>
@@ -86,6 +92,12 @@
                     <td>{{$telemetry->velocity}}</td>
                     <td>{{$telemetry->water_height}}</td>
                     <td>{{$telemetry->rainfall}}</td>
+                    <td>{{$telemetry->temperature}}</td>
+                    <td>{{$telemetry->humidity}}</td>
+                    <td>{{$telemetry->wind_direction}}</td>
+                    <td>{{$telemetry->wind_speed}}</td>
+                    <td>{{$telemetry->solar_radiation}}</td>
+                    <td>{{$telemetry->evaporation}}</td>
                   </tr>
               @endforeach
             </tbody>

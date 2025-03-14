@@ -22,7 +22,7 @@
                         </a>
 
                         <input type="text"
-                            value="{{ old('created_at', request('created_at')) }}"
+                            value="{{ old('created_at', request('created_at', $telemetry->created_at)) }}"
                             name="created_at"
                             class="input input-bordered input-date input-primary w-full"
                         >
@@ -124,6 +124,86 @@
                         class="input input-bordered input-primary w-full"
                     >
                     @error('rainfall')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Temperature</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('temperature', request('temperature', $telemetry->temperature)) }}"
+                        name="temperature"
+                        placeholder="Temperature"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('temperature')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Humidity</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('humidity', request('humidity', $telemetry->humidity)) }}"
+                        name="humidity"
+                        placeholder="Humidity"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('humidity')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Wind Direction</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('wind_direction', request('wind_direction', $telemetry->wind_direction)) }}"
+                        name="wind_direction"
+                        placeholder="Wind Direction"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('wind_direction')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Solar Radiation</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('solar_radiation', request('solar_radiation', $telemetry->solar_radiation)) }}"
+                        name="solar_radiation"
+                        placeholder="Solar Radiation"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('solar_radiation')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Evaporation</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('evaporation', request('evaporation', $telemetry->evaporation)) }}"
+                        name="evaporation"
+                        placeholder="Evaporation"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('evaporation')
                         <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
                     @enderror
                 </label>

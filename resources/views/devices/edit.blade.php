@@ -167,10 +167,6 @@
                             @enderror
                         </label>
                     </div>
-                </div>
-            </div>
-            <div class="mb-4 px-3">
-                <div class="flex flex-row">
                     <div class="form-control w-52 items-start">
                         <label class="label cursor-pointer">
                             <input type="hidden" name="has_velocity" value="0">
@@ -209,6 +205,94 @@
                             />
                             <span class="label-text ps-5">Water Height</span>
                             @error('has_water_height')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 px-3">
+                <div class="flex flex-row">
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_temperature" value="0">
+                            <input type="checkbox" name="has_temperature" value="1" class="toggle toggle-primary"
+                                @if (old('has_temperature', request('has_temperature', $device->has_temperature)) == "1")
+                                    checked="checked"
+                                @endif
+                            />
+                            <span class="label-text ps-5">Temperature</span>
+                            @error('has_temperature')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_humidity" value="0">
+                            <input type="checkbox" name="has_humidity" value="1" class="toggle toggle-primary"
+                            @if (old('has_humidity', request('has_humidity', $device->has_humidity)) == "1")
+                                checked="checked"
+                            @endif
+                            />
+                            <span class="label-text ps-5">Humidity</span>
+                            @error('has_humidity')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_wind_direction" value="0">
+                            <input type="checkbox" name="has_wind_direction" value="1" class="toggle toggle-primary"
+                                @if (old('has_wind_direction', request('has_wind_direction', $device->has_wind_direction)) == "1")
+                                    checked="checked"
+                                @endif
+                            />
+                            <span class="label-text ps-5">Wind Direction</span>
+                            @error('has_wind_direction')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_wind_speed" value="0">
+                            <input type="checkbox" name="has_wind_speed" value="1" class="toggle toggle-primary"
+                                @if (old('has_wind_speed', request('has_wind_speed', $device->has_wind_speed)) == "1")
+                                    checked="checked"
+                                @endif
+                            />
+                            <span class="label-text ps-5">Wind Speed</span>
+                            @error('has_wind_speed')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_solar_radiation" value="0">
+                            <input type="checkbox" name="has_solar_radiation" value="1" class="toggle toggle-primary"
+                                @if (old('has_solar_radiation', request('has_solar_radiation', $device->has_solar_radiation)) == "1")
+                                    checked="checked"
+                                @endif
+                            />
+                            <span class="label-text ps-5">Solar Radiation</span>
+                            @error('has_solar_radiation')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_evaporation" value="0">
+                            <input type="checkbox" name="has_evaporation" value="1" class="toggle toggle-primary"
+                                @if (old('has_evaporation', request('has_evaporation', $device->has_evaporation)) == "1")
+                                    checked="checked"
+                                @endif
+                            />
+                            <span class="label-text ps-5">Evaporation</span>
+                            @error('has_evaporation')
                                 <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
                             @enderror
                         </label>

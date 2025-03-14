@@ -211,7 +211,7 @@
         </div>
       </div>
       <div class="flex-auto p-5 overflow-x-auto">
-          <table class="table table-lg overflow-x-auto">
+          <table class="table table-lg">
             <!-- head -->
             <thead>
               <tr>
@@ -227,6 +227,12 @@
                 <th>Velocity</th>
                 <th>Water Height</th>
                 <th>Rainfall</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Wind Direction</th>
+                <th>Wind Speed</th>
+                <th>Solar Radiation</th>
+                <th>Evaporation</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -246,6 +252,12 @@
                     <td>{{$telemetry->velocity}}</td>
                     <td>{{$telemetry->water_height}}</td>
                     <td>{{$telemetry->rainfall}}</td>
+                    <td>{{$telemetry->temperature}}</td>
+                    <td>{{$telemetry->humidity}}</td>
+                    <td>{{$telemetry->wind_direction}}</td>
+                    <td>{{$telemetry->wind_speed}}</td>
+                    <td>{{$telemetry->solar_radiation}}</td>
+                    <td>{{$telemetry->evaporation}}</td>
                     <td class="justify-content-center items-center p-0">
                         <div class="join item-stretch flex sm:ps-3 xs:ps-3">
                             <a href="{{ route('telemetries.edit', encrypt($telemetry->id)) }}" class="btn join-item btn-xs btn-info h-full flex text-white items-center w-20">Ubah <i class="fas fa-edit"></i></a>
@@ -276,8 +288,8 @@
 @endpush
 
 @push('scripts')
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
     <script>
         //message with sweetalert

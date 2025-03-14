@@ -34,7 +34,6 @@ class DeviceService extends AppService
 
     public function update(Device $device, $request)
     {
-        // Example logic for updating a photo record
         try {
             $request['phone_number'] = $this->formatPhoneNumber($request['phone_number']);
             $device->update($request);
