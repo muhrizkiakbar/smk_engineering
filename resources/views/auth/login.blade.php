@@ -5,7 +5,7 @@
             <div class="flex flex-col items-center">
                 <div class="my-5 mx-4">
                     <a href="/" class="fill-current text-primary">
-                        <img src="{{ asset('storage/utils/adaro_telemetry.svg') }}" alt="Uploaded Image">
+                        <img src="https://minioapi.telemetry-adaro.id/adarolaravelproduction/adaro_telemetry.svg" alt="Uploaded Image">
                     </a>
                 </div>
             </div>
