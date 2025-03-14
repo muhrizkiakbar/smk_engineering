@@ -22,7 +22,8 @@
         @stack('style')
     </head>
     <body>
-        <div class="hero min-h-screen" style="background-image: url('{{ asset('storage/utils/background.jpeg') }}?height=1080&width=1920');">
+        <div class="hero min-h-screen" style="background-image: url('http://202.10.35.221:9001/adarolaravelproduction/background.jpeg?height=1080&width=1920');">
+
             <div class="hero-overlay bg-opacity-60"></div>
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <div class="text-center lg:text-left text-neutral-content">

@@ -32,7 +32,7 @@
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
-                    <img src="{{ asset('storage/utils/avatar.png') }}" alt="Uploaded Image" class="max-w-sm">
+                    <img src="http://202.10.35.221:9001/adarolaravelproduction/avatar.jpeg" alt="Uploaded Image" class="max-w-sm">
                 </div>
             </div>
           <ul
