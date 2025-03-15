@@ -31,12 +31,14 @@ class JWTAuthController extends Controller
                 return response()->json(['error' => 'Invalid credentials'], 401);
             }
 
-            // Get the authenticated user
-            $user = auth()->user();
+            // Get the authenticated user directly from the model instead of auth()
+            $user = User::where('username', $credentials['username'])->first();
 
-            // Make sure we have a valid user before accessing properties
+            // Debugging
             if (!$user) {
-                return response()->json(['error' => 'User not found'], 404);
+                // Log the credentials for debugging (remove in production)
+                \Log::info('User lookup failed for username: ' . $credentials['username']);
+                return response()->json(['error' => 'User lookup failed after successful authentication'], 500);
             }
 
             // Attach the role to the token
@@ -46,6 +48,11 @@ class JWTAuthController extends Controller
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 'expires_in' => JWTAuth::factory()->getTTL() * 60, // in seconds
+                'user_info' => [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'type' => $user->type_user
+                ] // Return user info for debugging
             ]);
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token: ' . $e->getMessage()], 500);
