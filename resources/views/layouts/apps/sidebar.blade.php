@@ -5,7 +5,7 @@
             <!-- Header -->
             <div class="flex justify-between p-2">
                 <!-- Logo -->
-                    <img src="{{ asset('storage/utils/adaro_telemetry.svg') }}" alt="Uploaded Image" class="max-w-sm">
+                    <img src="https://minioapi.telemetry-adaro.id/adarolaravelproduction/adaro_telemetry.svg" alt="Uploaded Image">
             </div>
 
             <!-- Body -->
