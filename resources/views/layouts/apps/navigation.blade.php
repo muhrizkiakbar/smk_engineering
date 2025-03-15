@@ -32,7 +32,7 @@
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
-                    <img src="https://minioapi.telemetry-adaro.id/adarolaravelproduction/avatar.jpeg" alt="Uploaded Image">
+                    <img src="https://minioapi.telemetry-adaro.id/adarolaravelproduction/avatar.png" alt="Uploaded Image">
                 </div>
             </div>
           <ul
