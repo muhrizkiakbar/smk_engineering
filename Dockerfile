@@ -69,6 +69,7 @@ COPY . /app
 WORKDIR /app
 COPY --from=composer:2.8.5 /usr/bin/composer /usr/bin/composer
 RUN composer install
+RUN composer require league/flysystem-aws-s3-v3 "^3.0" --with-all-dependencies
 
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
