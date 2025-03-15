@@ -160,7 +160,7 @@ class DeviceLocationController extends Controller
         );
 
         $device_location = DeviceLocation::find($device_location_id);
-        $device_photos = DevicePhoto::where('device_location_id', $device_location_id)->cursorPaginate(10);
+        $device_photos = DevicePhoto::where('device_location_id', $device_location_id)->orderBy('created_at', 'asc')->cursorPaginate(10);
         $device_photo = DevicePhoto::where('state', 'active')->where('device_location_id', $device_location_id)->orderby('created_at', 'desc')->first();
         return view(
             'end_user.device_locations.device_photo',
