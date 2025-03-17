@@ -65,7 +65,7 @@ class DeviceLocationController extends Controller
     public function store(DeviceLocationRequest $request)
     {
         $this->deviceLocationService->create($request->all());
-        return back()->with('status', 'Device Location telah dibuat');
+        return redirect("device_locations")->with('status', 'Device Location telah dibuat');
     }
 
     public function edit(string $id)
@@ -111,7 +111,7 @@ class DeviceLocationController extends Controller
 
         $this->deviceLocationService->update($device_location, $request->all());
 
-        return back()->with('status', 'Device Location berhasil Diubah');
+        return redirect("device_locations")->with('status', 'Device Location berhasil Diubah');
     }
 
     public function destroy(string $id)
@@ -125,6 +125,6 @@ class DeviceLocationController extends Controller
             $message = "Device Location berhasil dinonaktifkan.";
         }
 
-        return back()->with('status', $message);
+        return redirect("device_locations")->with('status', $message);
     }
 }

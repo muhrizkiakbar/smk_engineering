@@ -45,7 +45,7 @@ Route::middleware('auth:web')->group(function () {
                 'show'
             ]);
 
-            Route::post('/telemetries/generate', [telemetrycontroller::class, 'generate'])->name('telemetries.generate');
+            Route::post('/telemetries/generate', [Telemetrycontroller::class, 'generate'])->name('telemetries.generate');
             Route::post('/telemetries/import', [TelemetryController::class, 'import'])->name('telemetries.import');
             Route::resource('telemetries', TelemetryController::class)->except([
                 'show'

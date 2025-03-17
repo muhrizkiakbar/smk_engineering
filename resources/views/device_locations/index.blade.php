@@ -83,13 +83,14 @@
               <tr>
                 <th>ID</th>
                 <th>Device</th>
-                <th>Type</th>
+                <th>type</th>
                 <th>Department</th>
                 <th>Location</th>
                 <th>City</th>
                 <th>District</th>
                 <th>Longitude</th>
                 <th>Latitude</th>
+                <th>Formula</th>
                 <th>State</th>
                 <th>Action</th>
               </tr>
@@ -107,6 +108,7 @@
                     <td>{{$device_location->location->district}}</td>
                     <td>{{$device_location->longitude}}</td>
                     <td>{{$device_location->latitude}}</td>
+                    <td>{{$device_location->formula}}</td>
                     <td>
                         <span class="badge uppercase text-xs font-bold
                             @if($device_location->state == 'active')

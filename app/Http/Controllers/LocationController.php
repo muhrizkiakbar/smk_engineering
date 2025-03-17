@@ -34,7 +34,7 @@ class LocationController extends Controller
     public function store(LocationRequest $request)
     {
         $this->locationService->create($request);
-        return back()->with('status', 'Lokasi telah dibuat');
+        return redirect("locations")->with('status', 'Lokasi telah dibuat');
     }
 
     public function edit(string $id)
@@ -48,7 +48,7 @@ class LocationController extends Controller
         $location = Location::find(decrypt($id));
         $location = $this->locationService->update($location, $request);
 
-        return back()->with('status', 'Saldo Berhasil Diubah');
+        return redirect("locations")->with('status', 'Saldo Berhasil Diubah');
     }
 
     public function destroy(string $id)
@@ -62,6 +62,6 @@ class LocationController extends Controller
             $message = "Lokasi berhasil dinonaktifkan.";
         }
 
-        return back()->with('status', $message);
+        return redirect("locations")->with('status', $message);
     }
 }

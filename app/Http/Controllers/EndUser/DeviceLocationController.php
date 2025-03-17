@@ -175,7 +175,7 @@ class DeviceLocationController extends Controller
     public function create_device_photo(string $device_location_id)
     {
         $device = $this->devicePhotoService->request_create($device_location_id);
-        return back()->with('status', 'Request for photo of device was created');
+        return redirect(route('enduser.device_locations.telemetry', ['id' => $device_location_id]))->with('status', 'Request for photo of device was created');
     }
 
     public function telemetry_sensor(Request $request)

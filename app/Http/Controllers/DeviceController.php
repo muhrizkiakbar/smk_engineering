@@ -34,7 +34,7 @@ class DeviceController extends Controller
     public function store(DeviceRequest $request)
     {
         $device = $this->deviceService->create($request->all());
-        return back()->with('status', 'Device telah dibuat');
+        return redirect("devices")->with('status', 'Device telah dibuat');
     }
 
     public function edit(string $id)
@@ -60,13 +60,19 @@ class DeviceController extends Controller
             'has_velocity' => [ 'required','string' ],
             'has_rainfall' => [ 'required','string' ],
             'has_water_height' => [ 'required','string' ],
+            'has_temperature' => [ 'required','string' ],
+            'has_humidity' => [ 'required','string' ],
+            'has_wind_direction' => [ 'required','string' ],
+            'has_wind_speed' => [ 'required','string' ],
+            'has_solar_radiation' => [ 'required','string' ],
+            'has_evaporation' => [ 'required','string' ],
             'state' => [ 'nullable', 'string', 'max:255' ],
         ]);
 
 
         $this->deviceService->update($device, $request->all());
 
-        return back()->with('status', 'Device berhasil Diubah');
+        return redirect('devices')->with('status', 'Device berhasil Diubah');
     }
 
     public function destroy(string $id)
@@ -80,6 +86,6 @@ class DeviceController extends Controller
             $message = "Device berhasil dinonaktifkan.";
         }
 
-        return back()->with('status', $message);
+        return redirect('devices')->with('status', $message);
     }
 }

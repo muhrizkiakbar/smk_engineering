@@ -113,7 +113,7 @@
 
     <div class="grid grid-cols-1 pt-4 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-4">
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_ph == false)
+            @if ($current_device_location->device?->has_ph == true)
                 hidden
             @endif
         ">
@@ -139,7 +139,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_tds == false)
+            @if ($current_device_location->device->has_tds == true)
                 hidden
             @endif
         ">
@@ -165,7 +165,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_tss == false)
+            @if ($current_device_location->device->has_tss == true)
                 hidden
             @endif
         ">
@@ -191,7 +191,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_velocity == false)
+            @if ($current_device_location->device->has_velocity == true)
                 hidden
             @endif
         ">
@@ -217,7 +217,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_rainfall == false)
+            @if ($current_device_location->device->has_rainfall == true)
                 hidden
             @endif
         ">
@@ -243,7 +243,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_water_height == false)
+            @if ($current_device_location->device->has_water_height == true)
                 hidden
             @endif
         ">
@@ -269,7 +269,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_temperature == false)
+            @if ($current_device_location->device->has_temperature == true)
                 hidden
             @endif
         ">
@@ -295,7 +295,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_humidity == false)
+            @if ($current_device_location->device->has_humidity == true)
                 hidden
             @endif
         ">
@@ -321,7 +321,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_wind_direction == false)
+            @if ($current_device_location->device->has_wind_direction == true)
                 hidden
             @endif
         ">
@@ -347,7 +347,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_wind_speed == false)
+            @if ($current_device_location->device->has_wind_speed == true)
                 hidden
             @endif
         ">
@@ -373,7 +373,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_solar_radiation == false)
+            @if ($current_device_location->device->has_solar_radiation == true)
                 hidden
             @endif
         ">
@@ -399,7 +399,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($telemetry->device_location->device->has_evaporation == false)
+            @if ($current_device_location->device->has_evaporation == true)
                 hidden
             @endif
         ">
@@ -427,7 +427,7 @@
     </div>
     <div class="grid grid-cols-1 pt-4 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-4">
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_ph == false)
+            @if ($current_device_location->device->has_ph == false)
                 hidden
             @endif
         ">
@@ -437,7 +437,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_tds == false)
+            @if ($current_device_location->device->has_tds == false)
                 hidden
             @endif
         ">
@@ -447,7 +447,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_tss == false)
+            @if ($current_device_location->device->has_tss == false)
                 hidden
             @endif
         ">
@@ -457,7 +457,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_velocity == false)
+            @if ($current_device_location->device->has_velocity == false)
                 hidden
             @endif
         ">
@@ -467,7 +467,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_rainfall == false)
+            @if ($current_device_location->device->has_rainfall == false)
                 hidden
             @endif
         ">
@@ -477,7 +477,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_water_height == false)
+            @if ($current_device_location->device->has_water_height == false)
                 hidden
             @endif
         ">
@@ -487,7 +487,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_temperature == false)
+            @if ($current_device_location->device->has_temperature == false)
                 hidden
             @endif
         ">
@@ -497,7 +497,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_humidity == false)
+            @if ($current_device_location->device->has_humidity == false)
                 hidden
             @endif
         ">
@@ -507,7 +507,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_wind_direction == false)
+            @if ($current_device_location->device->has_wind_direction == false)
                 hidden
             @endif
         ">
@@ -517,7 +517,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_wind_speed == false)
+            @if ($current_device_location->device->has_wind_speed == false)
                 hidden
             @endif
         ">
@@ -527,7 +527,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_solar_radiation == false)
+            @if ($current_device_location->device->has_solar_radiation == false)
                 hidden
             @endif
         ">
@@ -537,7 +537,7 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($telemetry->device_location->device->has_evaporation == false)
+            @if ($current_device_location->device->has_evaporation == false)
                 hidden
             @endif
         ">

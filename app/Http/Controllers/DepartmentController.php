@@ -34,7 +34,7 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         $department = $this->departmentService->create($request->all());
-        return back()->with('status', 'Department telah dibuat');
+        return redirect('departments')->with('status', 'Department telah dibuat');
     }
 
     public function edit(string $id)
@@ -56,7 +56,7 @@ class DepartmentController extends Controller
 
         $this->departmentService->update($department, $request->all());
 
-        return back()->with('status', 'Department berhasil Diubah');
+        return redirect("departments")->with('status', 'Department berhasil Diubah');
     }
 
     public function destroy(string $id)
@@ -70,6 +70,6 @@ class DepartmentController extends Controller
             $message = "Device berhasil dinonaktifkan.";
         }
 
-        return back()->with('status', $message);
+        return redirect("departments")->with('status', $message);
     }
 }

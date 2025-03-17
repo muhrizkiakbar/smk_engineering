@@ -79,6 +79,22 @@
                     @enderror
                 </label>
             </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Formula</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('formula', request('formula')) }}"
+                        name="formula"
+                        placeholder="Formula"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('formula')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
             <div class="flex justify-between px-3">
                 <button type="submit" class="btn btn-sm btn-primary">
                     Simpan

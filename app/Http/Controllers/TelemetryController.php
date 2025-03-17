@@ -88,7 +88,7 @@ class TelemetryController extends Controller
     public function create_device_photo(string $device_location_id)
     {
         $device = $this->devicePhotoService->create($device_location_id);
-        return back()->with('status', 'Request for photo of device was created');
+        return redirect('telemetries')->with('status', 'Request for photo of device was created');
     }
 
     public function import(Request $request)
