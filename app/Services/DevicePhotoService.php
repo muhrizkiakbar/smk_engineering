@@ -76,34 +76,30 @@ class DevicePhotoService extends AppService
     public function update(DevicePhoto $device_photo, $request)
     {
         // Example logic for updating a photo record
-        try {
 
-            $file = $request->file('photo');
+        $file = $request->file('photo');
 
-            // Nama file original atau custom
-            $filename = time() . '_' . $file->getClientOriginalName();
+        // Nama file original atau custom
+        $filename = time() . '_' . $file->getClientOriginalName();
 
-            // Path di minio tempat file akan disimpan (optional)
-            $path = 'foto/'. $device_location_id."/". date('Y/m/d');
+        // Path di minio tempat file akan disimpan (optional)
+        $path = 'foto/'. $device_location_id."/". date('Y/m/d');
 
-            // Simpan file ke Minio
-            $filePath = Storage::disk('s3')->put(
-                $path,
-                $file,
-            );
+        // Simpan file ke Minio
+        $filePath = Storage::disk('s3')->put(
+            $path,
+            $file,
+        );
 
-            // Dapatkan URL publik dari file (jika bucket public)
-            $url = Storage::disk('s3')->url($filePath);
+        // Dapatkan URL publik dari file (jika bucket public)
+        $url = Storage::disk('s3')->url($filePath);
 
 
-            $device_photo->photo = $url;
-            $device_photo->state = 'active';
-            $device_photo->save();
+        $device_photo->photo = $url;
+        $device_photo->state = 'active';
+        $device_photo->save();
 
-            return $device_photo;
-        } catch (Exception $e) {
-            throw new Exception('Something went wrong.');
-        }
+        return $device_photo;
     }
 
     public function delete(DevicePhoto $device_photo)
