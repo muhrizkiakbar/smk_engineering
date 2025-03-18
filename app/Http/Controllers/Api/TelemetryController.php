@@ -44,14 +44,13 @@ class TelemetryController extends Controller
         }
 
         $device_location = DeviceLocation::where('state', 'active')->where('device_id', $device->id)->first();
-        $request_input = $request->merge([
+        $request_input = ($request->merge([
             'device_location_id' => $device_location->id
-        ])->except(['phone_number']);
-
+        ])->except(['phone_number']));
         $this->realTelemetryService->create($request_input);
 
 
-        $velocity = $this->calculate_velocity($device_location->formula, $request_input->water_height)
+        $velocity = $this->calculate_velocity($device_location->formula, $request_input['water_height']);
         $request_input['velocity'] = $velocity;
 
         return response()->json($this->telemetryService->create($request_input));
