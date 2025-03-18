@@ -83,7 +83,7 @@ class DevicePhotoService extends AppService
         $filename = time() . '_' . $file->getClientOriginalName();
 
         // Path di minio tempat file akan disimpan (optional)
-        $path = 'foto/'. $device_location_id."/". date('Y/m/d');
+        $path = 'foto/'. $device_photo->device_location_id."/". date('Y/m/d');
 
         // Simpan file ke Minio
         $filePath = Storage::disk('s3')->put(
