@@ -96,6 +96,7 @@ class DevicePhotoService extends AppService
 
 
         $device_photo->photo = $url;
+        $device_photo->created_at = now();
         $device_photo->state = 'active';
         $device_photo->save();
 
