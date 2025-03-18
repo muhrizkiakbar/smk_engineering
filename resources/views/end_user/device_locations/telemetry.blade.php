@@ -31,7 +31,7 @@
                         @if ($device_photo != null)
                             <div class="flex flex-col">
                                 <img id="device_photo_img"
-                                    src="{{asset('storage/'.$device_photo->photo)}}"
+                                    src="{{$device_photo->photo}}"
                                 alt="image" />
                             </div>
                         @else
