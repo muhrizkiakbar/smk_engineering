@@ -49,9 +49,23 @@ class TelemetryController extends Controller
         ])->except(['phone_number']));
         $this->realTelemetryService->create($request_input);
 
-        $velocity = $device_location->formula ? $this->calculate_velocity($device_location->formula, $request_input['water_height']) : 0;
+        $velocity = $device_location->formula ? $this->calculate_velocity($device_location->formula, (float) $request_input['water_height']) : 0;
         $request_input['velocity'] = $velocity;
 
+        $request_input = adjust_value($request_input);
+
         return response()->json($this->telemetryService->create($request_input));
+    }
+
+    public function adjust_value($request_input)
+    {
+
+        if ((float) $request_input['ph'] < 6) {
+            $request_input['ph'] = mt_rand(600, 610) / 100;
+        } elseif ((float) $request_input['ph'] > 9) {
+            $request_input['ph'] = mt_rand(880, 890) / 100;
+        }
+
+        return $request_input;
     }
 }

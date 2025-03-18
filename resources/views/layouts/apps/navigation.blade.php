@@ -38,13 +38,14 @@
           <ul
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li>
+            <li class="w-full">
                 <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
                     @method('POST')
 
                     <button href="route('logout')"
+                            class="w-full"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
