@@ -87,10 +87,9 @@ class DevicePhotoService extends AppService
             $path = 'foto/'. $device_location_id."/". date('Y/m/d');
 
             // Simpan file ke Minio
-            $filePath = Storage::disk('s3')->putFileAs(
+            $filePath = Storage::disk('s3')->put(
                 $path,
                 $file,
-                $filename
             );
 
             // Dapatkan URL publik dari file (jika bucket public)
