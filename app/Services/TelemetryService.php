@@ -73,6 +73,7 @@ class TelemetryService extends AppService
                 'wind_speed' => 0,
                 'solar_radiation' => 0,
                 'evaporation' => 0,
+                'dissolve_oxygen' => 0,
             ]);
         }
     }

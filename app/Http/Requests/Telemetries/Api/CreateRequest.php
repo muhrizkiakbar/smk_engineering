@@ -31,6 +31,7 @@ class CreateRequest extends FormRequest
             'wind_speed' => [ 'nullable','numeric' ],
             'solar_radiation' => [ 'nullable','numeric' ],
             'evaporation' => [ 'nullable','numeric' ],
+            'dissolve_oxygen' => [ 'nullable','numeric' ],
             'created_at' => ['required','string']
         ];
     }

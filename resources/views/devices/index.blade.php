@@ -141,6 +141,9 @@
                         {!! \App\Helpers\ViewHelper::render_condition($device->has_evaporation) !!}
                     </td>
                     <td>
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_dissolve_oxygen) !!}
+                    </td>
+                    <td>
                         <span class="badge uppercase text-xs font-bold
                             @if($device->state == 'active')
                                 bg-green-600 text-white

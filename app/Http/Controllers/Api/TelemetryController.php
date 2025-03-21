@@ -52,18 +52,28 @@ class TelemetryController extends Controller
         $velocity = $device_location->formula ? $this->calculate_velocity($device_location->formula, (float) $request_input['water_height']) : 0;
         $request_input['velocity'] = $velocity;
 
-        $request_input = adjust_value($request_input);
+        $request_input = adjust_value($request_input, $device);
 
         return response()->json($this->telemetryService->create($request_input));
     }
 
-    public function adjust_value($request_input)
+    public function adjust_value($request_input, $device)
     {
 
-        if ((float) $request_input['ph'] < 6) {
-            $request_input['ph'] = mt_rand(600, 610) / 100;
-        } elseif ((float) $request_input['ph'] > 9) {
-            $request_input['ph'] = mt_rand(880, 890) / 100;
+        if ($device->has_ph) {
+            if ((float) $request_input['ph'] < 6) {
+                $request_input['ph'] = mt_rand(600, 610) / 100;
+            } elseif ((float) $request_input['ph'] > 9) {
+                $request_input['ph'] = mt_rand(880, 890) / 100;
+            }
+        }
+
+        if ($device->has_tds) {
+            if ((float) $request_input['tds'] < 50) {
+                $request_input['tds'] = mt_rand(50, 59) / 100;
+            } elseif ((float) $request_input['ph'] > 300) {
+                $request_input['tds'] = mt_rand(290, 299) / 100;
+            }
         }
 
         return $request_input;

@@ -109,6 +109,7 @@
                 <th>Wind Speed</th>
                 <th>Solar Radiation</th>
                 <th>Evaporation</th>
+                <th>Dissolve Oxygen</th>
               </tr>
             </thead>
             <tbody>
@@ -133,6 +134,7 @@
                     <td>{{$telemetry->wind_speed}}</td>
                     <td>{{$telemetry->solar_radiation}}</td>
                     <td>{{$telemetry->evaporation}}</td>
+                    <td>{{$telemetry->dissolve_oxygen}}</td>
                   </tr>
               @endforeach
             </tbody>

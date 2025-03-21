@@ -233,6 +233,7 @@
                 <th>Wind Speed</th>
                 <th>Solar Radiation</th>
                 <th>Evaporation</th>
+                <th>Dissolve Oxygen</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -258,6 +259,7 @@
                     <td>{{$telemetry->wind_speed}}</td>
                     <td>{{$telemetry->solar_radiation}}</td>
                     <td>{{$telemetry->evaporation}}</td>
+                    <td>{{$telemetry->dissolve_oxygen}}</td>
                     <td class="justify-content-center items-center p-0">
                         <div class="join item-stretch flex sm:ps-3 xs:ps-3">
                             <a href="{{ route('telemetries.edit', encrypt($telemetry->id)) }}" class="btn join-item btn-xs btn-info h-full flex text-white items-center w-20">Ubah <i class="fas fa-edit"></i></a>

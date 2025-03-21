@@ -276,6 +276,20 @@
                             @enderror
                         </label>
                     </div>
+                    <div class="form-control w-52 items-start">
+                        <label class="label cursor-pointer">
+                            <input type="hidden" name="has_dissolve_oxygen" value="0">
+                            <input type="checkbox" name="has_dissolve_oxygen" value="1" class="toggle toggle-primary"
+                                @if (old('has_dissolve_oxygen', request('has_dissolve_oxygen')) == "1")
+                                    checked="checked"
+                                @endif
+                            />
+                            <span class="label-text ps-5">Dissolve Oxygen</span>
+                            @error('has_dissolve_oxygen')
+                                <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="flex justify-between px-3">

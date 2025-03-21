@@ -46,6 +46,13 @@ class DeviceLocationController extends Controller
                     'devices.has_velocity',
                     'devices.has_water_height',
                     'devices.has_rainfall',
+                    'devices.has_temperature',
+                    'devices.has_humidity',
+                    'devices.has_wind_direction',
+                    'devices.has_wind_speed',
+                    'devices.has_solar_radiation',
+                    'devices.has_evaporation',
+                    'devices.has_dissolve_oxygen',
                     'locations.name as location_name',
                     'locations.city',
                     'locations.district'
@@ -110,6 +117,13 @@ class DeviceLocationController extends Controller
             'velocity' => 0,
             'rainfall' => 0,
             'water_height' => 0,
+            'temperature' => 0,
+            'humidity' => 0,
+            'wind_direction' => 0,
+            'wind_speed' => 0,
+            'solar_radiation' => 0,
+            'evaporation' => 0,
+            'dissolve_oxygen' => 0,
         ];
 
         $fixed_telemetries = [];
@@ -145,7 +159,14 @@ class DeviceLocationController extends Controller
             'velocity' => $telemetry->velocity,
             'rainfall' => $telemetry->rainfall,
             'water_height' => $telemetry->water_height,
-            'device_photo' => $device_photo != null ? asset('storage/'.$device_photo->photo) : null,
+            'temperature' => $telemetry->temperature,
+            'humidity' => $telemetry->humidity,
+            'wind_direction' => $telemetry->wind_direction,
+            'wind_speed' => $telemetry->wind_speed,
+            'solar_radiation' => $telemetry->solar_radiation,
+            'evaporation' => $telemetry->evaporation,
+            'dissolve_oxygen' => $telemetry->dissolve_oxygen,
+            'device_photo' => $device_photo != null ? $device_photo->photo : null,
             'telemetries' => $fixed_telemetries,
         ]);
     }

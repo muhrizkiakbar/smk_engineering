@@ -65,6 +65,13 @@
                                     ${ device.has_velocity ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">velocity</div>' : '' }
                                     ${ device.has_water_height ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Water Height</div>' : '' }
                                     ${ device.has_rainfall ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Rainfall</div>' : '' }
+                                    ${ device.has_temperature ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Temperature</div>' : '' }
+                                    ${ device.has_humidity ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Humidity</div>' : '' }
+                                    ${ device.has_wind_direction ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Wind Direction</div>' : '' }
+                                    ${ device.has_wind_speed ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Wind Speed</div>' : '' }
+                                    ${ device.has_solar_radiation ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Solar Radiation</div>' : '' }
+                                    ${ device.has_evaporation ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Evaporation</div>' : '' }
+                                    ${ device.has_dissolve_oxygen ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Dissolve Oxygen</div>' : '' }
                                     <div class="flex pt-4">
                                         <a href="/enduser/device_locations/${device.id}/telemetry" class="btn w-full btn-sm btn-outline btn-success">Dashboard</a>
                                     </div>

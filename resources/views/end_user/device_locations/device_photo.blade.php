@@ -127,7 +127,7 @@
 
     <div class="grid grid-cols-1 pt-4 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-4">
         @foreach ($device_photos as $device_photo)
-            <div class="card bg-base-100 w-96 shadow-sm">
+            <div class="card bg-base-100 shadow-sm">
                 <figure>
                     <img
                     src="{{$device_photo->photo}}"

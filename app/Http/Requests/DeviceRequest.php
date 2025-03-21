@@ -37,6 +37,7 @@ class DeviceRequest extends FormRequest
             'has_wind_speed' => [ 'required','string' ],
             'has_solar_radiation' => [ 'required','string' ],
             'has_evaporation' => [ 'required','string' ],
+            'has_dissolve_oxygen' => [ 'required','string' ],
             'state' => [ 'nullable', 'string', 'max:255' ],
         ];
     }

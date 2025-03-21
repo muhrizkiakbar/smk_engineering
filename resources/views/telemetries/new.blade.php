@@ -249,6 +249,22 @@
                     @enderror
                 </label>
             </div>
+            <div class="mb-4 px-3">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Dissolve Oxygen</span>
+                    </div>
+                    <input type="text"
+                        value="{{ old('evaporation', request('dissolve_oxygen')) }}"
+                        name="dissolve_oxygen"
+                        placeholder="Dissolve Oxygen"
+                        class="input input-bordered input-primary w-full"
+                    >
+                    @error('dissolve_oxygen')
+                        <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </label>
+            </div>
             <div class="flex justify-between px-3">
                 <button type="submit" class="btn btn-sm btn-primary">
                     Simpan

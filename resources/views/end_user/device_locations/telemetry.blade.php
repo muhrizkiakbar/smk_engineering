@@ -424,6 +424,32 @@
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
+        <div class="stats shadow py-2
+            @if ($current_device_location->device->has_dissolve_oxygen != true)
+                hidden
+            @endif
+        ">
+            <div class="stat">
+                <div class="stat-figure
+                    @if ($current_device_location->device->has_dissolve_oxygen == true)
+                        text-primary
+                    @else
+                        text-neutral-content
+                    @endif
+                ">
+                    <i class="fa-solid text-3xl fa-arrow-up-from-ground-water"></i>
+                </div>
+                <div class="stat-title">Evaporation</div>
+                <div id="dissolve_oxygen_card" class="stat-value
+                    @if ($current_device_location->device->has_dissolve_oxygen == true)
+                        text-primary
+                    @else
+                        text-neutral-content
+                    @endif
+                ">{{$telemetry->dissolve_oxygen ?? 0}}</div>
+                <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
+            </div>
+        </div>
     </div>
     <div class="grid grid-cols-1 pt-4 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-4">
         <div class="card w-full h-full bg-base-100 shadow-xl
@@ -546,6 +572,16 @@
                 <canvas id="evaporation"></canvas>
             </div>
         </div>
+        <div class="card w-full h-full bg-base-100 shadow-xl
+            @if ($current_device_location->device->has_dissolve_oxygen == false)
+                hidden
+            @endif
+        ">
+            <h2 class="card-title flex ps-4 pt-4 pb-4">Dissolve Oxygen</h2>
+            <div class="chart-container">
+                <canvas id="dissolve_oxygen"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -572,6 +608,7 @@
         const wind_speed_chart = document.getElementById('wind_speed').getContext('2d');
         const solar_radiation_chart = document.getElementById('solar_radiation').getContext('2d');
         const evaporation_chart = document.getElementById('evaporation').getContext('2d');
+        const dissolve_oxygen_chart = document.getElementById('dissolve_oxygen').getContext('2d');
 
         const ph_card = window.$('#ph_card');
         const tds_card = window.$('#tds_card');
@@ -585,6 +622,7 @@
         const wind_speed_card = window.$('#wind_speed_card');
         const solar_radiation_card = window.$('#solar_radiation_card');
         const evaporation_card = window.$('#evaporation_card');
+        const dissolve_oxygen_card = window.$('#dissolve_oxygen_card');
 
         const device_photo_img = window.$('#device_photo_img');
 
@@ -650,6 +688,7 @@
         const myChart10 = new window.Chart(wind_speed_chart, config);
         const myChart11 = new window.Chart(solar_radiation_chart, config);
         const myChart12 = new window.Chart(evaporation_chart, config);
+        const myChart12 = new window.Chart(dissolve_oxygen_chart, config);
 
         let ph_telemetries = [];
         let tds_telemetries = [];
@@ -663,6 +702,7 @@
         let wind_speed_telemetries = [];
         let solar_radiation_telemetries = [];
         let evaporation_telemetries = [];
+        let dissolve_oxygen_telemetries = [];
 
         let device_photo = null;
         let ph = 0;
@@ -677,6 +717,7 @@
         let wind_speed = 0;
         let solar_radiation = 0;
         let evaporation = 0;
+        let dissolve_oxygen = 0;
         let labels = [];
 
         function render_data(){
@@ -692,6 +733,7 @@
             update_chart(myChart10, wind_speed_telemetries, labels, "Wind Speed");
             update_chart(myChart11, solar_radiation_telemetries, labels, "Solar Radiation");
             update_chart(myChart12, evaporation_telemetries, labels, "Evaporation");
+            update_chart(myChart13, dissolve_oxygen_telemetries, labels, "Evaporation");
 
             ph_card.text(ph);
             tds_card.text(tds);
@@ -705,6 +747,7 @@
             wind_speed_card.text(wind_speed);
             solar_radiation_card.text(solar_radiation);
             evaporation_card.text(evaporation);
+            dissolve_oxygen_card.text(dissolve_oxygen);
 
             device_photo_img.attr('src', device_photo);
         }
@@ -728,6 +771,7 @@
                     wind_speed_telemetries = response.telemetries.map(item => item.wind_speed).reverse();
                     solar_radiation_telemetries = response.telemetries.map(item => item.solar_radiation).reverse();
                     evaporation_telemetries = response.telemetries.map(item => item.evaporation).reverse();
+                    dissolve_oxygen_telemetries = response.telemetries.map(item => item.dissolve_oxygen).reverse();
 
                     labels = response.telemetries.map(item => formatDateTime(item.created_at)).sort();
                     device_photo = response.device_photo;
@@ -744,6 +788,7 @@
                     wind_speed = response.wind_speed;
                     solar_radiation = response.solar_radiation;
                     evaporation = response.evaporation;
+                    dissolve_oxygen = response.dissolve_oxygen;
 
                     render_data();
                 },
