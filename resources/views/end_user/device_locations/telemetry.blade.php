@@ -257,7 +257,7 @@
                 ">
                     <i class="fa-solid text-3xl fa-water"></i>
                 </div>
-                <div class="stat-title">Water Height</div>
+                <div class="stat-title">Water Level</div>
                 <div id="water_height_card" class="stat-value
                     @if ($current_device_location->device->has_water_height == true)
                         text-primary
