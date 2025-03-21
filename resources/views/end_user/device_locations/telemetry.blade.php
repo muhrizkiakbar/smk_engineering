@@ -113,7 +113,7 @@
 
     <div class="grid grid-cols-1 pt-4 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-4">
         <div class="stats shadow py-2
-            @if ($current_device_location->device?->has_ph == true)
+            @if ($current_device_location->device?->has_ph != true)
                 hidden
             @endif
         ">
@@ -139,7 +139,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_tds == true)
+            @if ($current_device_location->device->has_tds != true)
                 hidden
             @endif
         ">
@@ -165,7 +165,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_tss == true)
+            @if ($current_device_location->device->has_tss != true)
                 hidden
             @endif
         ">
@@ -191,7 +191,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_velocity == true)
+            @if ($current_device_location->device->has_velocity != true)
                 hidden
             @endif
         ">
@@ -217,7 +217,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_rainfall == true)
+            @if ($current_device_location->device->has_rainfall != true)
                 hidden
             @endif
         ">
@@ -243,7 +243,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_water_height == true)
+            @if ($current_device_location->device->has_water_height != true)
                 hidden
             @endif
         ">
@@ -269,7 +269,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_temperature == true)
+            @if ($current_device_location->device->has_temperature != true)
                 hidden
             @endif
         ">
@@ -295,7 +295,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_humidity == true)
+            @if ($current_device_location->device->has_humidity != true)
                 hidden
             @endif
         ">
@@ -321,7 +321,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_wind_direction == true)
+            @if ($current_device_location->device->has_wind_direction != true)
                 hidden
             @endif
         ">
@@ -347,7 +347,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_wind_speed == true)
+            @if ($current_device_location->device->has_wind_speed != true)
                 hidden
             @endif
         ">
@@ -373,7 +373,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_solar_radiation == true)
+            @if ($current_device_location->device->has_solar_radiation != true)
                 hidden
             @endif
         ">
@@ -399,7 +399,7 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_evaporation == true)
+            @if ($current_device_location->device->has_evaporation != true)
                 hidden
             @endif
         ">
