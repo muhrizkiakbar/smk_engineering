@@ -182,7 +182,7 @@
                                     checked="checked"
                                 @endif
                             />
-                            <span class="label-text ps-5">Water Height</span>
+                            <span class="label-text ps-5">Water Level</span>
                             @error('has_water_height')
                                 <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
                             @enderror
