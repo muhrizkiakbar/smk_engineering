@@ -250,7 +250,7 @@
                     <td>{{$telemetry->ph}}</td>
                     <td>{{$telemetry->tds}}</td>
                     <td>{{$telemetry->tss}}</td>
-                    <td>{{$telemetry->velocity}}</td>
+                    <td>{{round($telemetry->velocity, 2)}}</td>
                     <td>{{$telemetry->water_height}}</td>
                     <td>{{$telemetry->rainfall}}</td>
                     <td>{{$telemetry->temperature}}</td>
