@@ -25,7 +25,7 @@ class TelemetryImport implements ToModel, WithHeadingRow
         $formula = $this->device_locations[$device_location_id]['formula'] ?? null;
         $water_level = (float) $row['water_height'];
 
-        $velocity = $formula ? $this->controller->calculate_velocity($formula, $water_level) : 0;
+        $velocity = $formula ? round($this->controller->calculate_velocity($formula, $water_level), 2) : 0;
 
         return new Telemetry([
             'device_location_id' => $device_location_id,

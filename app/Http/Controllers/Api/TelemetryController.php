@@ -51,7 +51,7 @@ class TelemetryController extends Controller
         $this->realTelemetryService->create($request_input);
 
         $velocity = $device_location->formula ? $this->calculate_velocity($device_location->formula, (float) $request_input['water_height']) : 0;
-        $request_input['velocity'] = $velocity;
+        $request_input['velocity'] = round($velocity, 2);
 
         $request_input = $this->adjust_value($request_input, $device);
 
