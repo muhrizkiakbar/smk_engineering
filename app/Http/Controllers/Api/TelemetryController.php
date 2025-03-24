@@ -53,7 +53,7 @@ class TelemetryController extends Controller
         $velocity = $device_location->formula ? $this->calculate_velocity($device_location->formula, (float) $request_input['water_height']) : 0;
         $request_input['velocity'] = $velocity;
 
-        $request_input = adjust_value($request_input, $device);
+        $request_input = $this->adjust_value($request_input, $device);
 
         return response()->json($this->telemetryService->create($request_input));
     }
