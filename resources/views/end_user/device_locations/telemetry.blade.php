@@ -724,8 +724,8 @@
             update_chart(myChart, ph_telemetries, labels, "PH");
             update_chart(myChart2, tds_telemetries, labels, "TDS");
             update_chart(myChart3, tss_telemetries, labels, "TSS");
-            update_chart(myChart4, rainfall_telemetries, labels, "Debit");
-            update_chart(myChart5, debit_telemetries, labels, "Rainfall");
+            update_chart(myChart4, debit_telemetries, labels, "Debit");
+            update_chart(myChart5, rainfall_telemetries, labels, "Rainfall");
             update_chart(myChart6, water_height_telemetries, labels, "Water Level");
             update_chart(myChart7, temperature_telemetries, labels, "Temperature");
             update_chart(myChart8, humidity_telemetries, labels, "Humidity");
@@ -733,7 +733,7 @@
             update_chart(myChart10, wind_speed_telemetries, labels, "Wind Speed");
             update_chart(myChart11, solar_radiation_telemetries, labels, "Solar Radiation");
             update_chart(myChart12, evaporation_telemetries, labels, "Evaporation");
-            update_chart(myChart13, dissolve_oxygen_telemetries, labels, "Evaporation");
+            update_chart(myChart13, dissolve_oxygen_telemetries, labels, "Dissolve Oxygen");
 
             ph_card.text(ph);
             tds_card.text(tds);
