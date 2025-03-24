@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests\Telemetries\Api\CreateRequest;
 use App\Models\Device;
 use App\Models\DeviceLocation;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class TelemetryController extends Controller
 {

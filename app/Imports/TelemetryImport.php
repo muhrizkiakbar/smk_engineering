@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class TelemetryImport implements ToModel, WithHeadingRow
 {
