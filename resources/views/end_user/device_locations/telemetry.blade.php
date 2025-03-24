@@ -688,7 +688,7 @@
         const myChart10 = new window.Chart(wind_speed_chart, config);
         const myChart11 = new window.Chart(solar_radiation_chart, config);
         const myChart12 = new window.Chart(evaporation_chart, config);
-        const myChart12 = new window.Chart(dissolve_oxygen_chart, config);
+        const myChart13 = new window.Chart(dissolve_oxygen_chart, config);
 
         let ph_telemetries = [];
         let tds_telemetries = [];
