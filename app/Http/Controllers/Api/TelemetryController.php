@@ -71,9 +71,9 @@ class TelemetryController extends Controller
 
         if ($device->has_tds) {
             if ((float) $request_input['tds'] < 50) {
-                $request_input['tds'] = mt_rand(50, 59) / 100;
-            } elseif ((float) $request_input['ph'] > 300) {
-                $request_input['tds'] = mt_rand(290, 299) / 100;
+                $request_input['tds'] = mt_rand(50, 59);
+            } elseif ((float) $request_input['tds'] > 300) {
+                $request_input['tds'] = mt_rand(290, 299);
             }
         }
 
