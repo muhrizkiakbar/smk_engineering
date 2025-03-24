@@ -21,7 +21,7 @@ return new class () extends Migration {
             $table->boolean('has_ph')->default(false);
             $table->boolean('has_tds')->default(false);
             $table->boolean('has_tss')->default(false);
-            $table->boolean('has_velocity')->default(false);
+            $table->boolean('has_debit')->default(false);
             $table->boolean('has_rainfall')->default(false);
             $table->boolean('has_water_height')->default(false);
             $table->string('state')->default('active');

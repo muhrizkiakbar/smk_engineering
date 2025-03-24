@@ -50,8 +50,8 @@ class TelemetryController extends Controller
         ])->except(['phone_number']));
         $this->realTelemetryService->create($request_input);
 
-        $velocity = $device_location->formula ? $this->calculate_velocity($device_location->formula, (float) $request_input['water_height']) : 0;
-        $request_input['velocity'] = round($velocity, 2);
+        $debit = $device_location->formula ? $this->calculate_debit($device_location->formula, (float) $request_input['water_height']) : 0;
+        $request_input['debit'] = round($debit, 2);
 
         $request_input = $this->adjust_value($request_input, $device);
 

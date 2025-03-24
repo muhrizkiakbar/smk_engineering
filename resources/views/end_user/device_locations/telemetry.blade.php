@@ -191,13 +191,13 @@
             </div>
         </div>
         <div class="stats shadow py-2
-            @if ($current_device_location->device->has_velocity != true)
+            @if ($current_device_location->device->has_debit != true)
                 hidden
             @endif
         ">
             <div class="stat">
                 <div class="stat-figure
-                    @if ($current_device_location->device->has_velocity == true)
+                    @if ($current_device_location->device->has_debit == true)
                         text-primary
                     @else
                         text-neutral-content
@@ -205,14 +205,14 @@
                 ">
                     <i class="fa-solid text-3xl fa-house-flood-water-circle-arrow-right"></i>
                 </div>
-                <div class="stat-title">Velocity</div>
-                <div id="velocity_card" class="stat-value
-                    @if ($current_device_location->device->has_velocity == true)
+                <div class="stat-title">Debit</div>
+                <div id="debit_card" class="stat-value
+                    @if ($current_device_location->device->has_debit == true)
                         text-primary
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->velocity ?? 0}}</div>
+                ">{{$telemetry->debit ?? 0}}</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -483,13 +483,13 @@
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
-            @if ($current_device_location->device->has_velocity == false)
+            @if ($current_device_location->device->has_debit == false)
                 hidden
             @endif
         ">
-            <h2 class="card-title flex ps-4 pt-4 pb-4">Velocity</h2>
+            <h2 class="card-title flex ps-4 pt-4 pb-4">Debit</h2>
             <div class="chart-container">
-                <canvas id="velocity"></canvas>
+                <canvas id="debit"></canvas>
             </div>
         </div>
         <div class="card w-full h-full bg-base-100 shadow-xl
@@ -599,7 +599,7 @@
         const ph_chart = document.getElementById('ph').getContext('2d');
         const tds_chart = document.getElementById('tds').getContext('2d');
         const tss_chart = document.getElementById('tss').getContext('2d');
-        const velocity_chart = document.getElementById('velocity').getContext('2d');
+        const debit_chart = document.getElementById('debit').getContext('2d');
         const rainfall_chart = document.getElementById('rainfall').getContext('2d');
         const water_height_chart = document.getElementById('water_level').getContext('2d');
         const temperature_chart = document.getElementById('temperature').getContext('2d');
@@ -615,7 +615,7 @@
         const tss_card = window.$('#tss_card');
         const rainfall_card = window.$('#rainfall_card');
         const water_height_card = window.$('#water_height_card');
-        const velocity_card = window.$('#velocity_card');
+        const debit_card = window.$('#debit_card');
         const temperature_card = window.$('#temperature_card');
         const humidity_card = window.$('#humidity_card');
         const wind_direction_card = window.$('#wind_direction_card');
@@ -678,7 +678,7 @@
         const myChart = new window.Chart(ph_chart, config);
         const myChart2 = new window.Chart(tds_chart, config);
         const myChart3 = new window.Chart(tss_chart, config);
-        const myChart4 = new window.Chart(velocity_chart, config);
+        const myChart4 = new window.Chart(debit_chart, config);
         const myChart5 = new window.Chart(rainfall_chart, config);
         const myChart6 = new window.Chart(water_height_chart, config);
 
@@ -695,7 +695,7 @@
         let tss_telemetries = [];
         let rainfall_telemetries = [];
         let water_height_telemetries = [];
-        let velocity_telemetries = [];
+        let debit_telemetries = [];
         let temperature_telemetries = [];
         let humidity_telemetries = [];
         let wind_direction_telemetries = [];
@@ -709,7 +709,7 @@
         let tds = 0;
         let tss = 0;
         let rainfall = 0;
-        let velocity = 0;
+        let debit = 0;
         let water_height = 0;
         let temperature = 0;
         let humidity = 0;
@@ -724,8 +724,8 @@
             update_chart(myChart, ph_telemetries, labels, "PH");
             update_chart(myChart2, tds_telemetries, labels, "TDS");
             update_chart(myChart3, tss_telemetries, labels, "TSS");
-            update_chart(myChart4, rainfall_telemetries, labels, "Velocity");
-            update_chart(myChart5, velocity_telemetries, labels, "Rainfall");
+            update_chart(myChart4, rainfall_telemetries, labels, "Debit");
+            update_chart(myChart5, debit_telemetries, labels, "Rainfall");
             update_chart(myChart6, water_height_telemetries, labels, "Water Level");
             update_chart(myChart7, temperature_telemetries, labels, "Temperature");
             update_chart(myChart8, humidity_telemetries, labels, "Humidity");
@@ -740,7 +740,7 @@
             tss_card.text(tss);
             rainfall_card.text(rainfall);
             water_height_card.text(water_height);
-            velocity_card.text(velocity);
+            debit_card.text(debit);
             temperature_card.text(temperature);
             humidity_card.text(humidity);
             wind_direction_card.text(wind_direction);
@@ -761,7 +761,7 @@
                     ph_telemetries = response.telemetries.map(item => item.ph).reverse();
                     tds_telemetries = response.telemetries.map(item => item.tds).reverse();
                     tss_telemetries = response.telemetries.map(item => item.tss).reverse();
-                    velocity_telemetries = response.telemetries.map(item => item.velocity).reverse();
+                    debit_telemetries = response.telemetries.map(item => item.debit).reverse();
                     water_height_telemetries = response.telemetries.map(item => item.water_height).reverse();
                     rainfall_telemetries = response.telemetries.map(item => item.rainfall).reverse();
 
@@ -780,7 +780,7 @@
                     tds = response.tds;
                     tss = response.tss;
                     rainfall = response.rainfall;
-                    velocity = response.velocity;
+                    debit = response.debit;
                     water_height = response.water_height;
                     temperature = response.temperature;
                     humidity = response.humidity;

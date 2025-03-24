@@ -28,7 +28,7 @@ class DeviceRequest extends FormRequest
             'has_ph' => [ 'required','string' ],
             'has_tds' => [ 'required','string' ],
             'has_tss' => [ 'required','string' ],
-            'has_velocity' => [ 'required','string' ],
+            'has_debit' => [ 'required','string' ],
             'has_rainfall' => [ 'required','string' ],
             'has_water_height' => [ 'required','string' ],
             'has_temperature' => [ 'required','string' ],

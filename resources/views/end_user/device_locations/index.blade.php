@@ -62,7 +62,7 @@
                                     ${ device.has_ph ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">PH</div>' : '' }
                                     ${ device.has_tds ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">TDS</div>' : '' }
                                     ${ device.has_tss ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">TSS</div>' : '' }
-                                    ${ device.has_velocity ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">velocity</div>' : '' }
+                                    ${ device.has_debit ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">debit</div>' : '' }
                                     ${ device.has_water_height ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Water Height</div>' : '' }
                                     ${ device.has_rainfall ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Rainfall</div>' : '' }
                                     ${ device.has_temperature ? '<div class="badge badge-sm badge-success text-white font-bold font-xxs">Temperature</div>' : '' }

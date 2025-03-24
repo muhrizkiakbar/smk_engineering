@@ -148,14 +148,14 @@
                     </div>
                     <div class="form-control w-52 items-start">
                         <label class="label cursor-pointer">
-                            <input type="hidden" name="has_velocity" value="0">
-                            <input type="checkbox" name="has_velocity" value="1" class="toggle toggle-primary"
-                                @if (old('has_velocity', request('has_velocity')) == "1")
+                            <input type="hidden" name="has_debit" value="0">
+                            <input type="checkbox" name="has_debit" value="1" class="toggle toggle-primary"
+                                @if (old('has_debit', request('has_debit')) == "1")
                                     checked="checked"
                                 @endif
                             />
-                            <span class="label-text ps-5">Velocity</span>
-                            @error('has_velocity')
+                            <span class="label-text ps-5">Debit</span>
+                            @error('has_debit')
                                 <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
                             @enderror
                         </label>

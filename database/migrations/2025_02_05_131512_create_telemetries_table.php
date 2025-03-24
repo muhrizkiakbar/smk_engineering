@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->float('ph')->default(0);
             $table->float('tds')->default(0);
             $table->float('tss')->default(0);
-            $table->float('velocity')->default(0);
+            $table->float('debit')->default(0);
             $table->float('water_height')->default(0);
             $table->float('rainfall')->default(0);
             $table->timestamps();

@@ -224,7 +224,7 @@
                 <th>PH</th>
                 <th>TDS</th>
                 <th>TSS</th>
-                <th>Velocity</th>
+                <th>Debit</th>
                 <th>Water Height</th>
                 <th>Rainfall</th>
                 <th>Temperature</th>
@@ -250,7 +250,7 @@
                     <td>{{$telemetry->ph}}</td>
                     <td>{{$telemetry->tds}}</td>
                     <td>{{$telemetry->tss}}</td>
-                    <td>{{round($telemetry->velocity, 2)}}</td>
+                    <td>{{round($telemetry->debit, 2)}}</td>
                     <td>{{$telemetry->water_height}}</td>
                     <td>{{$telemetry->rainfall}}</td>
                     <td>{{$telemetry->temperature}}</td>

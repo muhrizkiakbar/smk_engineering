@@ -22,7 +22,7 @@ class TelemetryRequest extends FormRequest
             'ph' => [ 'nullable','numeric' ],
             'tds' => [ 'nullable','numeric' ],
             'tss' => [ 'nullable','numeric' ],
-            'velocity' => [ 'nullable','numeric' ],
+            'debit' => [ 'nullable','numeric' ],
             'rainfall' => [ 'nullable','numeric' ],
             'water_height' => [ 'nullable','numeric' ],
             'temperature' => [ 'nullable','numeric' ],

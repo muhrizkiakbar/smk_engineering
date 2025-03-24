@@ -108,15 +108,15 @@
             <div class="mb-4 px-3">
                 <label class="form-control w-full">
                     <div class="label">
-                        <span class="label-text">Velocity</span>
+                        <span class="label-text">Debit</span>
                     </div>
                     <input type="text"
-                        value="{{ old('velocity', request('velocity')) }}"
-                        name="velocity"
-                        placeholder="Velocity"
+                        value="{{ old('debit', request('debit')) }}"
+                        name="debit"
+                        placeholder="Debit"
                         class="input input-bordered input-primary w-full"
                     >
-                    @error('velocity')
+                    @error('debit')
                         <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
                     @enderror
                 </label>

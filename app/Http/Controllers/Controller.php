@@ -21,7 +21,7 @@ abstract class Controller
         return $number;
     }
 
-    public function calculate_velocity(string $formula, float $parameterValue): float
+    public function calculate_debit(string $formula, float $parameterValue): float
     {
         if (!str_contains($formula, '$water_level')) {
             return 0;

@@ -64,7 +64,7 @@ class TelemetryService extends AppService
                 'ph' => 0,
                 'tds' => 0,
                 'tss' => 0,
-                'velocity' => 0,
+                'debit' => 0,
                 'water_height' => 0,
                 'rainfall' => 0,
                 'temperature' => 0,

@@ -81,7 +81,7 @@
                 <th>PH</th>
                 <th>TDS</th>
                 <th>TSS</th>
-                <th>Velocity</th>
+                <th>Debit</th>
                 <th>Rainfall</th>
                 <th>Water Level</th>
                 <th>Temperature</th>
@@ -114,7 +114,7 @@
                         {!! \App\Helpers\ViewHelper::render_condition($device->has_tss) !!}
                     </td>
                     <td>
-                        {!! \App\Helpers\ViewHelper::render_condition($device->has_velocity) !!}
+                        {!! \App\Helpers\ViewHelper::render_condition($device->has_debit) !!}
                     </td>
                     <td>
                         {!! \App\Helpers\ViewHelper::render_condition($device->has_rainfall) !!}
