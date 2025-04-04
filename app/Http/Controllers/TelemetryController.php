@@ -35,7 +35,7 @@ class TelemetryController extends Controller
     //
     public function index(Request $request)
     {
-        $telemetries = $this->telemetryService->telemetries($request, ['device_location' => ['device', 'location']])->orderby('created_at', 'desc')->cursorPaginate(10);
+        $telemetries = $this->telemetryService->telemetries($request, ['device_location' => ['device', 'location']])->orderBy('created_at', 'desc')->cursorPaginate(10);
         $device_locations = DeviceLocation::where('state', 'active')->with(['device', 'location'])->get();
 
         return view('telemetries.index', ['device_locations' => $device_locations, 'telemetries' => $telemetries]);
