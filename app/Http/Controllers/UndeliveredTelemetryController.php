@@ -28,7 +28,7 @@ class UndeliveredTelemetryController extends Controller
     //
     public function index(Request $request)
     {
-        $telemetries = $this->undeliveredTelemetryService->telemetries($request, ['device_location' => ['device', 'location']])->cursorPaginate(24);
+        $telemetries = $this->undeliveredTelemetryService->telemetries($request, ['device_location' => ['device', 'location']])->orderby('created_at', 'desc')->cursorPaginate(10);
         $device_locations = DeviceLocation::where('state', 'active')->with(['device', 'location'])->get();
 
         return view('undeliveredtelemetries.index', ['device_locations' => $device_locations, 'telemetries' => $telemetries]);

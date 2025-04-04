@@ -48,10 +48,11 @@ class TelemetryController extends Controller
         $request_input = ($request->merge([
             'device_location_id' => $device_location->id
         ])->except(['phone_number']));
-        $this->realTelemetryService->create($request_input);
 
         $debit = $device_location->formula ? $this->calculate_debit($device_location->formula, (float) $request_input['water_height']) : 0;
         $request_input['debit'] = round($debit, 2);
+
+        $this->realTelemetryService->create($request_input);
 
         $request_input = $this->adjust_value($request_input, $device);
 
@@ -71,9 +72,9 @@ class TelemetryController extends Controller
 
         if ($device->has_tds) {
             if ((float) $request_input['tds'] < 50) {
-                $request_input['tds'] = mt_rand(50, 59);
+                $request_input['tds'] = mt_rand(500, 509) / 100;
             } elseif ((float) $request_input['tds'] > 300) {
-                $request_input['tds'] = mt_rand(290, 299);
+                $request_input['tds'] = mt_rand(2900, 2950) / 10;
             }
         }
 
