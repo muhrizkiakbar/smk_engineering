@@ -124,12 +124,12 @@
             <div class="mb-4 px-3">
                 <label class="form-control w-full">
                     <div class="label">
-                        <span class="label-text">Water Height</span>
+                        <span class="label-text">Water Level</span>
                     </div>
                     <input type="text"
                         value="{{ old('water_height', request('water_height')) }}"
                         name="water_height"
-                        placeholder="Water Height"
+                        placeholder="Water Level"
                         class="input input-bordered input-primary w-full"
                     >
                     @error('water_height')

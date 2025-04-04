@@ -69,8 +69,8 @@
                 <th>PH</th>
                 <th>TDS</th>
                 <th>TSS</th>
+                <th>Water Level</th>
                 <th>Debit</th>
-                <th>Water Height</th>
                 <th>Rainfall</th>
                 <th>Temperature</th>
                 <th>Humidity</th>
@@ -90,8 +90,8 @@
                     <td>{{$telemetry->ph}}</td>
                     <td>{{$telemetry->tds}}</td>
                     <td>{{$telemetry->tss}}</td>
-                    <td>{{$telemetry->debit}}</td>
                     <td>{{$telemetry->water_height}}</td>
+                    <td>{{$telemetry->debit}}</td>
                     <td>{{$telemetry->rainfall}}</td>
                     <td>{{$telemetry->temperature}}</td>
                     <td>{{$telemetry->humidity}}</td>
