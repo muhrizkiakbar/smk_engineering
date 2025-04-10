@@ -67,8 +67,8 @@
                             </a>
                         </li>
                         <li class="py-1">
-                            <a href="{{route('device_locations.index')}}"
-                                class="{{ Route::currentRouteName() === 'device_locations.index' ? 'active' : '' }}"
+                            <a href="{{route('device_location_warnings.index')}}"
+                                class="{{ Route::currentRouteName() === 'device_location_warnings.index' ? 'active' : '' }}"
                             >
                                 <i class="fa-solid fa-circle-radiation fa-fw"></i>
                                 Early Warning System
