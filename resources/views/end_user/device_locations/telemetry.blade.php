@@ -437,7 +437,7 @@
                         text-neutral-content
                     @endif
                 ">
-                    <i class="fa-solid text-3xl fa-arrow-up-from-ground-water"></i>
+                    <i class="fa-regular text-3xl fa-circle"></i>
                 </div>
                 <div class="stat-title">Dissolve Oxygen</div>
                 <div id="dissolve_oxygen_card" class="stat-value

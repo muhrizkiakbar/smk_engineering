@@ -13,6 +13,7 @@ use App\Http\Controllers\RealTelemetryController;
 use App\Http\Controllers\UndeliveredTelemetryController;
 use App\Http\Controllers\EndUser\DeviceLocationController as EndUserDeviceLocationController;
 use App\Http\Controllers\EndUser\TelemetryController as EndUserTelemetryController;
+use App\Http\Controllers\DeviceLocationWarningController;
 
 Route::middleware('auth:web')->group(function () {
     // Protected routes
@@ -41,6 +42,9 @@ Route::middleware('auth:web')->group(function () {
             Route::resource('device_locations', DeviceLocationController::class)->except([
                 'show'
             ]);
+
+            Route::resource('device_location_warnings', DeviceLocationWarningController::class);
+
             Route::resource('users', UserController::class)->except([
                 'show'
             ]);

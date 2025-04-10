@@ -67,6 +67,14 @@
                             </a>
                         </li>
                         <li class="py-1">
+                            <a href="{{route('device_locations.index')}}"
+                                class="{{ Route::currentRouteName() === 'device_locations.index' ? 'active' : '' }}"
+                            >
+                                <i class="fa-solid fa-circle-radiation fa-fw"></i>
+                                Early Warning System
+                            </a>
+                        </li>
+                        <li class="py-1">
                             <a href="{{route('telemetries.index')}}"
                                 class="{{ Route::currentRouteName() === 'telemetries.index' ? 'active' : '' }}"
                             >
