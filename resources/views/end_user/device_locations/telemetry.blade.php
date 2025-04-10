@@ -439,7 +439,7 @@
                 ">
                     <i class="fa-solid text-3xl fa-arrow-up-from-ground-water"></i>
                 </div>
-                <div class="stat-title">Evaporation</div>
+                <div class="stat-title">Dissolve Oxygen</div>
                 <div id="dissolve_oxygen_card" class="stat-value
                     @if ($current_device_location->device->has_dissolve_oxygen == true)
                         text-primary

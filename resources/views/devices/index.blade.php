@@ -90,6 +90,7 @@
                 <th>Wind Speed</th>
                 <th>Solar Radiation</th>
                 <th>Evaporation</th>
+                <th>Dissolve Oxygen</th>
                 <th>State</th>
                 <th>Action</th>
               </tr>

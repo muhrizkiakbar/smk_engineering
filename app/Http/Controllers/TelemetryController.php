@@ -106,11 +106,11 @@ class TelemetryController extends Controller
                     ->with('error', 'File tidak valid atau rusak.');
             }
 
-            $device_locations = DeviceLocation::where('state', 'active')->mapWithKeys(function ($item) {
+            $device_locations = DeviceLocation::where('state', 'active')->get()->mapWithKeys(function ($item) {
                 return [$item->id => ['formula' => $item->formula]];
             })->toArray();
 
-            Excel::import(new TelemetryImport(), $file, $device_locations);
+            Excel::import(new TelemetryImport($device_locations), $file);
 
             return redirect('telemetries')
             ->with('status', 'Telemetry berhasil diimport');
