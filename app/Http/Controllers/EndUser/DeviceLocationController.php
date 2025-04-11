@@ -32,7 +32,6 @@ class DeviceLocationController extends Controller
         $request_input = $request->merge(
             ['state' => 'active']
         );
-        $device_locations = $this->deviceLocationService->device_locations($request_input)->get();
         $device_locations =
             DeviceLocation::leftJoin('devices', 'device_locations.device_id', 'devices.id')
                 ->leftJoin('locations', 'device_locations.location_id', 'locations.id')
@@ -78,7 +77,38 @@ class DeviceLocationController extends Controller
         $telemetry = $telemetries_query->orderby('created_at', 'desc')->first();
         $telemetries = $telemetries_query->limit(12)->get();
         $device_photo = DevicePhoto::where('state', 'active')->where('device_location_id', $id)->orderby('created_at', 'desc')->first();
-        $device_locations = DeviceLocation::with(['device', 'location'])->where('state', 'active')->orderby('id', 'asc')->get();
+
+        $device_locations =
+            DeviceLocation::leftJoin('devices', 'device_locations.device_id', 'devices.id')
+                ->leftJoin('locations', 'device_locations.location_id', 'locations.id')
+                ->select(
+                    'device_locations.*',
+                    'devices.name as device_name',
+                    'devices.type as device_type',
+                    'devices.has_ph',
+                    'devices.has_tds',
+                    'devices.has_tss',
+                    'devices.has_debit',
+                    'devices.has_water_height',
+                    'devices.has_rainfall',
+                    'devices.has_temperature',
+                    'devices.has_humidity',
+                    'devices.has_wind_direction',
+                    'devices.has_wind_speed',
+                    'devices.has_solar_radiation',
+                    'devices.has_evaporation',
+                    'devices.has_dissolve_oxygen',
+                    'locations.name as location_name',
+                    'locations.city',
+                    'locations.district'
+                )->where('device_locations.state', 'active');
+
+        if (Auth::user()->department->visibility_telemetry == 'public') {
+            $device_locations = $device_locations->get();
+        } elseif (Auth::user()->department->visibility_telemetry == 'private') {
+            $device_locations = $device_locations->where('department_id', Auth::user()->department->id)->get();
+        }
+
         $current_device_location = DeviceLocation::find($id);
 
         return view(
