@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\DevicePhotoService;
+use App\Exports\TelemetryExport;
 use App\Services\DeviceLocationService;
 use App\Http\Requests\TelemetryRequest;
 use App\Http\Requests\Telemetries\GenerateRequest;
@@ -124,5 +125,17 @@ class TelemetryController extends Controller
             return redirect('telemetries')
                 ->with('error', 'Terjadi kesalahan saat mengimpor data.');
         }
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(
+            new TelemetryExport(
+                $request->input('from_date'),
+                $request->input('to_date'),
+                $request->input('device_location_id')
+            ),
+            'telemetries.xlsx'
+        );
     }
 }

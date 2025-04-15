@@ -136,10 +136,15 @@
                 </figure>
                 <div class="flex flex-row py-2 px-2 items-center">
                     <p class="text-sm flex-auto">Photo Taken At {{$device_photo->created_at}}</p>
-                    <div class="card-actions justify-end flex-col">
+                    <div class="card-actions justify-end flex-row">
                         <button class="btn btn-xs btn-primary"
                             onclick="openImageModal('{{$device_photo->photo}}','Photo Taken At {{$device_photo->created_at}}' , '')"
-                        >Preview</button>
+                        >
+                        <i class="fa-solid fa-magnifying-glass"></i>Preview
+                        </button>
+                        <button class="btn btn-xs btn-secondary" onclick="downloadFromMinIO('{{ $device_photo->photo }}', '{{ $device_location->device->name }} - {{ $device_location->location->name }} {{ $device_photo->created_at }}.jpg')">
+                            <i class="fa-solid fa-download"></i>Download
+                        </button>
                     </div>
                 </div>
 
@@ -192,6 +197,25 @@
     let isDragging = false;
     let startX, startY;
     let translateX = 0, translateY = 0;
+
+    function downloadFromMinIO(url, filename) {
+        fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error('Gagal mengambil gambar');
+            return response.blob();
+            })
+        .then(blob => {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            })
+        .catch(error => {
+            alert('Gagal mengunduh gambar: ' + error.message);
+        });
+    }
 
     // Open modal with image
     function openImageModal(imageSrc, title, description) {

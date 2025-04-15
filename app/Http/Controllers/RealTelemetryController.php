@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RealTelemetryExport;
 use App\Services\DevicePhotoService;
 use App\Services\DeviceLocationService;
 use App\Http\Requests\TelemetryRequest;
@@ -71,5 +72,17 @@ class RealTelemetryController extends Controller
         $telemetry = RealTelemetry::find(decrypt($id));
         $telemetry = $this->realTelemetryService->delete($telemetry);
         return redirect('realtelemetries')->with('status', 'Telemetry berhasil Dihapus');
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(
+            new RealTelemetryExport(
+                $request->input('from_date'),
+                $request->input('to_date'),
+                $request->input('device_location_id')
+            ),
+            'actual_telemetries.xlsx'
+        );
     }
 }

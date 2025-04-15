@@ -51,19 +51,41 @@
                 <div class="px-3 w-full">
                     <label class="form-control w-full">
                         <div class="label">
-                            <span class="label-text">Date At</span>
+                            <span class="label-text">From Date</span>
                         </div>
                         <div class="inline-flex items-center relative">
                             <a href="#" class="btn btn-ghost btn-sm clear_tanggal btn-circle absolute right-0 mr-2">
                                 <i class="fa-solid fa-times text-lg"></i>
                             </a>
                             <input type="text"
-                                value="{{ old('bought_at', request('tanggal')) }}"
-                                name="tanggal"
+                                value="{{ old('from_date', request('from_date')) }}"
+                                name="from_date"
                                 class="input input-bordered input-date-dialog input-primary w-full"
                             >
                         </div>
-                        @error('tanggal')
+                        @error('from_date')
+                            <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </label>
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label class="form-control w-full">
+                        <div class="label">
+                            <span class="label-text">To Date</span>
+                        </div>
+                        <div class="inline-flex items-center relative">
+                            <a href="#" class="btn btn-ghost btn-sm clear_tanggal btn-circle absolute right-0 mr-2">
+                                <i class="fa-solid fa-times text-lg"></i>
+                            </a>
+                            <input type="text"
+                                value="{{ old('to_date', request('to_date')) }}"
+                                name="to_date"
+                                class="input input-bordered input-date-dialog input-primary w-full"
+                            >
+                        </div>
+                        @error('to_date')
                             <p class="mb-0 mt-1 leading-tight text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </label>
@@ -192,6 +214,9 @@
         <h6 class="font-bold text-lg flex-auto">Telemetries</h6>
         <div class="join pt-4">
             <a class="btn btn-sm btn-primary join-item" href="{{route('telemetries.create')}}"><i class="fas fa-plus"></i>Tambah</a>
+            <a href="{{ route('telemetries.export', request()->query()) }}" class="btn join-item text-white btn-success btn-sm">
+                <i class="fas fa-file-excel"></i>Export to Excel
+            </a>
             <div class="dropdown dropdown-end">
                 <button tabindex="0" class="btn btn-sm join-item">Actions <i class="fa-solid fa-chevron-down"></i></button>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">

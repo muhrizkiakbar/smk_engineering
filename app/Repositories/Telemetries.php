@@ -30,4 +30,20 @@ class Telemetries extends Repository
     {
         $query->whereDate('created_at', '<=', $value);
     }
+
+    // Filter records from a specific 'from_date'
+    protected function filterByFromDate($query, $value)
+    {
+        if ($value) {
+            $query->whereDate('created_at', '>=', $value);
+        }
+    }
+
+    // Filter records up to a specific 'to_date'
+    protected function filterByToDate($query, $value)
+    {
+        if ($value) {
+            $query->whereDate('created_at', '<=', $value);
+        }
+    }
 }

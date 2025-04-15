@@ -66,18 +66,22 @@ class RealTelemetryService extends AppService
         $message = '<b>Warning!!</b>';
 
         foreach ($typeKeys as $typeKey) {
-            if (($realtelemetry->{$typeKey} < $device_location_warning_key_by_types[$typeKey]["bottom_threshold"]) && ($device_location_warning_key_by_types[$typeKey]["bottom_threshold"] != 0)) {
+            if (
+                ($realtelemetry->{$typeKey} < $device_location_warning_key_by_types[$typeKey]["low_bottom_threshold_start"]) &&
+            ) {
                 $message .= "\nLokasi Alat : ".$device_location->device->name." - ".$device_location->location->name;
                 $message .= "\n".$this->locale_sensor($typeKey)." : <b>".$realtelemetry->{$typeKey}."</b>";
-                $message .= "\nNilai batas bawah : ".$device_location_warning_key_by_types[$typeKey]["bottom_threshold"];
                 $message .= "\nNilai sensor ".$this->locale_sensor($typeKey)." berada di batas bawah.";
+                $message .= "\n".warning_indicator($realtelemetry, $device_location_warning_key_by_types, $typeKeys, "bottom");
 
                 $needSendMessage = true;
-            } elseif (($realtelemetry->{$typeKey} > $device_location_warning_key_by_types[$typeKey]["upper_threshold"]) && ($device_location_warning_key_by_types[$typeKey]["upper_threshold"] != 0)) {
+            } elseif (
+                ($realtelemetry->{$typeKey} > $device_location_warning_key_by_types[$typeKey]["low_upper_threshold_start"]) &&
+            ) {
                 $message .= "\nLokasi Alat : ".$device_location->device->name." - ".$device_location->location->name;
                 $message .= "\n".$this->locale_sensor($typeKey)." : <b>".$realtelemetry->{$typeKey}."</b>";
-                $message .= "\nNilai batas atas : ".$device_location_warning_key_by_types[$typeKey]["upper_threshold"];
                 $message .= "\nNilai sensor ".$this->locale_sensor($typeKey)." berada di batas atas.";
+                $message .= "\n".warning_indicator($realtelemetry, $device_location_warning_key_by_types, $typeKeys, "upper");
 
                 $needSendMessage = true;
             }
@@ -119,5 +123,29 @@ class RealTelemetryService extends AppService
         } elseif ("dissolve_oxygen" == $data) {
             return "Dissolve Oxygen";
         }
+    }
+
+    public function warning_indicator($data, $device_location_warning_key_by_types, $type_key, $upper_or_bottom)
+    {
+        $type_threshold= $upper_or_bottom == "upper" ? "batas atas" : "batas bawah";
+        $message = "Tingkat waspada berada pada ".$type_threshold." dengan level ";
+        if (
+            ($data->{$type_key} >= $device_location_warning_key_by_types[$type_key]["low_".$upper_or_bottom."_threshold_start"]) &&
+            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["low_".$upper_or_bottom."_threshold_end"]) &&
+        ){
+            $message = $message."rendah";
+        } elseif (
+            ($data->{$type_key} >= $device_location_warning_key_by_types[$type_key]["middle_".$upper_or_bottom."_threshold_start"]) &&
+            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["middle_".$upper_or_bottom."_threshold_end"]) &&
+        ){
+            $message = $message."menengah";
+        } elseif (
+            ($data->{$type_key} >= $device_location_warning_key_by_types[$type_key]["high_".$upper_or_bottom."_threshold_start"]) &&
+            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["high_".$upper_or_bottom."_threshold_end"]) &&
+        ){
+            $message = $message."tinggi";
+        }
+
+        return $message;
     }
 }

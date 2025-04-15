@@ -52,8 +52,18 @@ class DeviceLocationWarningController extends Controller
         $validated = $request->validate([
             'device_location_id' => 'required',
             'type' => 'required|string',
-            'upper_threshold' => 'required|numeric',
-            'bottom_threshold' => 'required|numeric',
+            'low_upper_threshold_start' => 'required|numeric',
+            'low_upper_threshold_end' => 'required|numeric',
+            'middle_upper_threshold_start' => 'required|numeric',
+            'middle_upper_threshold_end' => 'required|numeric',
+            'high_upper_threshold_start' => 'required|numeric',
+            'high_upper_threshold_end' => 'required|numeric',
+            'low_bottom_threshold_start' => 'required|numeric',
+            'low_bottom_threshold_end' => 'required|numeric',
+            'middle_bottom_threshold_start' => 'required|numeric',
+            'middle_bottom_threshold_end' => 'required|numeric',
+            'high_bottom_threshold_start' => 'required|numeric',
+            'high_bottom_threshold_end' => 'required|numeric',
         ]);
 
         $device_location_warning = $this->deviceLocationWarningService->create($request);
@@ -66,8 +76,18 @@ class DeviceLocationWarningController extends Controller
         $validated = $request->validate([
             'device_location_id' => 'required',
             'type' => 'required|string',
-            'upper_threshold' => 'required|numeric',
-            'bottom_threshold' => 'required|numeric',
+            'low_upper_threshold_start' => 'required|numeric',
+            'low_upper_threshold_end' => 'required|numeric',
+            'middle_upper_threshold_start' => 'required|numeric',
+            'middle_upper_threshold_end' => 'required|numeric',
+            'high_upper_threshold_start' => 'required|numeric',
+            'high_upper_threshold_end' => 'required|numeric',
+            'low_bottom_threshold_start' => 'required|numeric',
+            'low_bottom_threshold_end' => 'required|numeric',
+            'middle_bottom_threshold_start' => 'required|numeric',
+            'middle_bottom_threshold_end' => 'required|numeric',
+            'high_bottom_threshold_start' => 'required|numeric',
+            'high_bottom_threshold_end' => 'required|numeric',
         ]);
 
         $device_location_warning = DeviceLocationWarning::find(($id));

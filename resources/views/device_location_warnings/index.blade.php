@@ -99,18 +99,90 @@
             </div>
             <div class="flex flex-row mb-4 ">
                 <div class="px-3 w-full">
-                    <label for="from" class="label">Upper Threshold</label>
+                    <label for="from" class="label">Low Upper Threshold Start</label>
                     <input type="text"
-                        name="upper_threshold" class="input input-bordered input-primary w-full">
+                        name="low_upper_threshold_start" class="input input-bordered input-primary w-full">
                 </div>
             </div>
             <div class="flex flex-row mb-4 ">
                 <div class="px-3 w-full">
-                    <label for="from" class="label">Bottom Threshold</label>
+                    <label for="from" class="label">Low Upper Threshold End</label>
                     <input type="text"
-                        name="bottom_threshold" class="input input-bordered input-primary w-full">
+                        name="low_upper_threshold_end" class="input input-bordered input-primary w-full">
                 </div>
             </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Upper Threshold Start</label>
+                    <input type="text"
+                        name="middle_upper_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Upper Threshold End</label>
+                    <input type="text"
+                        name="middle_upper_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Upper Threshold Start</label>
+                    <input type="text"
+                        name="high_upper_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Upper Threshold End</label>
+                    <input type="text"
+                        name="high_upper_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Low Bottom Threshold Start</label>
+                    <input type="text"
+                        name="low_bottom_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Low Bottom Threshold End</label>
+                    <input type="text"
+                        name="low_bottom_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Bottom Threshold Start</label>
+                    <input type="text"
+                        name="middle_bottom_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Bottom Threshold End</label>
+                    <input type="text"
+                        name="middle_bottom_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Bottom Threshold Start</label>
+                    <input type="text"
+                        name="high_bottom_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Bottom Threshold End</label>
+                    <input type="text"
+                        name="high_bottom_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+
             <div class="flex justify-between px-3">
                 <button type="submit" class="btn btn-primary w-full">
                    Add
@@ -151,20 +223,93 @@
                     </select>
                 </div>
             </div>
+
             <div class="flex flex-row mb-4 ">
                 <div class="px-3 w-full">
-                    <label for="from" class="label">Upper Threshold</label>
+                    <label for="from" class="label">Low Upper Threshold Start</label>
                     <input type="text"
-                        name="upper_threshold" id="edit_upper_threshold" class="input input-bordered input-primary w-full">
+                        name="low_upper_threshold_start" id="edit_low_upper_threshold_start" class="input input-bordered input-primary w-full">
                 </div>
             </div>
             <div class="flex flex-row mb-4 ">
                 <div class="px-3 w-full">
-                    <label for="from" class="label">Bottom Threshold</label>
+                    <label for="from" class="label">Low Upper Threshold End</label>
                     <input type="text"
-                        name="bottom_threshold" id="edit_bottom_threshold" class="input input-bordered input-primary w-full">
+                        name="low_upper_threshold_end" id="edit_low_upper_threshold_end" class="input input-bordered input-primary w-full">
                 </div>
             </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Upper Threshold Start</label>
+                    <input type="text"
+                        name="middle_upper_threshold_start" id="edit_middle_upper_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Upper Threshold End</label>
+                    <input type="text"
+                        name="middle_upper_threshold_end" id="edit_middle_upper_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Upper Threshold Start</label>
+                    <input type="text"
+                        name="high_upper_threshold_start" id="edit_high_upper_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Upper Threshold End</label>
+                    <input type="text"
+                        name="high_upper_threshold_end" id="edit_high_upper_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Low Bottom Threshold Start</label>
+                    <input type="text"
+                        name="low_bottom_threshold_start" id="edit_low_bottom_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Low Bottom Threshold End</label>
+                    <input type="text"
+                        name="low_bottom_threshold_end" id="edit_low_bottom_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Bottom Threshold Start</label>
+                    <input type="text"
+                        name="middle_bottom_threshold_start" id="edit_middle_bottom_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">Middle Bottom Threshold End</label>
+                    <input type="text"
+                        name="middle_bottom_threshold_end" id="edit_middle_bottom_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Bottom Threshold Start</label>
+                    <input type="text"
+                        name="high_bottom_threshold_start" id="edit_high_bottom_threshold_start" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+            <div class="flex flex-row mb-4 ">
+                <div class="px-3 w-full">
+                    <label for="from" class="label">High Bottom Threshold End</label>
+                    <input type="text"
+                        name="high_bottom_threshold_end" id="edit_high_bottom_threshold_end" class="input input-bordered input-primary w-full">
+                </div>
+            </div>
+
             <div class="flex justify-between px-3">
                 <button type="submit" class="btn btn-primary w-full">
                    Add
@@ -189,13 +334,13 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Device</th>
-                <th>type</th>
-                <th>Department</th>
-                <th>Location</th>
-                <th>City</th>
-                <th>District</th>
-                <th>Action</th>
+                <th colspan="2">Device</th>
+                <th colspan="2">type</th>
+                <th colspan="2">Department</th>
+                <th colspan="2">Location</th>
+                <th colspan="2">City</th>
+                <th colspan="2">District</th>
+                <th colspan="2">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -209,14 +354,14 @@
                     data-device-location-id="{{$device_location_id}}"
                   >
                     <td>{{$device_location->id}}</td>
-                    <td>{{$device_location->device->name}}</td>
-                    <td>{{$device_location->device->type}}</td>
-                    <td>{{$device_location->department->name ?? ''}}</td>
-                    <td>{{$device_location->location->name}}</td>
-                    <td>{{$device_location->location->city}}</td>
-                    <td>{{$device_location->location->district}}</td>
-                    <td>
-                        <button class="btn btn-sm btn-ghost btn-add-warning"
+                    <td colspan="2">{{$device_location->device->name}}</td>
+                    <td colspan="2">{{$device_location->device->type}}</td>
+                    <td colspan="2">{{$device_location->department->name ?? ''}}</td>
+                    <td colspan="2">{{$device_location->location->name}}</td>
+                    <td colspan="2">{{$device_location->location->city}}</td>
+                    <td colspan="2">{{$device_location->location->district}}</td>
+                    <td colspan="2">
+                        <button class="btn btn-sm btn-ghost btn-add-warning text-sm"
                             data-device-location-id="{{$device_location_id}}"
                             data-device-name="{{$device_location->device->name}}"
                             data-device-department-name="{{$device_location->department->name}}"
@@ -224,7 +369,7 @@
                             data-device-location-city="{{$device_location->location->city}}"
                             data-device-location-district="{{$device_location->location->district}}"
                         >
-                            Add Warning
+                            Add
                         </button>
                     </td>
                   </tr>
@@ -250,9 +395,6 @@
         // ========================== start method load data
         function load_data_warning(el){
             let device_location_id = $(el).data('device-location-id')
-            console.log("kena")
-            console.log(device_location_id)
-            console.log("kena")
 
             $.ajax({
                 url: `/device_location_warnings/${device_location_id}`,
@@ -272,52 +414,143 @@
 
             let html = `
                 <tr class="device-detail-row bg-base-200"  data-parent-id="${device_location_id}">
-                    <th colspan="4">
+                    <th class="font-sans text-xs font-semibold">
                         Type
                     </th>
-                    <th>
-                        Upper Threshold
+                    <th class="font-sans text-xs font-semibold">
+                        High Upper Threshold End
                     </th>
-                    <th>
-                        Bottom Threshold
+                    <th class="font-sans text-xs font-semibold">
+                        High Upper Threshold Start
                     </th>
-                    <th colspan="2">Action</th>
+                    <th class="font-sans text-xs font-semibold">
+                        Middle Upper Threshold End
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Middle Upper Threshold Start
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Low Upper Threshold End
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Low Upper Threshold Start
+                    </th>
+
+                    <th class="font-sans text-xs font-semibold">
+                        Low Bottom Threshold Start
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Low Bottom Threshold End
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Middle Bottom Threshold Start
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Middle Bottom Threshold End
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        High Bottom Threshold Start
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        High Bottom Threshold End
+                    </th>
+                    <th class="font-sans text-xs font-semibold">
+                        Action
+                    </th>
                 </tr>
             `;
 
             warnings.forEach(item => {
                 html += `
                     <tr class="device-detail-row bg-base-100 hover:bg-base-300"  data-parent-id="${device_location_id}" data-id="${item.id}">
-                        <td colspan="4">
+                        <td>
                             ${item.type}
                         </td>
                         <td>
-                            ${item.upper_threshold}
+                            ${item.high_upper_threshold_end}
                         </td>
                         <td>
-                            ${item.bottom_threshold}
+                            ${item.high_upper_threshold_start}
                         </td>
-                        <td colspan="2">
-                            <button class="btn btn-sm btn-info btn-edit-warning text-white"
-                                data-device-location-id="${device_location_id}"
-                                data-id="${item.id}"
-                                data-type="${item.type}"
-                                data-upper="${item.upper_threshold}"
-                                data-bottom="${item.bottom_threshold}"
-                                onclick="load_modal_update(this)"
-                            >
-                                Ubah
-                            </button>
-                            <button class="btn btn-sm btn-error btn-delete-warning text-white"
-                                data-device-location-id="${device_location_id}"
-                                data-id="${item.id}"
-                                data-type="${item.type}"
-                                data-upper="${item.upper_threshold}"
-                                data-bottom="${item.bottom_threshold}"
-                                onclick="delete_warning(this)"
-                            >
-                                Hapus
-                            </button>
+                        <td>
+                            ${item.middle_upper_threshold_end}
+                        </td>
+                        <td>
+                            ${item.middle_upper_threshold_start}
+                        </td>
+                        <td>
+                            ${item.low_upper_threshold_end}
+                        </td>
+                        <td>
+                            ${item.low_upper_threshold_start}
+                        </td>
+
+                        <td>
+                            ${item.low_bottom_threshold_start}
+                        </td>
+                        <td>
+                            ${item.low_bottom_threshold_end}
+                        </td>
+                        <td>
+                            ${item.middle_bottom_threshold_start}
+                        </td>
+                        <td>
+                            ${item.middle_bottom_threshold_end}
+                        </td>
+                        <td>
+                            ${item.high_bottom_threshold_start}
+                        </td>
+                        <td>
+                            ${item.high_bottom_threshold_end}
+                        </td>
+
+                        <td>
+                            <div class="dropdown dropdown-end">
+                                <button tabindex="0" class="btn btn-sm btn-ghost btn-square text-xs join-item">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
+                                </button>
+                                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <button class=""
+                                            data-device-location-id="${device_location_id}"
+                                            data-id="${item.id}"
+                                            data-type="${item.type}"
+
+                                            data-high-upper-threshold-end="${item.high_upper_threshold_end}"
+                                            data-high-upper-threshold-start="${item.high_upper_threshold_start}"
+                                            data-middle-upper-threshold-end="${item.midle_upper_threshold_end}"
+                                            data-middle-upper-threshold-start="${item.middle_upper_threshold_start}"
+                                            data-low-upper-threshold-end="${item.low_upper_threshold_end}"
+                                            data-low-upper-threshold-start="${item.low_upper_threshold_start}"
+
+                                            data-low-bottom-threshold-start="${item.low_bottom_threshold_start}"
+                                            data-low-bottom-threshold-end="${item.low_bottom_threshold_end}"
+                                            data-middle-bottom-threshold-start="${item.middle_bottom_threshold_start}"
+                                            data-middle-bottom-threshold-end="${item.middle_bottom_threshold_end}"
+                                            data-high-bottom-threshold-start="${item.high_bottom_threshold_start}"
+                                            data-high-bottom-threshold-end="${item.high_bottom_threshold_end}"
+
+                                            onclick="load_modal_update(this)"
+                                        >
+                                            Ubah
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            data-device-location-id="${device_location_id}"
+                                            data-id="${item.id}"
+                                            data-type="${item.type}"
+                                            data-upper="${item.upper_threshold}"
+                                            data-bottom="${item.bottom_threshold}"
+                                            onclick="delete_warning(this)"
+                                        >
+                                            Hapus
+                                        </button>
+
+                                    </li>
+                                </ul>
+                            </div>
+
                         </td>
                     </tr>
                 `;
@@ -374,14 +607,40 @@
             let currentEl = $(el)
             let device_location_id = currentEl.data('device-location-id')
             let type = currentEl.data('type')
-            let upper = currentEl.data('upper')
-            let bottom = currentEl.data('bottom')
+
+            let high_upper_threshold_end = currentEl.data('high-upper-threshold-end')
+            let high_upper_threshold_start = currentEl.data('high-upper-threshold-start')
+            let middle_upper_threshold_end = currentEl.data('middle-upper-threshold-end')
+            let middle_upper_threshold_start = currentEl.data('middle-upper-threshold-start')
+            let low_upper_threshold_end = currentEl.data('low-upper-threshold-end')
+            let low_upper_threshold_start = currentEl.data('low-upper-threshold-start')
+
+            let low_bottom_threshold_start = currentEl.data('low-bottom-threshold-start')
+            let low_bottom_threshold_end = currentEl.data('low-bottom-threshold-end')
+            let middle_bottom_threshold_start = currentEl.data('middle-bottom-threshold-start')
+            let middle_bottom_threshold_end = currentEl.data('middle-bottom-threshold-end')
+            let high_bottom_threshold_start = currentEl.data('high-bottom-threshold-start')
+            let high_bottom_threshold_end = currentEl.data('high-bottom-threshold-end')
+
             let id = currentEl.data('id')
 
             $('#edit_device_location_id').val(device_location_id)
             $('#edit_type').val(type)
-            $('#edit_upper_threshold').val(upper)
-            $('#edit_bottom_threshold').val(bottom)
+
+            $('#edit_high_upper_threshold_end').val(high_upper_threshold_end)
+            $('#edit_high_upper_threshold_start').val(high_upper_threshold_start)
+            $('#edit_middle_upper_threshold_end').val(middle_upper_threshold_end)
+            $('#edit_middle_upper_threshold_start').val(middle_upper_threshold_start)
+            $('#edit_low_upper_threshold_end').val(low_upper_threshold_end)
+            $('#edit_low_upper_threshold_start').val(low_upper_threshold_start)
+
+            $('#edit_low_bottom_threshold_start').val(low_bottom_threshold_start)
+            $('#edit_low_bottom_threshold_end').val(low_bottom_threshold_end)
+            $('#edit_middle_bottom_threshold_start').val(middle_bottom_threshold_start)
+            $('#edit_middle_bottom_threshold_end').val(middle_bottom_threshold_end)
+            $('#edit_high_bottom_threshold_start').val(high_bottom_threshold_start)
+            $('#edit_high_bottom_threshold_end').val(high_bottom_threshold_end)
+
             $('#edit_id').val(id)
 
             document.getElementById('modal_update').showModal()

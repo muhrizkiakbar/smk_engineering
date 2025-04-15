@@ -51,10 +51,13 @@ Route::middleware('auth:web')->group(function () {
 
             Route::post('/telemetries/generate', [Telemetrycontroller::class, 'generate'])->name('telemetries.generate');
             Route::post('/telemetries/import', [TelemetryController::class, 'import'])->name('telemetries.import');
+            Route::get('/telemetries/export', [TelemetryController::class, 'export'])->name('telemetries.export');
+
             Route::resource('telemetries', TelemetryController::class)->except([
                 'show'
             ]);
 
+            Route::get('/real_telemetries/export', [RealTelemetryController::class, 'export'])->name('real_telemetries.export');
             Route::resource('real_telemetries', RealTelemetryController::class)->except([
                 'show', 'new','create','store', 'edit', 'update', 'delete', 'destroy'
             ]);
