@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\EndUser;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\DeviceLocation;
 use App\Services\DeviceLocationService;
@@ -227,6 +229,29 @@ class DeviceLocationController extends Controller
     {
         $device = $this->devicePhotoService->request_create($device_location_id);
         return redirect(route('enduser.device_locations.telemetry', ['id' => $device_location_id]))->with('status', 'Request for photo of device was created');
+    }
+
+    public function download($id, $device_photo_id)
+    {
+        $photo = DevicePhoto::findOrFail(decrypt($device_photo_id));
+        $url = $photo->photo; // URL ke file MinIO
+
+        // Ambil ekstensi asli dari URL
+        $extension = pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_EXTENSION);
+        $filename = Str::slug(
+            $photo->device_location->device->name . '-' . $photo->device_location->location->name . '-' . $photo->created_at->format('Ymd_His')
+        ) . '.' . $extension;
+
+
+        // Ambil isi file
+        $fileContents = file_get_contents($url);
+
+        // Deteksi MIME type (optional tapi bagus)
+        $mimeType = \Illuminate\Support\Facades\Http::head($url)->header('Content-Type') ?? 'application/octet-stream';
+
+        return response($fileContents)
+            ->header('Content-Type', 'image/jpeg')
+            ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
     }
 
     public function telemetry_sensor(Request $request)

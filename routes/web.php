@@ -80,6 +80,7 @@ Route::middleware('auth:web')->group(function () {
 
                 Route::get('/device_locations/{id}/device_photos', [EndUserDeviceLocationController::class, 'device_photos'])->name('enduser.device_locations.device_photos');
                 Route::post('/device_locations/{id}/device_photos', [EndUserDeviceLocationController::class, 'create_device_photo'])->name('enduser.device_locations.create_device_photo');
+                Route::get('/device_locations/{id}/device_photos/{device_photo_id}/download', [EndUserDeviceLocationController::class, 'download'])->name('enduser.device_locations.download');
 
             });
         });

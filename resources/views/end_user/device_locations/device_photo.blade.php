@@ -142,9 +142,9 @@
                         >
                         <i class="fa-solid fa-magnifying-glass"></i>Preview
                         </button>
-                        <button class="btn btn-xs btn-secondary" onclick="downloadFromMinIO('{{ $device_photo->photo }}', '{{ $device_location->device->name }} - {{ $device_location->location->name }} {{ $device_photo->created_at }}.jpg')">
-                            <i class="fa-solid fa-download"></i>Download
-                        </button>
+                        <a class="btn btn-xs btn-secondary" href="{{ route('enduser.device_locations.download', [$device_location->id, encrypt($device_photo->id)]) }}">
+                            <i class="fa-solid fa-download"></i> Download
+                        </a>
                     </div>
                 </div>
 
@@ -197,25 +197,6 @@
     let isDragging = false;
     let startX, startY;
     let translateX = 0, translateY = 0;
-
-    function downloadFromMinIO(url, filename) {
-        fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Gagal mengambil gambar');
-            return response.blob();
-            })
-        .then(blob => {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            })
-        .catch(error => {
-            alert('Gagal mengunduh gambar: ' + error.message);
-        });
-    }
 
     // Open modal with image
     function openImageModal(imageSrc, title, description) {
