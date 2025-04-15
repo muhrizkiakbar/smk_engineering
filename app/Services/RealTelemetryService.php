@@ -127,22 +127,22 @@ class RealTelemetryService extends AppService
 
     public function warning_indicator($data, $device_location_warning_key_by_types, $type_key, $upper_or_bottom)
     {
-        $type_threshold= $upper_or_bottom == "upper" ? "batas atas" : "batas bawah";
+        $type_threshold = $upper_or_bottom == "upper" ? "batas atas" : "batas bawah";
         $message = "Tingkat waspada berada pada ".$type_threshold." dengan level ";
         if (
             ($data->{$type_key} >= $device_location_warning_key_by_types[$type_key]["low_".$upper_or_bottom."_threshold_start"]) &&
-            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["low_".$upper_or_bottom."_threshold_end"]) &&
-        ){
+            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["low_".$upper_or_bottom."_threshold_end"])
+        ) {
             $message = $message."rendah";
         } elseif (
             ($data->{$type_key} >= $device_location_warning_key_by_types[$type_key]["middle_".$upper_or_bottom."_threshold_start"]) &&
-            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["middle_".$upper_or_bottom."_threshold_end"]) &&
-        ){
+            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["middle_".$upper_or_bottom."_threshold_end"])
+        ) {
             $message = $message."menengah";
         } elseif (
             ($data->{$type_key} >= $device_location_warning_key_by_types[$type_key]["high_".$upper_or_bottom."_threshold_start"]) &&
-            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["high_".$upper_or_bottom."_threshold_end"]) &&
-        ){
+            ($data->{$type_key} <= $device_location_warning_key_by_types[$type_key]["high_".$upper_or_bottom."_threshold_end"])
+        ) {
             $message = $message."tinggi";
         }
 
