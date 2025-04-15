@@ -67,7 +67,7 @@ class RealTelemetryService extends AppService
 
         foreach ($typeKeys as $typeKey) {
             if (
-                ($realtelemetry->{$typeKey} < $device_location_warning_key_by_types[$typeKey]["low_bottom_threshold_start"]) &&
+                ($realtelemetry->{$typeKey} < $device_location_warning_key_by_types[$typeKey]["low_bottom_threshold_start"])
             ) {
                 $message .= "\nLokasi Alat : ".$device_location->device->name." - ".$device_location->location->name;
                 $message .= "\n".$this->locale_sensor($typeKey)." : <b>".$realtelemetry->{$typeKey}."</b>";
@@ -76,7 +76,7 @@ class RealTelemetryService extends AppService
 
                 $needSendMessage = true;
             } elseif (
-                ($realtelemetry->{$typeKey} > $device_location_warning_key_by_types[$typeKey]["low_upper_threshold_start"]) &&
+                ($realtelemetry->{$typeKey} > $device_location_warning_key_by_types[$typeKey]["low_upper_threshold_start"])
             ) {
                 $message .= "\nLokasi Alat : ".$device_location->device->name." - ".$device_location->location->name;
                 $message .= "\n".$this->locale_sensor($typeKey)." : <b>".$realtelemetry->{$typeKey}."</b>";
