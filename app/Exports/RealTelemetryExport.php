@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\RealTelemetry;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TelemetryExport implements FromCollection
+class RealTelemetryExport implements FromCollection, WithHeadings
 {
     protected $from_date;
     protected $to_date;
