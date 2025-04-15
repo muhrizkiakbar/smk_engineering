@@ -40,7 +40,7 @@ class RealTelemetryExport implements FromCollection, WithHeadings
                 'location_name'    => optional($data->device_location)->location ? $data->device_location->location->name : 'N/A',
                 'city'             => optional($data->device_location)->location ? $data->device_location->location->city : 'N/A',
                 'district'         => optional($data->device_location)->location ? $data->device_location->location->district : 'N/A',
-                'created_at'       => $data->created_at->format('Y-m-d'),
+                'created_at'       => $data->created_at->format('Y-m-d H:i:s'),
                 'ph'               => $data->ph,
                 'tds'              => $data->tds,
                 'tss'              => $data->tss,
