@@ -44,7 +44,7 @@ class RealTelemetryExport implements FromCollection, WithHeadings
                 'ph'               => $data->ph,
                 'tds'              => $data->tds,
                 'tss'              => $data->tss,
-                'water_level'      => $data->water_level,
+                'water_level'      => $data->water_height,
                 'debit'            => $data->debit,
                 'rainfall'         => $data->rainfall,
                 'temperature'      => $data->temperature,
