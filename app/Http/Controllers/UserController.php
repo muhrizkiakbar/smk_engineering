@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->userService->users($request, ['department'])->cursorPaginate(10);
+        $users = $this->userService->users($request, ['department'])->cursorPaginate(10)->withQueryString();
         $departments = Department::where('state', 'active')->get();
         return view('users.index', ['users' => $users, 'departments' => $departments]);
     }

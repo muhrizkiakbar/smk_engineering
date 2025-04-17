@@ -21,7 +21,7 @@ class LocationController extends Controller
     //
     public function index(Request $request)
     {
-        $locations = $this->locationService->locations($request)->cursorPaginate(10);
+        $locations = $this->locationService->locations($request)->cursorPaginate(10)->withQueryString();
 
         return view('locations.index', ['locations' => $locations]);
     }

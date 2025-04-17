@@ -21,7 +21,7 @@ class DeviceController extends Controller
     //
     public function index(Request $request)
     {
-        $devices = $this->deviceService->devices($request)->cursorPaginate(10);
+        $devices = $this->deviceService->devices($request)->cursorPaginate(10)->withQueryString();
 
         return view('devices.index', ['devices' => $devices]);
     }

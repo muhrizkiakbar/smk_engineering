@@ -24,7 +24,7 @@ class DeviceLocationController extends Controller
     //
     public function index(Request $request)
     {
-        $device_locations = $this->deviceLocationService->device_locations($request, ['device', 'location', 'department'])->cursorPaginate(10);
+        $device_locations = $this->deviceLocationService->device_locations($request, ['device', 'location', 'department'])->cursorPaginate(10)->withQueryString();
 
         $devices = Device::where('state', 'active')
             ->get();

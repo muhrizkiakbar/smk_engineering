@@ -21,7 +21,7 @@ class DepartmentController extends Controller
     //
     public function index(Request $request)
     {
-        $departments = $this->departmentService->departments($request)->cursorPaginate(10);
+        $departments = $this->departmentService->departments($request)->cursorPaginate(10)->withQueryString();
 
         return view('departments.index', ['departments' => $departments]);
     }
