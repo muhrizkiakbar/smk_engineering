@@ -1,7 +1,7 @@
 <div class="drawer-side z-[99999]">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
     <div class="flex">
-        <aside class="h-fit sm:h-screen menu top-0 flex flex-col bg-base-200 overflow-y-auto">
+        <aside class="h-screen sm:h-screen menu top-0 flex flex-col bg-base-200 overflow-y-auto">
             <!-- Header -->
             <div class="flex justify-between p-2">
                 <!-- Logo -->

@@ -11,6 +11,7 @@ use App\Models\DeviceLocation;
 use App\Services\RealTelemetryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RealTelemetryController extends Controller
 {

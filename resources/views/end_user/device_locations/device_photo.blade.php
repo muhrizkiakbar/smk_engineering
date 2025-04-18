@@ -68,6 +68,37 @@
             </form>
         </div>
     </dialog>
+    <dialog id="device_location_modal" class="modal">
+        <div class="modal-box w-11/12 max-w-5xl">
+            <h3 class="ms-3 mb-4 text-lg font-bold">Device Locations</h3>
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <div class="grid grid-cols-1 sm:grid-cols-3">
+                @foreach ($device_locations as $device_location)
+                    <div class="px-2 py-2">
+                        <a href="{{route('enduser.device_locations.device_photos', $device_location->id)}}" class="btn btn-outline w-full btn-lg h-full btn-ghost flex flex-row items-center">
+                            <!-- Tambah div wrapper untuk ikon dengan lebar tetap -->
+                            <div class="flex-none w-8 mr-2">
+                                <i class="fa-solid fa-map-location-dot text-xl"></i>
+                            </div>
+
+                            <!-- Tambah container untuk teks dengan flex-1 -->
+                            <div class="flex-1 min-w-0 text-left">
+                                {{$device_location->device->name}} - {{$device_location->location->name}}
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-neutral w-full btn-md">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
     <input type="checkbox" id="imageModalToggle" class="modal-toggle hidden" />
     <div id="imageModal" class="modal">
@@ -121,6 +152,7 @@
         <div class="flex flex-col sm:flex-row">
             <button class="btn btn-sm btn-primary sm:m-0 my-2 me-0 sm:me-2" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
             <a class="btn btn-sm btn-secondary" href="{{route('enduser.device_locations.telemetry',$device_location->id)}}"><i class="fas fa-gauge"></i>Dashboard</a>
+            <button class="btn btn-sm btn-secondary" onclick="device_location_modal.showModal()"><i class="fas fa-map"></i>Change Locations</button>
         </div>
     </div>
 

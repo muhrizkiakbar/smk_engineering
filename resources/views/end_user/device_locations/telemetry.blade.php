@@ -160,7 +160,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->tds ?? 0}}</div>
+                ">{{$telemetry->tds ?? 0}} mg/l</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu TDS maksimal 300ppm</div>
             </div>
         </div>
@@ -186,7 +186,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->tss ?? 0}}</div>
+                ">{{$telemetry->tss ?? 0}} mg/l</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base">Nilai batas ambang baku mutu TSS maksimal 150 mg/L</div>
             </div>
         </div>
@@ -212,7 +212,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->debit ?? 0}}</div>
+                ">{{$telemetry->debit ?? 0}} m3/detik</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -238,7 +238,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->rainfall ?? 0}}</div>
+                ">{{$telemetry->rainfall ?? 0}} mm</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -264,7 +264,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->water_height ?? 0}}</div>
+                ">{{$telemetry->water_height ?? 0}} m</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -290,7 +290,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->temperature ?? 0}}</div>
+                ">{{$telemetry->temperature ?? 0}}&deg;C</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -316,7 +316,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->humidity ?? 0}}</div>
+                ">{{$telemetry->humidity ?? 0}}%</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -342,7 +342,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->wind_direction ?? 0}}</div>
+                ">{{$telemetry->wind_direction ?? 0}}&deg;</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -368,7 +368,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->wind_speed ?? 0}}</div>
+                ">{{$telemetry->wind_speed ?? 0}} m/s</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -394,7 +394,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->solar_radiation ?? 0}}</div>
+                ">{{$telemetry->solar_radiation ?? 0}} W/m2</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -420,7 +420,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->evaporation ?? 0}}</div>
+                ">{{$telemetry->evaporation ?? 0}} mm</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
@@ -446,7 +446,7 @@
                     @else
                         text-neutral-content
                     @endif
-                ">{{$telemetry->dissolve_oxygen ?? 0}}</div>
+                ">{{$telemetry->dissolve_oxygen ?? 0}} mg/l</div>
                 <div class="stat-desc whitespace-normal text-sm md:text-base"></div>
             </div>
         </div>
