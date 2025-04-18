@@ -151,7 +151,7 @@
         </div>
         <div class="flex flex-col sm:flex-row">
             <button class="btn btn-sm btn-primary sm:m-0 my-2 me-0 sm:me-2" onclick="my_modal_5.showModal()"><i class="fas fa-search"></i>Search</button>
-            <a class="btn btn-sm btn-secondary" href="{{route('enduser.device_locations.telemetry',$device_location->id)}}"><i class="fas fa-gauge"></i>Dashboard</a>
+            <a class="btn btn-sm btn-secondary sm:m-0 my-2 me-0 sm:me-2" href="{{route('enduser.device_locations.telemetry',$device_location->id)}}"><i class="fas fa-gauge"></i>Dashboard</a>
             <button class="btn btn-sm btn-secondary" onclick="device_location_modal.showModal()"><i class="fas fa-map"></i>Change Locations</button>
         </div>
     </div>
